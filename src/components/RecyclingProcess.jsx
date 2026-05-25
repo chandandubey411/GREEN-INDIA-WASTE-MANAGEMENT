@@ -430,14 +430,14 @@ const RecyclingProcess = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.5 + i * 0.08 }}
               whileHover={{ y: -3, scale: 1.04 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border bg-white shadow-sm text-sm font-semibold cursor-default transition-all duration-300"
+              className="inline-flex items-start gap-2.5 px-4 py-2.5 md:px-5 md:py-2.5 rounded-xl md:rounded-full border bg-white shadow-sm text-sm font-semibold cursor-default transition-all duration-300 max-w-full"
               style={{
                 borderColor: `${badge.color}40`,
                 color: badge.color,
               }}
             >
-              <FaCheckCircle style={{ color: badge.color }} />
-              {badge.label}
+              <FaCheckCircle className="mt-1 md:mt-0.5 flex-shrink-0 text-sm" style={{ color: badge.color }} />
+              <span className="leading-snug">{badge.label}</span>
             </motion.div>
           ))}
         </motion.div>

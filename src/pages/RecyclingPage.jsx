@@ -349,7 +349,7 @@ const RecyclingPage = () => {
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <img src="https://images.unsplash.com/photo-1542601906897-44cc4f6e1a67?w=500&h=320&fit=crop" alt="Nature" className="rounded-2xl w-full object-cover h-48 shadow-green-sm" />
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&h=320&fit=crop" alt="Nature" className="rounded-2xl w-full object-cover h-48 shadow-green-sm" />
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent to-emerald-900/20 rounded-2xl" />
               </motion.div>
             </div>
@@ -411,9 +411,9 @@ const RecyclingPage = () => {
           </div>
           <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-4 mt-10">
             {['Environment Protection', 'Resource Conservation', 'Sustainable Future', 'Building a Cleaner & Greener India'].map((pillar, i) => (
-              <div key={i} className="flex items-center gap-2 bg-primary-50 border border-primary-200 rounded-full px-5 py-2">
-                <FaCheckCircle className="text-primary-600 text-sm" />
-                <span className="text-gray-700 text-sm font-medium">{pillar}</span>
+              <div key={i} className="flex items-start gap-2.5 bg-primary-50 border border-primary-200 rounded-xl md:rounded-full px-4 py-2.5 md:px-5 md:py-2 max-w-full">
+                <FaCheckCircle className="text-primary-600 text-sm mt-1 md:mt-0.5 flex-shrink-0" />
+                <span className="text-gray-700 text-sm font-medium leading-snug">{pillar}</span>
               </div>
             ))}
           </motion.div>

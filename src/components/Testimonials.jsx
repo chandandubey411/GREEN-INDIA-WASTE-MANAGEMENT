@@ -20,10 +20,10 @@ const Testimonials = () => {
   const prev = () => { setDir(-1); setActive((p) => (p - 1 + testimonials.length) % testimonials.length); };
 
   return (
-    <section className="py-20 bg-green-50">
+    <section className="py-12 md:py-20 bg-green-50">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -45,11 +45,11 @@ const Testimonials = () => {
           </motion.h2>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
           {/* Featured testimonial */}
           <div className="lg:col-span-2">
-            <div className="relative h-full min-h-[320px] overflow-hidden rounded-3xl bg-white border border-green-100 shadow-lg p-8 md:p-10">
-              <FaQuoteLeft className="text-6xl text-green-200 mb-6" />
+            <div className="relative overflow-hidden rounded-3xl bg-white border border-green-100 shadow-lg p-6 md:p-10" style={{ minHeight: 280 }}>
+              <FaQuoteLeft className="text-5xl md:text-6xl text-green-200 mb-4 md:mb-6" />
               <AnimatePresence mode="wait" custom={dir}>
                 <motion.div
                   key={active}
@@ -59,7 +59,7 @@ const Testimonials = () => {
                   exit={{ opacity: 0, x: dir * -60 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <p className="text-gray-700 text-xl leading-relaxed mb-8 font-light italic">
+                  <p className="text-gray-700 text-base md:text-xl leading-relaxed mb-6 md:mb-8 font-light italic">
                     "{testimonials[active].review}"
                   </p>
                   <div className="flex items-center gap-4">

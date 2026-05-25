@@ -88,9 +88,9 @@ const GalleryPage = () => {
       </section>
 
       {/* ─── Filter Tabs ───────────────────────────────── */}
-      <section className="py-8 bg-white border-b border-green-100 sticky top-16 z-30 shadow-sm">
+      <section className="py-4 md:py-6 bg-white border-b border-green-100 sticky top-16 z-30 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex overflow-x-auto md:flex-wrap gap-2 md:justify-center no-scrollbar pb-1 -mx-4 px-4 md:mx-0 md:px-0">
             {categories.map((cat, i) => (
               <motion.button
                 key={cat}
@@ -98,16 +98,18 @@ const GalleryPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
                   filter === cat
                     ? 'bg-green-600 text-white shadow-lg shadow-green-300/40 scale-105'
                     : 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100'
                 }`}
               >
                 {cat}
-                <span className={`ml-2 text-xs px-1.5 py-0.5 rounded-full ${filter === cat ? 'bg-white/20' : 'bg-green-200 text-green-700'}`}>
-                  {cat === 'All' ? galleryImages.length : galleryImages.filter(img => img.category === cat).length}
-                </span>
+                {cat !== 'All' && (
+                  <span className={`ml-1.5 text-[10px] md:text-xs px-1.5 py-0.5 rounded-full ${filter === cat ? 'bg-white/20' : 'bg-green-200 text-green-700'}`}>
+                    {galleryImages.filter(img => img.category === cat).length}
+                  </span>
+                )}
               </motion.button>
             ))}
           </div>
@@ -126,7 +128,7 @@ const GalleryPage = () => {
             <>
               <div className="mb-6 flex items-center justify-between">
                 <p className="text-gray-500 text-sm">
-                  Showing <span className="font-semibold text-green-700">{filtered.length}</span> photos
+                  Showing <span className="font-semibold text-green-700">{filter === 'All' ? 'all' : filtered.length}</span> photos
                   {filter !== 'All' && <> in <span className="font-semibold text-green-700">{filter}</span></>}
                 </p>
                 <p className="text-gray-400 text-xs hidden sm:block">Click any photo to enlarge • Use ← → keys to navigate</p>

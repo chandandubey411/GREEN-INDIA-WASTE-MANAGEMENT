@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
     <section className="section-padding bg-gradient-to-b from-slate-950 to-slate-900">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="grid lg:grid-cols-2 gap-12 items-end mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-end mb-10 md:mb-16">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-black font-display text-white leading-tight"
+              className="text-3xl md:text-5xl font-black font-display text-white leading-tight"
             >
               Why Green India Is The{' '}
               <span className="text-gradient">Smart Choice</span>
@@ -75,7 +75,7 @@ const WhyChooseUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/60 text-lg leading-relaxed"
+            className="text-white/60 text-base md:text-lg leading-relaxed"
           >
             We combine world-class technology with deep environmental commitment to deliver
             waste management services that are faster, greener, and more transparent than ever before.
@@ -117,29 +117,35 @@ const WhyChooseUs = () => {
             ))}
           </div>
 
-          <div className="relative flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <h3 className="text-3xl font-black font-display text-white mb-3">
+          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl md:text-3xl font-black font-display text-white mb-2 md:mb-3">
                 Ready to Make India Cleaner?
               </h3>
-              <p className="text-white/70 text-lg">
+              <p className="text-white/70 text-base md:text-lg">
                 Join 12,000+ clients already building a sustainable future.
               </p>
             </div>
-            <div className="flex gap-4 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0 w-full sm:w-auto">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-white text-primary-700 font-bold px-8 py-4 rounded-full hover:bg-primary-50 transition-all"
+                className="bg-white text-primary-700 font-bold px-6 py-3.5 rounded-full hover:bg-primary-50 transition-all text-sm md:text-base w-full sm:w-auto"
               >
                 Get Started Free
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => document.querySelector('#ai-assistant')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-2 border-white/50 text-white font-bold px-8 py-4 rounded-full hover:border-white transition-all"
+                onClick={() => {
+                  const btn = document.querySelector('#ai-assistant');
+                  if (btn) {
+                    btn.click();
+                    btn.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="border-2 border-white/50 text-white font-bold px-6 py-3.5 rounded-full hover:border-white transition-all text-sm md:text-base w-full sm:w-auto"
               >
                 Try AI Assistant
               </motion.button>

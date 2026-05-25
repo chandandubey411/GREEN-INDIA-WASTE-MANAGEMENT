@@ -79,7 +79,7 @@ const Impact = () => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
           {impactStats.map((stat, i) => {
             const Icon = iconMap[stat.icon];
             return (
@@ -90,7 +90,7 @@ const Impact = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.12 }}
                 whileHover={{ y: -6 }}
-                className="relative p-6 rounded-2xl border border-white/20 overflow-hidden group cursor-default bg-white/10 backdrop-blur"
+                className="relative p-4 md:p-6 rounded-2xl border border-white/20 overflow-hidden group cursor-default bg-white/10 backdrop-blur"
               >
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -102,10 +102,10 @@ const Impact = () => {
                 >
                   {Icon && <Icon style={{ color: stat.color }} className="text-2xl" />}
                 </div>
-                <div className="text-4xl font-black font-display mb-1 counter-number" style={{ color: stat.color }}>
+                <div className="text-3xl md:text-4xl font-black font-display mb-1 counter-number truncate" style={{ color: stat.color }}>
                   <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-white/80 font-medium mb-4">{stat.label}</div>
+                <div className="text-white/80 font-medium mb-3 md:mb-4 text-sm md:text-base">{stat.label}</div>
                 <div className="relative h-1.5 bg-white/15 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: '0%' }}
@@ -131,12 +131,12 @@ const Impact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="relative overflow-hidden rounded-3xl p-10 md:p-16 border border-white/20 bg-white/10 backdrop-blur"
+          className="relative overflow-hidden rounded-3xl p-6 md:p-10 lg:p-16 border border-white/20 bg-white/10 backdrop-blur"
         >
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 right-0 text-9xl font-black text-white select-none">♻</div>
           </div>
-          <div className="relative grid md:grid-cols-3 gap-8 text-center">
+          <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             {[
               { value: '98%', label: 'Waste Diverted from Landfill' },
               { value: '₹50Cr+', label: 'Value Created from Waste' },
@@ -149,8 +149,8 @@ const Impact = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 + 0.4 }}
               >
-                <div className="text-5xl font-black font-display text-green-300 mb-2">{item.value}</div>
-                <div className="text-white/70">{item.label}</div>
+                <div className="text-4xl md:text-5xl font-black font-display text-green-300 mb-2">{item.value}</div>
+                <div className="text-white/70 text-sm md:text-base">{item.label}</div>
               </motion.div>
             ))}
           </div>

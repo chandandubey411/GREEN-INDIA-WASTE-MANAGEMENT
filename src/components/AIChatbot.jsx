@@ -112,7 +112,7 @@ const AIChatbot = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 w-16 h-16 rounded-full bg-gradient-to-r from-primary-500 to-emerald-600 shadow-xl shadow-primary-500/40 flex items-center justify-center z-40 ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 w-16 h-16 rounded-full bg-gradient-to-r from-primary-500 to-emerald-600 shadow-xl shadow-primary-500/40 flex items-center justify-center z-40 ${isOpen ? 'hidden' : ''}`}
       >
         <FaRobot className="text-white text-2xl" />
         {/* Pulse effect */}
@@ -127,7 +127,7 @@ const AIChatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-[350px] sm:w-[400px] h-[500px] max-h-[80vh] bg-white border border-green-200/80 rounded-3xl shadow-green-2xl overflow-hidden z-50 flex flex-col"
+            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-6 sm:bottom-6 md:right-8 md:bottom-8 sm:w-[400px] h-[500px] max-h-[80vh] bg-white border border-green-200/80 rounded-3xl shadow-green-2xl overflow-hidden z-50 flex flex-col"
           >
             {/* Chat Header */}
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 border-b border-green-700/20 flex items-center justify-between">

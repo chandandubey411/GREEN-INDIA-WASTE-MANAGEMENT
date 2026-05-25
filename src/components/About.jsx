@@ -65,10 +65,10 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-4">
               <motion.div
                 whileHover={{ scale: 1.03 }}
-                className="relative rounded-2xl overflow-hidden h-64"
+                className="relative rounded-2xl overflow-hidden h-48 md:h-64"
               >
                 <img
                   src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=400&h=300&fit=crop"
@@ -80,10 +80,10 @@ const About = () => {
               <div className="flex flex-col gap-4">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
-                  className="relative rounded-2xl overflow-hidden h-32"
+                  className="relative rounded-2xl overflow-hidden h-20 md:h-28"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1542601906897-44cc4f6e1a67?w=300&h=200&fit=crop"
+                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=300&h=200&fit=crop"
                     alt="Eco environment"
                     className="w-full h-full object-cover"
                   />
@@ -184,7 +184,7 @@ const About = () => {
         </div>
 
         {/* Counters */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 md:mt-20">
           {counters.map((counter, i) => (
             <motion.div
               key={counter.label}

@@ -47,7 +47,7 @@ export const services = [
     icon: 'FaTruck',
     title: 'Doorstep Pickup',
     description: 'Schedule convenient doorstep waste collection at your preferred date and time.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop',
+    image: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=400&h=300&fit=crop',
     color: '#8b5cf6',
   },
   {
@@ -148,7 +148,7 @@ export const recyclingSteps = [
 export const impactStats = [
   { label: 'Tons Recycled', value: 50000, suffix: '+', icon: 'FaRecycle', color: '#22c55e', progress: 85 },
   { label: 'Trees Saved', value: 120000, suffix: '+', icon: 'FaTree', color: '#4ade80', progress: 72 },
-  { label: 'Plastic Reduced', value: 30000, suffix: 'kg', icon: 'FaLeaf', color: '#3b82f6', progress: 68 },
+  { label: 'Plastic Reduced', value: 30, suffix: 'K+ Tons', icon: 'FaLeaf', color: '#3b82f6', progress: 68 },
   { label: 'Active Clients', value: 12000, suffix: '+', icon: 'FaUsers', color: '#8b5cf6', progress: 90 },
 ];
 
@@ -220,17 +220,17 @@ export const blogs = [
     excerpt: 'Join thousands of Indian families in the zero-waste movement. Simple daily habits that make a massive environmental impact.',
     date: 'April 28, 2026',
     category: 'Lifestyle',
-    image: 'https://images.unsplash.com/photo-1542601906897-44cc4f6e1a67?w=400&h=250&fit=crop',
+    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=250&fit=crop',
     readTime: '6 min read',
   },
 ];
 
 export const galleryImages = [
   { id: 1,  src: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop', alt: 'Recycling Plant', category: 'Facility' },
-  { id: 2,  src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop', alt: 'Garbage Truck', category: 'Operations' },
+  { id: 2,  src: 'https://images.unsplash.com/photo-1530587191325-3db32d826c18?w=800&h=600&fit=crop', alt: 'Garbage Truck', category: 'Operations' },
   { id: 3,  src: 'https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=800&h=600&fit=crop', alt: 'Plastic Recycling', category: 'Recycling' },
   { id: 4,  src: 'https://images.unsplash.com/photo-1605600659873-d808a13e4d9a?w=800&h=600&fit=crop', alt: 'Sorting Workers', category: 'Team' },
-  { id: 5,  src: 'https://images.unsplash.com/photo-1542601906897-44cc4f6e1a67?w=800&h=600&fit=crop', alt: 'Green Environment', category: 'Environment' },
+  { id: 5,  src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop', alt: 'Green Environment', category: 'Environment' },
   { id: 6,  src: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop', alt: 'Industrial Facility', category: 'Facility' },
   { id: 7,  src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop', alt: 'E-Waste Electronics', category: 'E-Waste' },
   { id: 8,  src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop', alt: 'Organic Composting', category: 'Organic' },

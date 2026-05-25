@@ -1,323 +1,429 @@
 // src/components/Hero.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaRecycle, FaUsers, FaCity, FaLeaf, FaPlay, FaCheckCircle } from 'react-icons/fa';
+import {
+  FaArrowRight, FaRecycle, FaUsers, FaCity,
+  FaLeaf, FaPlay, FaCheckCircle, FaTimes,
+  FaPaperPlane, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight,
+} from 'react-icons/fa';
 
-const carouselImages = [
+/* ─── Carousel slides ─────────────────────────────────────── */
+const slides = [
   {
-    src: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop',
-    label: 'Smart Recycling',
-    tag: 'Zero Waste',
+    src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1800&h=900&fit=crop',
+    headline: "Let's Take Action To",
+    subheadline: 'Eliminate Pollution',
+    caption: 'Join India\'s largest AI-powered waste network — cleaner cities, greener future.',
+    tag: 'Zero Waste Mission',
+    color: '#22c55e',
   },
   {
-    src: 'https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=800&h=600&fit=crop',
-    label: 'Green Operations',
+    src: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1800&h=900&fit=crop',
+    headline: 'Smart Recycling For',
+    subheadline: 'Cleaner India',
+    caption: 'Serving 120+ cities with AI-powered collection, recycling & responsible disposal.',
+    tag: 'Smart Recycling',
+    color: '#10b981',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1800&h=900&fit=crop',
+    headline: 'Building a Sustainable',
+    subheadline: 'Tomorrow Today',
+    caption: '50,000+ tons recycled. 12,000+ happy clients. Zero-landfill by 2027.',
     tag: 'Eco Certified',
+    color: '#059669',
   },
   {
-    src: 'https://images.unsplash.com/photo-1542601906897-44cc4f6e1a67?w=800&h=600&fit=crop',
-    label: 'Clean India Mission',
-    tag: 'Nationwide',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop',
-    label: 'Sustainable Future',
-    tag: 'AI Powered',
+    src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1800&h=900&fit=crop',
+    headline: 'Protecting Nature By',
+    subheadline: 'Proper Waste Management',
+    caption: 'Government certified, ISO 14001:2015 compliant waste management solutions.',
+    tag: 'ISO Certified',
+    color: '#16a34a',
   },
 ];
 
+/* ─── Stats ──────────────────────────────────────────────── */
 const stats = [
-  { icon: FaRecycle, value: '50K+', label: 'Tons Recycled', color: '#16a34a' },
-  { icon: FaUsers, value: '12K+', label: 'Happy Clients', color: '#059669' },
-  { icon: FaCity, value: '120+', label: 'Cities Covered', color: '#0d9488' },
+  { icon: FaRecycle, value: '50K+', label: 'Tons Recycled' },
+  { icon: FaUsers,   value: '12K+', label: 'Happy Clients'  },
+  { icon: FaCity,    value: '120+', label: 'Cities Covered' },
 ];
 
-const badges = [
-  'ISO Certified',
-  'Carbon Neutral',
-  'AI Powered',
-];
+/* ─── Pickup Modal Form ───────────────────────────────────── */
+const PickupModal = ({ onClose }) => {
+  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', city: '', message: '' });
+  const [loading, setLoading] = useState(false);
+  const [done, setDone] = useState(false);
 
-const Hero = () => {
-  const [current, setCurrent] = useState(0);
-  const [prevImg, setPrevImg] = useState(null);
+  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  useEffect(() => {
-    const t = setInterval(() => {
-      setPrevImg(current);
-      setCurrent((p) => (p + 1) % carouselImages.length);
-    }, 4500);
-    return () => clearInterval(t);
-  }, [current]);
+  const submit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => { setLoading(false); setDone(true); }, 1800);
+  };
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#f0fdf4]"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[300] flex items-center justify-center p-4"
+      style={{ backdropFilter: 'blur(14px) brightness(0.3)' }}
+      onClick={onClose}
     >
-      {/* ── Background grid pattern ── */}
-      <div className="absolute inset-0 hero-grid-pattern opacity-60 z-0" />
-
-      {/* ── Glowing Orbs ── */}
-      <div className="absolute top-[-120px] left-[-100px] w-[500px] h-[500px] hero-orb hero-orb-1 z-0" />
-      <div className="absolute bottom-[-80px] right-[10%] w-[380px] h-[380px] hero-orb hero-orb-2 z-0" />
-      <div className="absolute top-[30%] left-[40%] w-[250px] h-[250px] hero-orb hero-orb-3 z-0" />
-
-      {/* ── Floating Leaf Particles ── */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute z-0 text-green-400/20 select-none pointer-events-none"
-          style={{
-            left: `${5 + i * 8}%`,
-            top: `${10 + ((i * 37) % 70)}%`,
-            fontSize: `${10 + (i % 4) * 6}px`,
-          }}
-          animate={{
-            y: [-15, 15, -15],
-            rotate: [0, 180, 360],
-            opacity: [0.15, 0.4, 0.15],
-          }}
-          transition={{
-            duration: 5 + i * 0.7,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: i * 0.3,
-          }}
+      <motion.div
+        initial={{ scale: 0.85, opacity: 0, y: 40 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0, y: 20 }}
+        transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+        className="relative w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        style={{ background: 'linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%)' }}
+      >
+        {/* Header */}
+        <div
+          className="relative px-8 pt-8 pb-6 text-white overflow-hidden"
+          style={{ background: 'linear-gradient(135deg, #15803d 0%, #059669 60%, #10b981 100%)' }}
         >
-          ♻
-        </motion.div>
-      ))}
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full pt-28 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-          {/* ── LEFT: Text Content ── */}
-          <div className="flex flex-col gap-6">
-
-            {/* Badge Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-wrap gap-2"
-            >
-              {badges.map((b, i) => (
-                <motion.span
-                  key={b}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.1 + i * 0.1 }}
-                  className="inline-flex items-center gap-1.5 bg-white border border-green-200 rounded-full px-3 py-1 text-xs font-semibold text-green-700 shadow-sm"
-                >
-                  <FaCheckCircle className="text-green-500" />
-                  {b}
-                </motion.span>
-              ))}
-            </motion.div>
-
-            {/* Main Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-black font-display text-gray-900 leading-[1.08]"
-            >
-              Smart{' '}
-              <span className="hero-gradient-text">Waste</span>
-              <br />
-              Solutions For
-              <br />
-              <span className="relative inline-block">
-                Cleaner
-                <span className="hero-underline" />
-              </span>{' '}
-              <span className="text-green-600">India</span>
-            </motion.h1>
-
-            {/* Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-gray-500 text-lg leading-relaxed max-w-lg"
-            >
-              AI-powered waste collection, recycling &amp; disposal across{' '}
-              <strong className="text-gray-700">120+ cities</strong>. Join{' '}
-              <strong className="text-gray-700">12,000+ clients</strong> building a
-              sustainable India — one pickup at a time.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(22,163,74,0.35)' }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-hero-primary flex items-center gap-2"
-              >
-                <FaLeaf />
-                Book Free Pickup
-                <FaArrowRight className="text-sm" />
-              </motion.button>
-
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-hero-outline flex items-center gap-2"
-              >
-                <span className="w-7 h-7 rounded-full bg-green-100 flex items-center justify-center">
-                  <FaPlay className="text-green-600 text-[9px] ml-0.5" />
-                </span>
-                Explore Services
-              </motion.button>
-            </motion.div>
-
-            {/* Stats Row */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex gap-6 pt-2"
-            >
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  whileHover={{ y: -4 }}
-                  className="flex flex-col"
-                >
-                  <span className="text-2xl font-black font-display text-gray-900">{s.value}</span>
-                  <span className="text-xs text-gray-500">{s.label}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* ── RIGHT: Image Showcase ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden lg:flex items-center justify-center"
+          <div className="absolute inset-0 opacity-20"
+            style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
           >
-            {/* Main image card */}
-            <div className="hero-img-frame">
-              {/* Glow ring */}
-              <div className="hero-glow-ring" />
-
-              <div className="relative w-[420px] h-[480px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-green-400/20">
-                <AnimatePresence mode="sync">
-                  <motion.img
-                    key={current}
-                    src={carouselImages[current].src}
-                    alt={carouselImages[current].label}
-                    initial={{ opacity: 0, scale: 1.06 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="absolute inset-0 w-full h-full object-cover"
-                    loading="eager"
-                  />
-                </AnimatePresence>
-
-                {/* Image overlay label */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-6">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={current}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <span className="bg-green-500/80 text-white text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
-                        {carouselImages[current].tag}
-                      </span>
-                      <p className="text-white font-bold text-lg mt-2">{carouselImages[current].label}</p>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
+            <FaTimes className="text-sm" />
+          </button>
+          <div className="relative z-10">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-8 h-8 rounded-xl bg-white/25 flex items-center justify-center">
+                <FaRecycle className="text-white text-sm" />
               </div>
+              <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">Green India</span>
+            </div>
+            <h3 className="text-2xl font-black font-display">Book Free Pickup</h3>
+            <p className="text-white/75 text-sm mt-1">We'll respond within 2 hours • Same-day available</p>
+          </div>
+        </div>
 
-              {/* Dot indicators */}
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                {carouselImages.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrent(i)}
-                    className={`transition-all duration-400 rounded-full ${
-                      i === current ? 'w-6 h-2 bg-green-500' : 'w-2 h-2 bg-green-300/60'
-                    }`}
+        {/* Body */}
+        <div className="px-8 py-7">
+          {done ? (
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="text-center py-8"
+            >
+              <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
+                <FaCheckCircle className="text-green-500 text-4xl" />
+              </div>
+              <h4 className="text-gray-900 text-xl font-black font-display mb-2">Pickup Booked! 🎉</h4>
+              <p className="text-gray-500 text-sm mb-6">Our team will call you within 2 hours to confirm your pickup slot.</p>
+              <button onClick={onClose} className="btn-hero-primary px-8 py-3 text-sm">
+                Done
+              </button>
+            </motion.div>
+          ) : (
+            <form onSubmit={submit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { name: 'name',  placeholder: 'Full Name',     type: 'text'  },
+                  { name: 'phone', placeholder: 'Phone Number',  type: 'tel'   },
+                  { name: 'email', placeholder: 'Email Address', type: 'email' },
+                  { name: 'city',  placeholder: 'Your City',     type: 'text'  },
+                ].map(({ name, placeholder, type }) => (
+                  <input
+                    key={name}
+                    name={name}
+                    type={type}
+                    value={form[name]}
+                    onChange={handle}
+                    placeholder={placeholder}
+                    required={name !== 'email'}
+                    className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-green-500 focus:bg-white transition-all placeholder-gray-400"
                   />
                 ))}
               </div>
-            </div>
 
-            {/* Floating stat card – top left */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: -20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-              className="absolute -left-8 top-20 hero-float-card float-card"
-            >
-              <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center mb-2">
-                <FaRecycle className="text-green-600 text-lg" />
+              <select
+                name="service"
+                value={form.service}
+                onChange={handle}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-green-500 focus:bg-white transition-all appearance-none cursor-pointer"
+              >
+                <option value="">Select Waste Type</option>
+                {['Plastic Waste', 'E-Waste / Electronics', 'Industrial Waste', 'Scrap Metal', 'Organic Waste', 'Mixed / Other'].map(s => (
+                  <option key={s} value={s}>{s}</option>
+                ))}
+              </select>
+
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handle}
+                placeholder="Additional details (quantity, frequency, special instructions...)"
+                rows={3}
+                className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm focus:outline-none focus:border-green-500 focus:bg-white transition-all placeholder-gray-400 resize-none"
+              />
+
+              <motion.button
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.02, boxShadow: '0 16px 40px rgba(22,163,74,0.35)' }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full btn-hero-primary py-3.5 flex items-center justify-center gap-2 text-sm disabled:opacity-70"
+              >
+                {loading ? (
+                  <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Processing...</>
+                ) : (
+                  <><FaPaperPlane className="text-xs" /> Confirm Free Pickup</>
+                )}
+              </motion.button>
+
+              <div className="flex items-center justify-center gap-6 pt-1">
+                <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+                  <FaPhone className="text-[10px]" /> +91 98765 43210
+                </div>
+                <div className="flex items-center gap-1.5 text-gray-400 text-xs">
+                  <FaEnvelope className="text-[10px]" /> hello@greenindiawm.com
+                </div>
               </div>
-              <div className="text-xl font-black text-gray-900">50K+</div>
-              <div className="text-xs text-gray-500 font-medium">Tons Recycled</div>
-            </motion.div>
-
-            {/* Floating stat card – bottom right */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: 20 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 1.1, duration: 0.5 }}
-              className="absolute -right-6 bottom-28 hero-float-card float-card-delayed"
-            >
-              <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center mb-2">
-                <FaLeaf className="text-emerald-600 text-lg" />
-              </div>
-              <div className="text-xl font-black text-gray-900">4.9★</div>
-              <div className="text-xs text-gray-500 font-medium">Client Rating</div>
-            </motion.div>
-
-            {/* Floating badge – top right */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.5 }}
-              className="absolute right-4 top-8 hero-float-badge float-card"
-            >
-              <span className="text-green-600 font-bold text-xs">🌿 India's #1</span>
-              <span className="text-gray-400 text-[10px] block">Waste Platform</span>
-            </motion.div>
-          </motion.div>
+            </form>
+          )}
         </div>
-      </div>
-
-      {/* ── Scroll Cue ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-green-400/50 flex items-start justify-center pt-1.5"
-        >
-          <div className="w-1.5 h-2.5 rounded-full bg-green-500 animate-bounce" />
-        </motion.div>
-        <span className="text-[10px] text-green-600/60 tracking-widest uppercase font-semibold">Scroll</span>
       </motion.div>
-    </section>
+    </motion.div>
+  );
+};
+
+/* ─── Main Hero ───────────────────────────────────────────── */
+const Hero = () => {
+  const navigate = useNavigate();
+  const [current, setCurrent] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const goTo = useCallback((idx) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrent(idx);
+    setTimeout(() => setIsTransitioning(false), 900);
+  }, [isTransitioning]);
+
+  const next = () => goTo((current + 1) % slides.length);
+  const prev = () => goTo((current - 1 + slides.length) % slides.length);
+
+  useEffect(() => {
+    if (showModal) return;
+    const t = setInterval(next, 5000);
+    return () => clearInterval(t);
+  }, [current, showModal, isTransitioning]);
+
+  const goToServices = () => {
+    navigate('/services');
+  };
+
+  return (
+    <>
+      <section id="home" className="relative w-full overflow-hidden" style={{ height: '100vh', minHeight: 600 }}>
+
+        {/* ── Background image carousel ── */}
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={current}
+              src={slides[current].src}
+              alt={slides[current].subheadline}
+              initial={{ opacity: 0, scale: 1.06 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+            />
+          </AnimatePresence>
+
+          {/* Dark gradient overlay */}
+          <div className="absolute inset-0"
+            style={{ background: 'linear-gradient(110deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.25) 100%)' }} />
+
+          {/* Bottom fade */}
+          <div className="absolute bottom-0 left-0 right-0 h-32"
+            style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
+        </div>
+
+        {/* ── Progress bar ── */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] z-20 bg-white/10">
+          <motion.div
+            key={current}
+            className="h-full"
+            style={{ background: slides[current].color }}
+            initial={{ width: '0%' }}
+            animate={{ width: '100%' }}
+            transition={{ duration: 5.0, ease: 'linear' }}
+          />
+        </div>
+
+        {/* ── Main content ── */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full pt-16 md:pt-20">
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, y: 36 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="max-w-3xl"
+              >
+                {/* Slide tag pill */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1 mb-3 md:mb-6 text-xs font-bold text-white border border-white/20"
+                  style={{ background: `${slides[current].color}cc`, backdropFilter: 'blur(8px)' }}
+                >
+                  <FaLeaf className="text-[10px]" />
+                  {slides[current].tag}
+                </motion.div>
+
+                {/* Main headline */}
+                <h1 className="font-black font-display text-white leading-[1.1] md:leading-[1.06] mb-2 md:mb-4"
+                  style={{ fontSize: 'clamp(2rem, 7vw, 5.2rem)' }}>
+                  {slides[current].headline}
+                  <br />
+                  <span style={{ color: slides[current].color }}>
+                    {slides[current].subheadline}
+                  </span>
+                </h1>
+
+                {/* Caption */}
+                <p className="text-white/75 text-sm md:text-lg leading-relaxed mb-4 md:mb-10 max-w-xl font-light">
+                  {slides[current].caption}
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-4 md:mb-12">
+                  {/* Book Pickup — opens modal */}
+                  <motion.button
+                    whileHover={{ scale: 1.05, boxShadow: '0 20px 50px rgba(22,163,74,0.45)' }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={() => setShowModal(true)}
+                    className="flex items-center justify-center gap-2.5 font-bold text-white px-6 py-3.5 md:py-4 rounded-full text-sm md:text-[15px] transition-all w-full sm:w-auto"
+                    style={{ background: `linear-gradient(135deg, #16a34a, #059669)`, boxShadow: '0 8px 30px rgba(22,163,74,0.35)' }}
+                  >
+                    <FaRecycle className="text-sm" />
+                    Book Free Pickup
+                    <FaArrowRight className="text-xs" />
+                  </motion.button>
+
+                  {/* Explore Services — navigates to /services page */}
+                  <motion.button
+                    whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.25)' }}
+                    whileTap={{ scale: 0.97 }}
+                    onClick={goToServices}
+                    className="flex items-center justify-center gap-2.5 font-bold text-white px-6 py-3.5 md:py-4 rounded-full text-sm md:text-[15px] border-2 border-white/40 transition-all w-full sm:w-auto"
+                    style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(10px)' }}
+                  >
+                    <span className="w-7 h-7 rounded-full bg-white/25 flex items-center justify-center">
+                      <FaPlay className="text-[8px] ml-0.5" />
+                    </span>
+                    Explore Services
+                  </motion.button>
+                </div>
+
+                {/* Stats row — horizontal scroll on mobile */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="flex gap-4 md:gap-6 overflow-x-auto pb-1 no-scrollbar"
+                >
+                  {stats.map((s, i) => (
+                    <div key={i} className="flex items-center gap-2 flex-shrink-0">
+                      <div className="w-8 h-8 md:w-9 md:h-9 rounded-xl flex items-center justify-center"
+                        style={{ background: `${slides[current].color}25`, border: `1px solid ${slides[current].color}50` }}>
+                        <s.icon style={{ color: slides[current].color }} className="text-xs md:text-sm" />
+                      </div>
+                      <div>
+                        <div className="text-white font-black text-base md:text-lg leading-none font-display">{s.value}</div>
+                        <div className="text-white/55 text-[10px] md:text-[11px] font-medium mt-0.5">{s.label}</div>
+                      </div>
+                      {i < stats.length - 1 && (
+                        <div className="w-px h-7 bg-white/15 ml-1 md:ml-2" />
+                      )}
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* ── Arrow controls ── */}
+        <button
+          onClick={prev}
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-white/25 hidden md:flex items-center justify-center text-white transition-all hover:bg-white/20"
+          style={{ backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.25)' }}
+        >
+          <FaChevronLeft className="text-sm" />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full border border-white/25 hidden md:flex items-center justify-center text-white transition-all hover:bg-white/20"
+          style={{ backdropFilter: 'blur(8px)', background: 'rgba(0,0,0,0.25)' }}
+        >
+          <FaChevronRight className="text-sm" />
+        </button>
+
+        {/* ── Dot indicators ── */}
+        <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+          {slides.map((slide, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className="transition-all duration-400 rounded-full"
+              style={{
+                width: i === current ? 28 : 8,
+                height: 8,
+                background: i === current ? slide.color : 'rgba(255,255,255,0.4)',
+              }}
+            />
+          ))}
+        </div>
+
+        {/* ── Slide counter ── */}
+        <div className="absolute bottom-4 md:bottom-8 right-6 md:right-10 z-20 text-white/50 text-xs font-mono font-bold">
+          {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
+        </div>
+
+        {/* ── Scroll cue ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="absolute bottom-8 left-8 z-20 hidden md:flex flex-col items-center gap-1.5"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity }}
+            className="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center pt-1"
+          >
+            <div className="w-1 h-2 rounded-full bg-white/60" />
+          </motion.div>
+          <span className="text-[9px] text-white/40 tracking-[0.2em] uppercase font-bold">Scroll</span>
+        </motion.div>
+      </section>
+
+      {/* ── Pickup Modal ── */}
+      <AnimatePresence>
+        {showModal && <PickupModal onClose={() => setShowModal(false)} />}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -59,13 +59,13 @@ const AboutPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mt-10 md:mt-16"
           >
             {[
-              { label: 'ISO 9001:2015', value: 'Certified', icon: <FaCertificate /> },
-              { label: 'Cities Covered', value: '120+', icon: <FaGlobe /> },
-              { label: 'Active Clients', value: '12K+', icon: <FaUsers /> },
-              { label: 'Waste Recycled', value: '50K+ Tons', icon: <FaLeaf /> },
+              { label: 'ISO 9001:2015 Certified', value: '✓ ISO', icon: <FaCertificate /> },
+              { label: 'Cities Covered',           value: '120+',   icon: <FaGlobe /> },
+              { label: 'Active Clients',           value: '12K+',   icon: <FaUsers /> },
+              { label: 'Waste Recycled',           value: '50K+',   icon: <FaLeaf /> },
             ].map((s, i) => (
               <motion.div
                 key={i}
@@ -73,11 +73,11 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.4 }}
-                className="bg-white border border-green-100 rounded-3xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300"
+                className="bg-white border border-green-100 rounded-2xl md:rounded-3xl p-4 md:p-6 text-center shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <div className="text-green-600 text-2xl flex justify-center mb-2">{s.icon}</div>
-                <div className="text-3xl font-extrabold text-gray-900 font-display">{s.value}</div>
-                <div className="text-gray-500 text-sm mt-1">{s.label}</div>
+                <div className="text-green-600 text-xl md:text-2xl flex justify-center mb-2">{s.icon}</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-gray-900 font-display leading-tight">{s.value}</div>
+                <div className="text-gray-500 text-xs md:text-sm mt-1 leading-snug">{s.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -170,29 +170,46 @@ const AboutPage = () => {
             <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-2 font-display">Company <span className="text-green-600">Milestones</span></h2>
           </motion.div>
           <div className="relative">
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-green-200" />
-            <div className="space-y-12">
+            {/* Vertical line — left on mobile, center on desktop */}
+            <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-green-200" />
+
+            <div className="space-y-8 md:space-y-12">
               {milestones.map((m, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className={`flex items-center gap-8 ${i % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`
+                    flex items-start gap-4
+                    md:items-center md:gap-8
+                    ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}
+                  `}
                 >
-                  <div className={`flex-1 ${i % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                    <div className="inline-block bg-green-50/60 border border-green-200/50 rounded-2xl p-5 shadow-sm">
+                  {/* Mobile: dot + card side by side | Desktop: full alternating */}
+
+                  {/* Dot — only on mobile inline */}
+                  <div className="flex-shrink-0 mt-1 md:hidden w-5 h-5 rounded-full bg-green-500 border-4 border-white shadow z-10 relative" />
+
+                  {/* Card */}
+                  <div className={`flex-1 md:text-${i % 2 === 0 ? 'right' : 'left'}`}>
+                    <div className="inline-block bg-green-50/60 border border-green-200/50 rounded-2xl p-4 md:p-5 shadow-sm w-full md:w-auto">
                       <div className="text-green-700 font-bold text-base mb-1 font-display">{m.year}</div>
                       <p className="text-gray-700 text-sm leading-relaxed">{m.event}</p>
                     </div>
                   </div>
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500 border-4 border-white shadow z-10 relative" />
-                  <div className="flex-1" />
+
+                  {/* Desktop only: center dot */}
+                  <div className="hidden md:block flex-shrink-0 w-5 h-5 rounded-full bg-green-500 border-4 border-white shadow z-10 relative" />
+
+                  {/* Desktop only: empty spacer */}
+                  <div className="hidden md:block flex-1" />
                 </motion.div>
               ))}
             </div>
           </div>
+
         </div>
       </section>
 

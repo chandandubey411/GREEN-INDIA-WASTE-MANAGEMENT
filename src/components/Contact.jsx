@@ -85,7 +85,7 @@ const Contact = () => {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-10">
+        <div className="grid lg:grid-cols-5 gap-6 md:gap-10">
           {/* Left - Info */}
           <div className="lg:col-span-2 flex flex-col gap-5">
             {contactInfo.map((info, i) => (
@@ -186,7 +186,7 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <h3 className="text-white text-xl font-bold font-display mb-6">Schedule Pickup / Get Quote</h3>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                     {[
                       { name: 'name', placeholder: 'Your Full Name', type: 'text' },
                       { name: 'email', placeholder: 'Email Address', type: 'email' },
