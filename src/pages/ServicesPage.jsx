@@ -187,7 +187,23 @@ const ServicesPage = () => {
                 className="bg-white border border-green-100 rounded-3xl overflow-hidden group shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="relative overflow-hidden h-48">
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  {(() => {
+                    const isMachine = service.image.startsWith('/') && service.image.endsWith('.jpg') && !service.image.includes('sonu-kumar') && !service.image.includes('mstc-license');
+                    const isTopTextImg = service.image.includes('recycling-unit-header');
+                    return (
+                      <img 
+                        src={service.image} 
+                        alt={service.title} 
+                        className={`w-full h-full object-cover transition-transform duration-500 ${
+                          isTopTextImg
+                            ? 'scale-[1.65] origin-center object-center group-hover:scale-[1.70]'
+                            : isMachine 
+                            ? 'scale-[1.25] origin-top object-top group-hover:scale-[1.30]' 
+                            : 'group-hover:scale-110'
+                        }`} 
+                      />
+                    );
+                  })()}
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent" />
                   <div className="absolute bottom-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-lg bg-white shadow-sm" style={{ color: service.color }}>
                     {iconMap[service.icon]}

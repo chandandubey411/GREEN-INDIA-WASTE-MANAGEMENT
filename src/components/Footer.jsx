@@ -1,83 +1,132 @@
+// src/components/Footer.jsx
 import { motion } from 'framer-motion';
-import { FaLeaf, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaArrowUp, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import {
+  FaLeaf, FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube,
+  FaTruck, FaRecycle, FaShieldAlt, FaMedal, FaBuilding, FaArrowRight,
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const footerLinks = {
   company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Recycling Unit', href: '/recycling' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'About Us',        href: '/about' },
+    { name: 'Our Mission',     href: '/about' },
+    { name: 'How It Works',    href: '/services' },
+    { name: 'Careers',         href: '#' },
+    { name: 'Blog',            href: '#' },
+    { name: 'Partner With Us', href: '/contact' },
   ],
   services: [
-    { name: 'E-Waste Management', href: '/services' },
-    { name: 'IT Asset Disposal', href: '/services' },
-    { name: 'Data Destruction', href: '/services' },
-    { name: 'EPR Compliance', href: '/services' },
+    { name: 'E-Waste Management',   href: '/services' },
+    { name: 'Plastic Recycling',    href: '/services' },
+    { name: 'Dry Waste Collection', href: '/services' },
+    { name: 'Organic Waste',        href: '/services' },
+    { name: 'Bulk Waste Pickup',    href: '/services' },
+    { name: 'Corporate Solutions',  href: '/services' },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-    { name: 'E-Waste Rules 2016', href: '#' },
-    { name: 'EPR Guidelines', href: '#' },
+    { name: 'Privacy Policy',       href: '#' },
+    { name: 'Terms & Conditions',   href: '#' },
+    { name: 'Refund & Cancellation',href: '#' },
+    { name: 'Data Security',        href: '#' },
+    { name: 'Compliance',           href: '#' },
   ],
 };
 
 const socials = [
-  { Icon: FaFacebookF, href: '#', label: 'Facebook' },
-  { Icon: FaInstagram, href: '#', label: 'Instagram' },
+  { Icon: FaFacebookF,  href: '#', label: 'Facebook' },
+  { Icon: FaInstagram,  href: '#', label: 'Instagram' },
   { Icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-  { Icon: FaYoutube, href: '#', label: 'YouTube' },
-  { Icon: FaTwitter, href: '#', label: 'Twitter' },
+  { Icon: FaTwitter,    href: '#', label: 'Twitter' },
+  { Icon: FaYoutube,    href: '#', label: 'YouTube' },
 ];
 
-const Footer = () => {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+const trustBadges = [
+  { icon: FaTruck,     title: 'Same-Day\nPickup Available',   sub: 'Hassle-free doorstep\ncollection' },
+  { icon: FaRecycle,   title: '98% Landfill\nDiversion',      sub: 'We keep waste out\nof landfills' },
+  { icon: FaShieldAlt, title: 'Data Secure &\nCompliant',     sub: 'Your data is safe\nwith us' },
+  { icon: FaMedal,     title: 'ISO 14001\nCertified',         sub: 'Internationally recognized\nstandards' },
+  { icon: FaLeaf,      title: 'Carbon Neutral\nOperations',   sub: 'For a cleaner\ntomorrow' },
+];
 
+const FooterLinkItem = ({ link }) => {
+  const cls = 'flex items-center gap-2 text-green-200/55 hover:text-green-300 text-sm transition-all duration-200 group py-1';
+  const inner = (
+    <>
+      <FaArrowRight className="text-[8px] opacity-0 group-hover:opacity-100 transition-opacity -ml-1 group-hover:ml-0 text-green-400" />
+      {link.name}
+    </>
+  );
   return (
-    <footer className="relative bg-gradient-to-br from-green-950 via-green-900 to-emerald-950 pt-20 overflow-hidden">
-      {/* Decorative blobs */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-green-400/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-300/5 rounded-full blur-3xl" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-green-400/40 to-transparent" />
+    <li>
+      {link.href.startsWith('/') ? (
+        <Link to={link.href} className={cls}>{inner}</Link>
+      ) : (
+        <a href={link.href} className={cls}>{inner}</a>
+      )}
+    </li>
+  );
+};
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+const Footer = () => {
+  return (
+    <footer
+      className="relative overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #052e16 0%, #064e3b 40%, #022c22 80%, #020d09 100%)' }}
+    >
+      {/* Top border glow */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(74,222,128,0.5), transparent)' }} />
 
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+      {/* Background leaf decorations */}
+      {[
+        { top: '5%',  right: '2%',  size: 120, opacity: 0.06 },
+        { top: '30%', right: '0%',  size: 160, opacity: 0.05 },
+        { top: '60%', right: '3%',  size: 100, opacity: 0.07 },
+        { top: '15%', left: '-2%',  size: 90,  opacity: 0.04 },
+      ].map((l, i) => (
+        <div
+          key={i}
+          className="absolute pointer-events-none select-none"
+          style={{
+            top: l.top, right: l.right, left: l.left,
+            fontSize: l.size, opacity: l.opacity, color: '#4ade80',
+          }}
+        >
+          🌿
+        </div>
+      ))}
 
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center shadow-xl shadow-green-400/20">
-                <FaLeaf className="text-white text-xl" />
-              </div>
-              <div>
-                <div className="text-white font-bold text-xl font-display">
-                  Green<span className="text-green-400">India</span>™
-                </div>
-                <p className="text-green-400/70 text-xs">Waste Management</p>
-              </div>
+      {/* Ambient glows */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%)' }} />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+
+      {/* ── Main grid ── */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 pt-14 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* ── Brand column ── */}
+          <div className="lg:col-span-1">
+            {/* Logo */}
+            <div className="flex items-center gap-2 mb-5">
+              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain bg-white rounded-xl p-1 shadow" />
             </div>
-            <p className="text-green-100/60 leading-relaxed text-sm mb-6 max-w-xs">
-              India's most trusted certified e-waste recycler. Turning waste into resources, building a cleaner & greener future.
+
+            {/* Tagline */}
+            <p className="text-green-100/50 text-sm leading-relaxed mb-5 max-w-[220px]">
+              Building a cleaner, greener and sustainable India through responsible waste management and smart recycling solutions.
             </p>
 
-            {/* Contact snippets */}
+            {/* Features list */}
             <div className="space-y-2 mb-6">
-              <a href="tel:+919650380888" className="flex items-center gap-2 text-green-300/80 hover:text-green-300 text-sm transition-colors">
-                <FaPhone className="text-xs" /> +91 9650380888
-              </a>
-              <a href="mailto:info@greenindiawm.com" className="flex items-center gap-2 text-green-300/80 hover:text-green-300 text-sm transition-colors">
-                <FaEnvelope className="text-xs" /> info@greenindiawm.com
-              </a>
-              <div className="flex items-start gap-2 text-green-300/80 text-sm">
-                <FaMapMarkerAlt className="text-xs mt-1 flex-shrink-0" /> Springboard Business Hub, Sec-18, Gurgaon — 122001
-              </div>
+              {['Smart Waste Collection', 'Doorstep Pickup Across 120+ Cities', 'Eco-Friendly • Reliable • Responsible'].map((item, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <FaLeaf className="text-green-500 text-[10px] mt-1 flex-shrink-0" />
+                  <span className="text-green-200/60 text-xs leading-relaxed">{item}</span>
+                </div>
+              ))}
             </div>
 
             {/* Socials */}
-            <div className="flex gap-2">
+            <div className="flex gap-2.5">
               {socials.map(({ Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -85,7 +134,8 @@ const Footer = () => {
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -2 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-9 h-9 rounded-full bg-white/5 border border-green-400/20 flex items-center justify-center text-green-300/70 hover:text-green-400 hover:border-green-400/60 hover:bg-green-400/10 transition-all"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-green-300/60 hover:text-green-400 transition-all"
+                  style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(74,222,128,0.18)' }}
                 >
                   <Icon className="text-xs" />
                 </motion.a>
@@ -93,60 +143,92 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Links */}
-          {[
-            { title: 'Company', links: footerLinks.company },
-            { title: 'Services', links: footerLinks.services },
-            { title: 'Legal', links: footerLinks.legal },
-          ].map(({ title, links }) => (
-            <div key={title}>
-              <h4 className="text-white font-bold font-display mb-5 text-sm uppercase tracking-wider">{title}</h4>
-              <ul className="space-y-3">
-                {links.map(link => (
-                  <li key={link.name}>
-                    {link.href.startsWith('/') ? (
-                      <Link to={link.href} className="text-green-200/60 hover:text-green-400 text-sm transition-colors flex items-center gap-2 group">
-                        <span className="w-1 h-1 rounded-full bg-green-500/0 group-hover:bg-green-400 transition-all" />
-                        {link.name}
-                      </Link>
-                    ) : (
-                      <a href={link.href} className="text-green-200/60 hover:text-green-400 text-sm transition-colors flex items-center gap-2 group">
-                        <span className="w-1 h-1 rounded-full bg-green-500/0 group-hover:bg-green-400 transition-all" />
-                        {link.name}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
+          {/* ── Company links ── */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <FaBuilding className="text-green-500 text-sm" />
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.12em]">Company</h4>
             </div>
-          ))}
+            <ul className="space-y-0.5">
+              {footerLinks.company.map(link => <FooterLinkItem key={link.name} link={link} />)}
+            </ul>
+          </div>
+
+          {/* ── Services links ── */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <FaRecycle className="text-green-500 text-sm" />
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.12em]">Services</h4>
+            </div>
+            <ul className="space-y-0.5">
+              {footerLinks.services.map(link => <FooterLinkItem key={link.name} link={link} />)}
+            </ul>
+          </div>
+
+          {/* ── Legal links ── */}
+          <div>
+            <div className="flex items-center gap-2 mb-5">
+              <FaShieldAlt className="text-green-500 text-sm" />
+              <h4 className="text-white font-bold text-sm uppercase tracking-[0.12em]">Legal</h4>
+            </div>
+            <ul className="space-y-0.5">
+              {footerLinks.legal.map(link => <FooterLinkItem key={link.name} link={link} />)}
+            </ul>
+          </div>
         </div>
 
-        {/* Certifications strip */}
-        <div className="border-t border-green-400/10 py-6 flex flex-wrap items-center justify-center gap-4 mb-0">
-          {['ISO 9001:2015', 'ISO 14001:2015', 'MSME Certified', 'HSPCB Approved', 'GST Registered', 'Swachh Bharat'].map((cert) => (
-            <span key={cert} className="text-green-300/50 text-xs border border-green-400/15 rounded-full px-3 py-1">{cert}</span>
-          ))}
+        {/* ── Trust badges strip ── */}
+        <div
+          className="rounded-2xl border border-white/10 mb-6 overflow-hidden"
+          style={{ background: 'rgba(255,255,255,0.03)' }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            {trustBadges.map((badge, i) => {
+              const Icon = badge.icon;
+              return (
+                <div key={i} className="flex items-start gap-3 px-5 py-5">
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(74,222,128,0.25)' }}
+                  >
+                    <Icon className="text-green-400 text-sm" />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-xs leading-tight whitespace-pre-line">{badge.title}</p>
+                    <p className="text-green-200/40 text-[10px] leading-tight mt-1 whitespace-pre-line">{badge.sub}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-green-400/10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-green-200/40 text-xs text-center sm:text-left">
-            © 2026 Green India Waste Management Pvt. Ltd. · www.greenindiawm.com · All rights reserved.
-          </p>
-          <p className="text-green-200/30 text-xs">🌱 100% Compliant · Certified Recycler · Building a Greener India</p>
+        {/* ── Bottom copyright bar ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
+          <div className="flex items-center gap-2">
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{ background: 'rgba(22,163,74,0.3)', border: '1px solid rgba(74,222,128,0.3)' }}
+            >
+              <FaLeaf className="text-green-400 text-xs" />
+            </div>
+            <div>
+              <p className="text-green-200/40 text-xs">
+                © 2025 GreenIndia Waste Management.
+              </p>
+              <p className="text-green-200/30 text-[10px]">All rights reserved.</p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <div className="flex items-center gap-1.5 justify-center mb-0.5">
+              <FaLeaf className="text-green-500 text-[10px]" />
+              <span className="text-green-200/40 text-xs">Proudly Made in India 🇮🇳</span>
+            </div>
+            <p className="text-green-500/70 text-[11px] font-semibold">Let's build a greener India together.</p>
+          </div>
         </div>
       </div>
-
-      {/* Back to top */}
-      <motion.button
-        onClick={scrollToTop}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="absolute bottom-8 right-6 md:right-10 w-11 h-11 rounded-full bg-green-500 flex items-center justify-center text-white shadow-xl shadow-green-500/30 hover:bg-green-600 transition-colors z-20"
-      >
-        <FaArrowUp className="text-sm" />
-      </motion.button>
     </footer>
   );
 };

@@ -28,18 +28,37 @@ const Gallery = () => {
 
         {/* 8-image preview grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 mb-10">
-          {preview.map((img, idx) => (
-            <motion.div
-              key={img.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.06, duration: 0.4 }}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-xl hover:shadow-green-200/40 transition-shadow duration-300"
-              style={{ aspectRatio: '4/3' }}
-              onClick={() => setLightbox(idx)}
-            >
-              <img src={img.src} alt={img.alt} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          {preview.map((img, idx) => {
+            const isMachine = img.alt.toLowerCase().includes('shredder') || 
+                              img.alt.toLowerCase().includes('bandsaw') || 
+                              img.alt.toLowerCase().includes('trommel') || 
+                              img.alt.toLowerCase().includes('strip') || 
+                              img.alt.toLowerCase().includes('collector') || 
+                              img.alt.toLowerCase().includes('panel') || 
+                              img.alt.toLowerCase().includes('station') || 
+                              img.alt.toLowerCase().includes('exhaust') || 
+                              img.alt.toLowerCase().includes('scrubber');
+            return (
+              <motion.div
+                key={img.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06, duration: 0.4 }}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-xl hover:shadow-green-200/40 transition-shadow duration-300"
+                style={{ aspectRatio: '4/3' }}
+                onClick={() => setLightbox(idx)}
+              >
+                <img 
+                  src={img.src} 
+                  alt={img.alt} 
+                  loading="lazy" 
+                  className={`w-full h-full object-cover transition-transform duration-500 ${
+                    isMachine 
+                      ? 'scale-[1.25] origin-top object-top group-hover:scale-[1.30]' 
+                      : 'group-hover:scale-110'
+                  }`}
+                />
               <div className="absolute inset-0 bg-gradient-to-t from-green-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-green-700 opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100">
                 <FaExpand className="text-xs" />
@@ -49,7 +68,8 @@ const Gallery = () => {
                 <span className="text-green-300 text-xs">{img.category}</span>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Show More / View All */}

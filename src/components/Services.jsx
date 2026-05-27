@@ -21,12 +21,24 @@ const ServiceCard = ({ service, index }) => {
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
-        <img
-          src={service.image}
-          alt={service.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-        />
+        {(() => {
+          const isMachine = service.image.startsWith('/') && service.image.endsWith('.jpg') && !service.image.includes('sonu-kumar') && !service.image.includes('mstc-license');
+          const isTopTextImg = service.image.includes('recycling-unit-header');
+          return (
+            <img
+              src={service.image}
+              alt={service.title}
+              className={`w-full h-full object-cover transition-transform duration-700 ${
+                isTopTextImg 
+                  ? 'scale-[1.65] origin-center object-center group-hover:scale-[1.70]'
+                  : isMachine 
+                  ? 'scale-[1.25] origin-top object-top group-hover:scale-[1.30]' 
+                  : 'group-hover:scale-110'
+              }`}
+              loading="lazy"
+            />
+          );
+        })()}
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent opacity-0 group-hover:opacity-20 transition-all duration-500" />
         {/* Icon on Image */}
         <div
@@ -139,28 +151,48 @@ const Services = () => {
 
           {/* 8-image grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
-            {preview.map((img, idx) => (
-              <motion.div
-                key={img.id}
-                initial={{ opacity: 0, scale: 0.93 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05, duration: 0.4 }}
-                className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-lg hover:shadow-green-100/50 transition-shadow duration-300"
-                style={{ aspectRatio: '4/3' }}
-                onClick={() => setLightbox(idx)}
-              >
-                <img src={img.src} alt={img.alt} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-green-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 flex items-center justify-center text-green-700 opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow">
-                  <FaExpand className="text-[10px]" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white text-xs font-bold truncate">{img.alt}</p>
-                  <span className="text-green-300 text-[10px] font-semibold">{img.category}</span>
-                </div>
-              </motion.div>
-            ))}
+            {preview.map((img, idx) => {
+              const isMachine = img.alt.toLowerCase().includes('shredder') || 
+                                img.alt.toLowerCase().includes('bandsaw') || 
+                                img.alt.toLowerCase().includes('trommel') || 
+                                img.alt.toLowerCase().includes('strip') || 
+                                img.alt.toLowerCase().includes('collector') || 
+                                img.alt.toLowerCase().includes('panel') || 
+                                img.alt.toLowerCase().includes('station') || 
+                                img.alt.toLowerCase().includes('exhaust') || 
+                                img.alt.toLowerCase().includes('scrubber');
+              return (
+                <motion.div
+                  key={img.id}
+                  initial={{ opacity: 0, scale: 0.93 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05, duration: 0.4 }}
+                  className="group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-lg hover:shadow-green-100/50 transition-shadow duration-300"
+                  style={{ aspectRatio: '4/3' }}
+                  onClick={() => setLightbox(idx)}
+                >
+                  <img 
+                    src={img.src} 
+                    alt={img.alt} 
+                    loading="lazy" 
+                    className={`w-full h-full object-cover transition-transform duration-500 ${
+                      isMachine 
+                        ? 'scale-[1.25] origin-top object-top group-hover:scale-[1.30]' 
+                        : 'group-hover:scale-110'
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-green-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 flex items-center justify-center text-green-700 opacity-0 group-hover:opacity-100 transition-all scale-75 group-hover:scale-100 shadow">
+                    <FaExpand className="text-[10px]" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <p className="text-white text-xs font-bold truncate">{img.alt}</p>
+                    <span className="text-green-300 text-[10px] font-semibold">{img.category}</span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* View All CTAs */}

@@ -1,4 +1,5 @@
 // src/pages/AboutPage.jsx
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaLeaf, FaUsers, FaAward, FaHandshake, FaBullseye, FaHeart, FaGlobe, FaChartLine, FaCheckCircle, FaShieldAlt, FaTruck, FaFileAlt, FaRecycle, FaTools, FaCertificate, FaBuilding, FaLock } from 'react-icons/fa';
 import Gallery from '../components/Gallery';
@@ -11,7 +12,7 @@ const fadeUp = {
 };
 
 const team = [
-  { name: 'Mr. Mr. Sonu Kumar', role: 'Director & Founder', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face', bio: 'Visionary entrepreneur with an unwavering commitment to green tech and circular economy.' },
+  { name: 'Mr. Mr. Sonu Kumar', role: 'Director & Founder', img: '/sonu-kumar.jpg', bio: 'Visionary entrepreneur with an unwavering commitment to green tech and circular economy.' },
   { name: 'Arjun Sharma', role: 'Operations Lead', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face', bio: '12+ years in environmental logistics and scaling waste management operations across metros.' },
   { name: 'Priya Nair', role: 'Chief Technical Director', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face', bio: 'Expert in scaling automated recycling systems and smart CPCB compliance trackers.' },
   { name: 'Deepa Krishnan', role: 'Sustainability Manager', img: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=200&h=200&fit=crop&crop=face', bio: 'Drives environmental compliance, EPR documentation and legal authorization.' },
@@ -34,6 +35,8 @@ const values = [
 ];
 
 const AboutPage = () => {
+  const [selectedCert, setSelectedCert] = useState(null);
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="bg-white">
       
@@ -213,138 +216,261 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Section 5 — Team */}
-      <section className="py-20 bg-green-50/40 border-y border-green-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp} className="text-center mb-14">
-            <span className="text-green-600 text-sm font-semibold uppercase tracking-widest">The People</span>
-            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-2 font-display">Meet Our <span className="text-green-600">Leaders</span></h2>
+      {/* Section 5 — Leadership */}
+      <section className="py-20 bg-slate-50/70 border-y border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div {...fadeUp} className="text-center mb-12">
+            <span className="text-green-600 text-sm font-semibold uppercase tracking-widest bg-green-50 px-3 py-1 rounded border border-green-100">Leadership</span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-4 font-display">
+              Our <span className="text-green-600">Leader</span>
+            </h2>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {team.map((member, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.04 }}
-                className="bg-white border border-green-100 rounded-3xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                <img src={member.img} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover ring-4 ring-green-100" />
-                <h3 className="text-gray-900 font-extrabold text-base mb-1">{member.name}</h3>
-                <p className="text-green-600 text-xs font-semibold uppercase tracking-wider mb-3">{member.role}</p>
-                <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Section 6 — Why Green India Waste Management? */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <span className="text-green-600 text-sm font-semibold uppercase tracking-widest bg-green-50 px-3 py-1 rounded border border-green-100">Our Promise</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mt-4 mb-8 font-display">
-                Why <span className="text-green-600">Green India</span> Waste Management?
-              </h2>
-              <ul className="space-y-4">
-                {[
-                  { icon: <FaCheckCircle />, text: '100% Compliance with E-Waste Rules 2016 & 2018', color: '#16a34a' },
-                  { icon: <FaTruck />, text: 'Safe & Secure E-Waste Collection & Transportation', color: '#0d9488' },
-                  { icon: <FaFileAlt />, text: 'Complete Documentation & Legal Compliance with Government of India', color: '#059669' },
-                  { icon: <FaLeaf />, text: 'Environment-Friendly Recycling Processes', color: '#15803d' },
-                  { icon: <FaLock />, text: 'Secure Data Destruction & Confidentiality', color: '#b45309' },
-                  { icon: <FaBuilding />, text: 'Accurate Record Maintenance & Reporting', color: '#0369a1' },
-                  { icon: <FaTools />, text: 'Advanced Recycling Infrastructure', color: '#be123c' },
-                  { icon: <FaCertificate />, text: 'GST, Labour Law & TDS/TCS Compliance', color: '#c2410c' },
-                  { icon: <FaUsers />, text: 'Skilled Workforce & Professional Operations', color: '#6d28d9' },
-                  { icon: <FaGlobe />, text: 'Commitment to a Cleaner & Greener Future', color: '#0f766e' },
-                ].map((item, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.07 }}
-                    className="flex items-start gap-3"
-                  >
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-sm mt-0.5" style={{ backgroundColor: item.color + '15', color: item.color }}>
-                      {item.icon}
-                    </div>
-                    <span className="text-gray-700 leading-relaxed text-sm">{item.text}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center"
+          >
+            <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 md:gap-8 max-w-2xl w-full">
+              {/* Photo */}
+              <div className="flex-shrink-0">
+                <img
+                  src="/sonu-kumar.jpg"
+                  alt="Sonu Kumar"
+                  className="w-32 h-32 md:w-36 md:h-36 rounded-2xl object-cover border border-slate-100 shadow-sm"
+                />
+              </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="space-y-6"
-            >
-              {/* Certification badges */}
-              <div className="bg-green-50/40 border border-green-100 rounded-3xl p-6">
-                <h3 className="text-gray-900 font-bold text-lg mb-4 flex items-center gap-2"><FaCertificate className="text-green-600" /> Our Certifications</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { name: 'ISO 9001:2015', desc: 'Quality Management System', color: '#2563eb' },
-                    { name: 'MSME Certified', desc: 'Micro, Small & Medium Enterprise', color: '#ea580c' },
-                    { name: 'GST Registered', desc: 'Goods & Services Tax Compliant', color: '#16a34a' },
-                    { name: 'HSPCB Approved', desc: 'Haryana State Pollution Control Board', color: '#7c3aed' },
-                    { name: 'Swachh Bharat', desc: 'Clean India Mission Partner', color: '#e11d48' },
-                    { name: 'ISO 14001:2015', desc: 'Environmental Management System', color: '#0891b2' },
-                  ].map((cert, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="rounded-2xl p-3 border shadow-sm bg-white" style={{ borderColor: cert.color + '25' }}
+              {/* Info */}
+              <div className="flex-1 text-center sm:text-left">
+                <div className="mb-4">
+                  <h3 className="text-gray-900 font-extrabold text-2xl font-display">Sonu Kumar</h3>
+                  <p className="text-green-600 text-sm font-semibold tracking-wider uppercase mt-1">Director &amp; CEO</p>
+                </div>
+                
+                <p className="text-gray-600 text-sm leading-relaxed italic">
+                  "Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."
+                </p>
+
+                <div className="mt-6 pt-4 border-t border-slate-50 flex flex-wrap justify-center sm:justify-start gap-2">
+                  {['Founder', 'Green Tech', 'Circular Economy', 'Compliance'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs bg-slate-50 border border-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-full"
                     >
-                      <div className="font-extrabold text-sm" style={{ color: cert.color }}>{cert.name}</div>
-                      <div className="text-gray-500 text-[10px] mt-0.5">{cert.desc}</div>
-                    </motion.div>
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-              {/* HSPCB PCB Certification box */}
-              <div className="bg-green-50/60 border border-green-200/50 rounded-3xl p-6">
-                <h3 className="text-gray-900 font-bold text-lg mb-4 flex items-center gap-2"><FaShieldAlt className="text-green-600" /> PCB Certifications</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="bg-white border border-green-100 rounded-2xl p-4 shadow-sm">
-                    <div className="text-green-700 font-bold mb-1">HSPCB — Consent to Establish</div>
-                    <div className="text-gray-600 text-xs leading-relaxed">Haryana State Pollution Control Board has granted consent to establish M/s Green India Waste Management at Sonipat, Haryana — 131028.</div>
-                    <div className="mt-2 flex flex-wrap gap-2 text-xs">
-                      <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">AIR/WATER Consent</span>
-                      <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Valid: 2024–2029</span>
-                      <span className="bg-red-100 text-red-700 px-2 py-0.5 rounded-full font-medium">Category: RED</span>
-                    </div>
-                  </div>
-                  <div className="bg-white border border-green-100 rounded-2xl p-4 shadow-sm">
-                    <div className="text-green-700 font-bold mb-1">HSPCB — Hazardous Waste Authorization</div>
-                    <div className="text-gray-600 text-xs leading-relaxed">Grant of Authorization under Hazardous and Other Wastes Rules, 2016 for safe Electronic waste and precious metals recovery.</div>
-                    <div className="mt-2 flex flex-wrap gap-2 text-xs">
-                      <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">Electronic Industry</span>
-                      <span className="bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-medium">Precious Residues</span>
-                    </div>
-                  </div>
+      {/* Section 6 — Official Registrations & Licenses */}
+      <section className="py-20 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left Side: Compliance & National Authority */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <span className="text-green-600 text-xs font-bold uppercase tracking-widest bg-green-50 px-3 py-1 rounded border border-green-100">
+                  Official Approvals
+                </span>
+                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-display mt-4 mb-4">
+                  Authorized &amp; <span className="text-green-600">Compliant</span>
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  Green India Waste Management holds all mandatory registrations, central and state pollution control boards (PCB) consents, and federal licenses to perform eco-friendly recycling operations.
+                </p>
+              </div>
+
+              {/* National Emblem & Government Badge */}
+              <div className="bg-slate-50 border border-slate-150 rounded-2xl p-5 flex items-center gap-5">
+                <div className="w-16 h-16 flex-shrink-0 bg-white rounded-xl p-2 border border-slate-200/60 shadow-sm flex items-center justify-center">
+                  <img
+                    src="/gov-logo.svg"
+                    alt="Emblem of India"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-gray-900 font-extrabold text-sm leading-snug">Government of India Registered</h4>
+                  <p className="text-gray-500 text-[11px] mt-0.5 leading-relaxed">
+                    100% compliant with e-waste management rules, MSME standards, GST frameworks, and MSTC rules.
+                  </p>
                 </div>
               </div>
-            </motion.div>
+
+              {/* Checklist items */}
+              <div className="space-y-4">
+                <h4 className="text-gray-950 font-bold text-sm tracking-wider uppercase">Our Statutory Promises</h4>
+                <ul className="space-y-3">
+                  {[
+                    { icon: <FaCheckCircle />, text: '100% Compliance with E-Waste Rules 2016 & 2018', color: '#16a34a' },
+                    { icon: <FaTruck />, text: 'Safe & Secure E-Waste Collection & Transportation', color: '#0d9488' },
+                    { icon: <FaFileAlt />, text: 'Complete Documentation & Legal Compliance with Government of India', color: '#059669' },
+                    { icon: <FaLock />, text: 'Secure Data Destruction & Confidentiality', color: '#b45309' },
+                    { icon: <FaShieldAlt />, text: 'Accurate Record Maintenance & CPCB Audit Reporting', color: '#0369a1' },
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 text-xs mt-0.5" style={{ backgroundColor: item.color + '15', color: item.color }}>
+                        {item.icon}
+                      </div>
+                      <span className="text-gray-700 leading-relaxed text-xs font-medium">{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Side: Interactive Certificates Grid */}
+            <div className="lg:col-span-7">
+              <h4 className="text-gray-900 font-bold text-base mb-6 flex items-center gap-2">
+                <FaCertificate className="text-green-600" /> Click to View Official Documents
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    title: 'Form GST REG-06',
+                    issuer: 'Government of India',
+                    image: '/gst-certificate.png',
+                    type: 'GST License',
+                    regNo: '06BFWPK5740M3ZO',
+                    desc: 'Official Goods and Services Tax registration under Government of India.'
+                  },
+                  {
+                    title: 'HSPCB Consent to Establish',
+                    issuer: 'Haryana Pollution Board',
+                    image: '/pcb-certificate.png',
+                    type: 'PCB Consent',
+                    regNo: 'RED Category - AIR/WATER',
+                    desc: 'Statutory board consent for safe e-waste and recycling processing in Sonipat.'
+                  },
+                  {
+                    title: 'MSTC Buyer Registration',
+                    issuer: 'MSTC Limited (A Govt. of India Enterprise)',
+                    image: '/mstc-license.jpg',
+                    type: 'MSTC License',
+                    regNo: 'Ref No: 633556',
+                    desc: 'Authorized buyer certificate for central and state government e-waste auctions.'
+                  },
+                  {
+                    title: 'Udyam Registration',
+                    issuer: 'Ministry of MSME',
+                    image: '/msme-certificate.png',
+                    type: 'MSME / Udyam',
+                    regNo: 'UDYAM-HR-05-0028158',
+                    desc: 'Ministry of Micro, Small and Medium Enterprises manufacturing enterprise license.'
+                  },
+                  {
+                    title: 'ISO 9001 & 14001:2015',
+                    issuer: 'QMS & EMS Certification',
+                    image: null,
+                    type: 'ISO Quality & Green standard',
+                    regNo: 'International Standards',
+                    desc: 'Certified Quality Management System and Environmental Protection standards.'
+                  }
+                ].map((cert, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      if (cert.image) setSelectedCert(cert);
+                    }}
+                    className={`bg-white border border-slate-100 rounded-2xl p-5 shadow-sm transition-all duration-300 hover:border-green-200 hover:shadow-md ${cert.image ? 'cursor-pointer group' : ''} flex flex-col justify-between`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[9px] font-bold text-green-700 bg-green-50 border border-green-100 px-2.5 py-1 rounded-md uppercase tracking-wider">
+                          {cert.type}
+                        </span>
+                      </div>
+                      <h3 className="text-gray-900 font-extrabold text-base mt-3 mb-1 leading-snug">{cert.title}</h3>
+                      <div className="text-[10px] text-gray-400 font-medium mb-2">{cert.issuer}</div>
+                      <div className="text-[10px] font-mono bg-slate-50 text-slate-600 px-2 py-0.5 rounded border border-slate-100/50 inline-block">
+                        {cert.regNo}
+                      </div>
+                      <p className="text-gray-500 text-xs mt-3 leading-relaxed">{cert.desc}</p>
+                    </div>
+
+                    {/* Preview box */}
+                    <div className="mt-5 pt-3 border-t border-slate-50 flex items-center justify-between">
+                      {cert.image ? (
+                        <>
+                          <div className="w-14 h-10 rounded bg-slate-50 overflow-hidden border border-slate-100 flex items-center justify-center">
+                            <img
+                              src={cert.image}
+                              alt={cert.title}
+                              className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity"
+                            />
+                          </div>
+                          <span className="text-xs text-green-600 font-bold flex items-center gap-1 group-hover:text-green-700">
+                            View Document →
+                          </span>
+                        </>
+                      ) : (
+                        <div className="w-full py-1 text-center bg-slate-50 rounded text-[9px] font-bold text-slate-500 border border-slate-100">
+                          Verified ISO Standards
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
+
+        {/* Dynamic Lightbox Modal */}
+        {selectedCert && (
+          <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-slate-150">
+              {/* Modal Header */}
+              <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/gov-logo.svg"
+                    alt="Gov"
+                    className="w-6 h-6 object-contain"
+                  />
+                  <div>
+                    <h3 className="text-gray-900 font-bold text-base leading-tight">{selectedCert.title}</h3>
+                    <span className="text-gray-400 text-xs">{selectedCert.issuer}</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="w-8 h-8 rounded-full bg-white hover:bg-slate-100 border border-slate-200 flex items-center justify-center text-gray-500 hover:text-gray-900 transition-all font-bold text-sm"
+                >
+                  ✕
+                </button>
+              </div>
+              {/* Modal Image container */}
+              <div className="p-4 overflow-y-auto bg-slate-100 flex items-center justify-center min-h-[300px]">
+                <img
+                  src={selectedCert.image}
+                  alt={selectedCert.title}
+                  className="max-h-[60vh] w-auto object-contain rounded-lg border shadow-sm"
+                />
+              </div>
+              {/* Modal Footer */}
+              <div className="p-4 border-t border-slate-100 flex items-center justify-between bg-white">
+                <span className="text-[10px] text-gray-400 font-mono">{selectedCert.regNo}</span>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold text-xs px-5 py-2 rounded-xl transition-all shadow-md shadow-green-150"
+                >
+                  Close Preview
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Section 7 — Gallery */}

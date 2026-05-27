@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
@@ -34,14 +35,69 @@ const recyclingPillars = [
 
 // From image: Advanced Recycling Plant Machines
 const machines = [
-  { name: 'Conveyor Belt', icon: <FaCog />, color: '#22c55e', desc: 'Transports material efficiently and ensures smooth workflow in the recycling process.' },
-  { name: 'Shredding Machine', icon: <FaTools />, color: '#ef4444', desc: 'Breaks down waste into smaller pieces for easy processing and recycling.' },
-  { name: 'Rotary Screen Machine', icon: <FaFilter />, color: '#3b82f6', desc: 'Separates materials by size for better sorting and higher recycling efficiency.' },
-  { name: 'Control Panel', icon: <FaBroadcastTower />, color: '#f59e0b', desc: 'Smart control system for safe, efficient and reliable operation of all machines.' },
-  { name: 'Bandsaw Cutting Machine', icon: <FaCut />, color: '#8b5cf6', desc: 'Cuts materials precisely for easy handling and further recycling.' },
-  { name: 'Cyclone Dust Collector', icon: <FaWind />, color: '#06b6d4', desc: 'Collects dust and prevents air pollution for a cleaner and healthier workplace.' },
-  { name: 'Oil Furnace', icon: <FaFire />, color: '#f97316', desc: 'Provides heat energy for the process with better efficiency and lower emissions.' },
-  { name: 'Gas Cleaning System', icon: <FaWater />, color: '#14b8a6', desc: 'Purifies exhaust gases and reduces harmful emissions for a healthier environment.' },
+  {
+    name: 'Industrial Double Shaft Shredder',
+    icon: <FaTools />,
+    color: '#ef4444',
+    image: '/double-shaft-shredder.jpg',
+    desc: 'Breaks down tough electronic and plastic waste into uniform segments for optimized downstream material separation.'
+  },
+  {
+    name: 'Horizontal Bandsaw Machine',
+    icon: <FaCut />,
+    color: '#8b5cf6',
+    image: '/horizontal-bandsaw.jpg',
+    desc: 'Provides highly precise cuts of bulky scrap metal, frames, and e-waste structures for compact processing.'
+  },
+  {
+    name: 'Trommel Screening Machine',
+    icon: <FaFilter />,
+    color: '#3b82f6',
+    image: '/trommel-screening.jpg',
+    desc: 'High-capacity rotating drum screen sorting different sized shredded materials for granular resource sorting.'
+  },
+  {
+    name: 'Cable Wire Stripping Machine',
+    icon: <FaSync />,
+    color: '#22c55e',
+    image: '/wire-stripper.jpg',
+    desc: 'High-speed automated insulation stripper recovering raw copper and aluminium cores from heavy-duty industrial cables.'
+  },
+  {
+    name: 'Cyclone Dust Collector',
+    icon: <FaWind />,
+    color: '#06b6d4',
+    image: '/dust-collector.jpg',
+    desc: 'Centralized extraction system pulling air pollutants, fine dust, and residues for clean, compliant workspace air.'
+  },
+  {
+    name: 'Electrical Control Panel',
+    icon: <FaBroadcastTower />,
+    color: '#f59e0b',
+    image: '/electrical-control-panel.jpg',
+    desc: 'Centralized smart panel with detailed meters and diagnostic switches managing power grids across recycling units.'
+  },
+  {
+    name: 'Exhaust & Work Station System',
+    icon: <FaBuilding />,
+    color: '#3b82f6',
+    image: '/exhaust-workstation.jpg',
+    desc: 'Individual workspaces equipped with overhead extraction hoods for safe, clean manual separation operations.'
+  },
+  {
+    name: 'Vertical Exhaust Stack System',
+    icon: <FaIndustry />,
+    color: '#ef4444',
+    image: '/vertical-exhaust.jpg',
+    desc: 'Tall vertical stack system with safe ladder access discharging cleaned gases cleanly into the upper atmosphere.'
+  },
+  {
+    name: 'Exhaust Air Scrubber System',
+    icon: <FaWater />,
+    color: '#14b8a6',
+    image: '/exhaust-scrubber.jpg',
+    desc: 'Wet scrubber system removing micro-particles and chemical vapors from the process exhaust before emission.'
+  }
 ];
 
 // From image: Why Recycling Matters
@@ -110,6 +166,8 @@ const workflowSteps = [
 ];
 
 const RecyclingPage = () => {
+  const [selectedMachine, setSelectedMachine] = useState(null);
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }}>
 
@@ -119,27 +177,56 @@ const RecyclingPage = () => {
           <div className="absolute top-10 left-20 w-80 h-80 bg-emerald-300 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-20 w-60 h-60 bg-cyan-200 rounded-full blur-3xl" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.div {...fadeUp}>
-            <span className="text-primary-700 text-sm font-semibold uppercase tracking-widest">E-Waste Recycling & Reuse</span>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mt-3 font-display leading-tight">
-              <span className="text-primary-600">A Small Action,</span><br />A Big Impact
-            </h1>
-            <p className="text-gray-600 text-lg mt-6 max-w-3xl mx-auto leading-relaxed">
-              Our advanced recycling facility is equipped with the latest technology to convert waste into valuable resources.
-              Together, let's reduce waste, protect nature and build a sustainable future.
-            </p>
-            <div className="mt-6 inline-block bg-primary-100 border border-primary-300 rounded-full px-6 py-2">
-              <span className="text-primary-700 font-semibold italic">"Don't Waste Today, Recycle for a Better Tomorrow"</span>
-            </div>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Left text column */}
+            <motion.div {...fadeUp} className="lg:w-1/2 text-left space-y-6">
+              <span className="text-primary-700 text-sm font-bold uppercase tracking-widest bg-green-100/70 border border-green-200/80 px-4 py-1.5 rounded-full">
+                E-Waste Recycling &amp; Reuse
+              </span>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900 font-display leading-tight">
+                <span className="text-primary-600 font-display">A Small Action,</span><br />A Big Impact
+              </h1>
+              <p className="text-gray-600 text-base leading-relaxed">
+                Our advanced recycling facility is equipped with the latest technology to convert waste into valuable resources.
+                Together, let's reduce waste, protect nature and build a sustainable future.
+              </p>
+              <div className="bg-primary-50 border border-primary-200 rounded-2xl px-5 py-3 inline-block">
+                <span className="text-primary-700 font-semibold italic text-sm">"Don't Waste Today, Recycle for a Better Tomorrow"</span>
+              </div>
+            </motion.div>
+
+            {/* Right image column: Recycling Unit Header Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="lg:w-1/2 w-full"
+            >
+              <div className="relative group rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-white">
+                <img
+                  src="/recycling-unit-header.jpg"
+                  alt="Recycling Unit"
+                  className="w-full h-80 md:h-[350px] object-cover scale-[1.65] origin-center object-center group-hover:scale-[1.70] transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <span className="text-[10px] font-bold uppercase tracking-widest bg-green-600 px-3 py-1 rounded-md">
+                    Our Plant
+                  </span>
+                  <h3 className="text-lg font-extrabold font-display mt-2">Green India Recycling Unit</h3>
+                </div>
+              </div>
+            </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.7 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16"
           >
             {[
               { stat: '70%', label: 'Less energy to recycle aluminium vs. virgin production' },
@@ -148,8 +235,8 @@ const RecyclingPage = () => {
               { stat: '60%', label: 'CO₂ reduction from recycled vs. new plastics' },
             ].map((f, i) => (
               <motion.div key={i} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-white/80 border border-primary-200/80 rounded-2xl p-5 shadow-green-sm backdrop-blur text-center">
-                <div className="text-3xl font-extrabold font-display text-primary-600">{f.stat}</div>
+                className="bg-white border border-primary-100 rounded-2xl p-5 shadow-green-sm text-center">
+                <div className="text-2xl md:text-3xl font-extrabold font-display text-primary-600">{f.stat}</div>
                 <div className="text-gray-600 text-xs mt-2">{f.label}</div>
               </motion.div>
             ))}
@@ -201,7 +288,7 @@ const RecyclingPage = () => {
               transition={{ duration: 0.6 }}
               className="relative rounded-2xl overflow-hidden h-48 group shadow-green-sm"
             >
-              <img src="https://images.unsplash.com/photo-1605600659873-d808a13e4d9a?w=700&h=300&fit=crop" alt="Manual & Automated Sorting" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?w=700&h=300&fit=crop" alt="Manual & Automated Sorting" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div className="absolute inset-0 bg-gradient-to-t from-primary-950/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <span className="text-white font-bold">| Manual &amp; Automated Sorting for Better Efficiency</span>
@@ -249,20 +336,22 @@ const RecyclingPage = () => {
         </div>
       </section>
 
-      {/* Section 3 — Advanced Recycling Plant Machines (from image) */}
-      <section className="py-20 bg-white">
+      {/* Section 3 — Advanced Recycling Plant Machines */}
+      <section className="py-20 bg-slate-50/50 border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="text-center mb-14">
-            <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">State-of-the-Art Infrastructure</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mt-2 font-display">
-              Our Advanced <span className="text-primary-600">Recycling Plant Machines</span>
+            <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest bg-green-50 px-3 py-1 rounded border border-green-100">
+              State-of-the-Art Infrastructure
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black text-gray-900 mt-4 font-display">
+              Our Advanced <span className="text-primary-600 font-display">Recycling Machines</span>
             </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-              Recycle Today, For a Better Tomorrow. Our plant runs on cutting-edge machinery for maximum efficiency and zero harmful emissions.
+            <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+              Recycle Today, For a Better Tomorrow. Our plant runs on cutting-edge machinery for maximum recovery, high precision, and compliance.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {machines.map((machine, i) => (
               <motion.div
                 key={i}
@@ -270,14 +359,52 @@ const RecyclingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                whileHover={{ scale: 1.04, translateY: -4 }}
-                className="bg-green-50/50 border border-primary-100 hover:border-primary-300 hover:bg-white shadow-green-sm hover:shadow-green-md transition-all rounded-2xl p-5 text-center"
+                className="bg-white border border-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md hover:border-green-200 transition-all duration-300 flex flex-col justify-between group"
               >
-                <div className="w-14 h-14 mx-auto rounded-xl flex items-center justify-center text-xl mb-3" style={{ backgroundColor: machine.color + '22', color: machine.color }}>
-                  {machine.icon}
+                {/* Image header with interactive click and full-hover overlay */}
+                <div 
+                  onClick={() => setSelectedMachine(machine)}
+                  className="relative h-48 overflow-hidden bg-slate-50 border-b border-slate-100 cursor-pointer group/img"
+                >
+                  <img
+                    src={machine.image}
+                    alt={machine.name}
+                    className="w-full h-full object-cover object-top scale-[1.25] origin-top group-hover/img:scale-[1.30] transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/30 flex items-center justify-center transition-all duration-300">
+                    <span className="text-white text-xs font-bold px-3 py-1.5 rounded-xl bg-green-600/90 opacity-0 group-hover/img:opacity-100 transform translate-y-2 group-hover/img:translate-y-0 transition-all duration-300 shadow-md">
+                      View Full Image
+                    </span>
+                  </div>
+                  <div className="absolute top-3 left-3 bg-green-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-md">
+                    {machine.icon}
+                  </div>
                 </div>
-                <h3 className="text-gray-800 font-bold text-sm mb-2 uppercase tracking-wide">{machine.name}</h3>
-                <p className="text-gray-600 text-xs leading-relaxed">{machine.desc}</p>
+
+                {/* Info Content */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-gray-900 font-extrabold text-sm mb-2 uppercase tracking-wide leading-snug">
+                      {machine.name}
+                    </h3>
+                    <p className="text-gray-500 text-xs leading-relaxed">
+                      {machine.desc}
+                    </p>
+                  </div>
+                  
+                  {/* Verified tag & View Image action */}
+                  <div className="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
+                    <button
+                      onClick={() => setSelectedMachine(machine)}
+                      className="text-[10px] text-green-600 hover:text-green-700 font-extrabold flex items-center gap-1 transition-colors"
+                    >
+                      View Image →
+                    </button>
+                    <span className="text-[10px] text-slate-400 font-medium">
+                      ✓ Active Unit
+                    </span>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -560,6 +687,52 @@ const RecyclingPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Dynamic Lightbox Modal for Recycling Machinery */}
+      {selectedMachine && (
+        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col border border-slate-150 animate-in fade-in zoom-in duration-200">
+            {/* Modal Header */}
+            <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-green-100 text-green-700 flex items-center justify-center text-lg shadow-sm">
+                  {selectedMachine.icon}
+                </div>
+                <div>
+                  <h3 className="text-gray-900 font-extrabold text-base leading-tight uppercase tracking-wide">{selectedMachine.name}</h3>
+                  <span className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Plant Recycling Equipment</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setSelectedMachine(null)}
+                className="w-8 h-8 rounded-full bg-white hover:bg-slate-100 border border-slate-200 flex items-center justify-center text-gray-500 hover:text-gray-900 transition-all font-bold text-sm"
+              >
+                ✕
+              </button>
+            </div>
+            {/* Modal Image container - UNCROPPED for high definition original view */}
+            <div className="p-4 overflow-y-auto bg-slate-100 flex items-center justify-center min-h-[300px] select-none">
+              <img
+                src={selectedMachine.image}
+                alt={selectedMachine.name}
+                className="max-h-[60vh] md:max-h-[65vh] w-auto object-contain rounded-2xl border shadow-md bg-white"
+              />
+            </div>
+            {/* Modal Footer */}
+            <div className="p-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white">
+              <p className="text-gray-600 text-xs leading-relaxed max-w-md">
+                {selectedMachine.desc}
+              </p>
+              <button
+                onClick={() => setSelectedMachine(null)}
+                className="bg-green-600 hover:bg-green-700 text-white font-bold text-xs px-6 py-2.5 rounded-xl transition-all shadow-md shadow-green-150 self-end sm:self-center"
+              >
+                Close Preview
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </motion.div>
   );

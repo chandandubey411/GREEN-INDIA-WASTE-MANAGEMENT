@@ -98,11 +98,10 @@ const GalleryPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
                 onClick={() => setFilter(cat)}
-                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${
-                  filter === cat
+                className={`flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 ${filter === cat
                     ? 'bg-green-600 text-white shadow-lg shadow-green-300/40 scale-105'
                     : 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100'
-                }`}
+                  }`}
               >
                 {cat}
                 {cat !== 'All' && (
@@ -139,47 +138,62 @@ const GalleryPage = () => {
                 className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
               >
                 <AnimatePresence>
-                  {filtered.map((img, idx) => (
-                    <motion.div
-                      key={img.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.35, delay: idx * 0.03 }}
-                      className="group relative overflow-hidden rounded-2xl bg-green-100 cursor-pointer shadow-sm hover:shadow-xl hover:shadow-green-200/50 transition-shadow duration-300"
-                      style={{ aspectRatio: '4/3' }}
-                      onClick={() => openLightbox(idx)}
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        loading="lazy"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                  {filtered.map((img, idx) => {
+                    const isMachine = img.alt.toLowerCase().includes('shredder') || 
+                                      img.alt.toLowerCase().includes('bandsaw') || 
+                                      img.alt.toLowerCase().includes('trommel') || 
+                                      img.alt.toLowerCase().includes('strip') || 
+                                      img.alt.toLowerCase().includes('collector') || 
+                                      img.alt.toLowerCase().includes('panel') || 
+                                      img.alt.toLowerCase().includes('station') || 
+                                      img.alt.toLowerCase().includes('exhaust') || 
+                                      img.alt.toLowerCase().includes('scrubber');
+                    return (
+                      <motion.div
+                        key={img.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.35, delay: idx * 0.03 }}
+                        className="group relative overflow-hidden rounded-2xl bg-green-100 cursor-pointer shadow-sm hover:shadow-xl hover:shadow-green-200/50 transition-shadow duration-300"
+                        style={{ aspectRatio: '4/3' }}
+                        onClick={() => openLightbox(idx)}
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          loading="lazy"
+                          className={`w-full h-full object-cover transition-transform duration-500 ${
+                            isMachine 
+                              ? 'scale-[1.25] origin-top object-top group-hover:scale-[1.30]' 
+                              : 'group-hover:scale-110'
+                          }`}
+                        />
 
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-green-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {/* Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-green-900/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                      {/* Info overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                        <p className="text-white font-semibold text-sm truncate">{img.alt}</p>
-                        <span className="text-green-300 text-xs">{img.category}</span>
-                      </div>
+                        {/* Info overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                          <p className="text-white font-semibold text-sm truncate">{img.alt}</p>
+                          <span className="text-green-300 text-xs">{img.category}</span>
+                        </div>
 
-                      {/* Expand icon */}
-                      <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-green-700 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
-                        <FaExpand className="text-xs" />
-                      </div>
+                        {/* Expand icon */}
+                        <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-green-700 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100">
+                          <FaExpand className="text-xs" />
+                        </div>
 
-                      {/* Category badge */}
-                      <div className="absolute top-3 left-3">
-                        <span className="bg-green-600/90 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {img.category}
-                        </span>
-                      </div>
-                    </motion.div>
-                  ))}
+                        {/* Category badge */}
+                        <div className="absolute top-3 left-3">
+                          <span className="bg-green-600/90 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            {img.category}
+                          </span>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </AnimatePresence>
               </motion.div>
             </>
@@ -260,9 +274,8 @@ const GalleryPage = () => {
                 <button
                   key={img.id}
                   onClick={(e) => { e.stopPropagation(); setLightbox(i); }}
-                  className={`flex-shrink-0 w-12 h-9 rounded-lg overflow-hidden border-2 transition-all ${
-                    i === lightbox ? 'border-green-400 scale-110 shadow-lg' : 'border-white/20 opacity-50 hover:opacity-80'
-                  }`}
+                  className={`flex-shrink-0 w-12 h-9 rounded-lg overflow-hidden border-2 transition-all ${i === lightbox ? 'border-green-400 scale-110 shadow-lg' : 'border-white/20 opacity-50 hover:opacity-80'
+                    }`}
                 >
                   <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
                 </button>

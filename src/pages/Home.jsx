@@ -21,38 +21,12 @@ const serviceHighlights = [
   { icon: <FaTruck />, title: 'Doorstep Pickup', color: '#8b5cf6', desc: 'Scheduled doorstep collections across 120+ cities.' },
 ];
 
-const trustItems = [
-  '🏆 ISO 14001 Certified',
-  '🌱 Carbon Neutral Operations',
-  '🤖 AI-Powered Tracking',
-  '🚛 Same-Day Pickup Available',
-  '♻️ 98% Landfill Diversion',
-  '🇮🇳 Operating in 120+ Indian Cities',
-  '⭐ 4.9 Rated by 12,000+ Clients',
-  '🔒 Data Secure & Compliant',
-];
-
 const Home = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
 
       {/* Section 1 — Hero */}
       <Hero />
-
-      {/* ── Animated Trust / Marquee Bar ── */}
-      <div className="w-full overflow-hidden bg-green-700 py-3 border-y border-green-600">
-        <div className="flex whitespace-nowrap marquee-track">
-          {[...trustItems, ...trustItems].map((item, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-2 px-8 text-sm text-white/90 font-semibold"
-            >
-              {item}
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-300 mx-2" />
-            </span>
-          ))}
-        </div>
-      </div>
 
       {/* Section 2 — Impact Stats */}
       <Impact />

@@ -23,24 +23,16 @@ const Navbar = () => {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-xl shadow-green-200/30 py-2 border-b border-green-100'
-            : 'bg-white/60 backdrop-blur-xl py-4 border-b border-green-100/10'
+            ? 'bg-white shadow-lg shadow-green-100/40 py-2 border-b border-green-100'
+            : 'bg-white py-4 border-b border-green-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
 
           {/* Logo */}
           <Link to="/" onClick={() => setMobileOpen(false)}>
-            <motion.div whileHover={{ scale: 1.04 }} className="flex items-center gap-3">
-              <div className="w-11 h-11 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg shadow-green-400/30">
-                <FaLeaf className="text-white text-lg" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="font-bold text-xl font-display leading-tight text-gray-900">
-                  Green<span className="text-green-500">India</span>
-                </div>
-                <p className="text-xs leading-none text-green-600 font-semibold">Waste Management</p>
-              </div>
+            <motion.div whileHover={{ scale: 1.04 }} className="flex items-center gap-2">
+              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain -my-2" />
             </motion.div>
           </Link>
 
@@ -54,14 +46,14 @@ const Navbar = () => {
                   to={link.href}
                   className={`relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
                     isActive
-                      ? 'text-green-700'
+                      ? 'text-white'
                       : 'text-gray-700 hover:text-green-700'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeNavPill"
-                      className="absolute inset-0 bg-green-100 rounded-full border border-green-300/50"
+                      className="absolute inset-0 bg-green-600 rounded-full"
                       transition={{ type: 'spring', bounce: 0.25, duration: 0.5 }}
                     />
                   )}
@@ -82,7 +74,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 className="hidden md:flex btn-primary text-sm px-5 py-2.5 btn-glow"
               >
-                Book Pickup
+                Recycle With Us
               </motion.button>
             </Link>
             <motion.button
@@ -140,7 +132,7 @@ const Navbar = () => {
                   <FaPhone /> +91 9650380888
                 </a>
                 <Link to="/contact" onClick={() => setMobileOpen(false)}>
-                  <button className="btn-primary w-full text-center">Book Pickup</button>
+                  <button className="btn-primary w-full text-center">Recycle With Us</button>
                 </Link>
               </motion.div>
             </div>
