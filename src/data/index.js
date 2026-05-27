@@ -23,7 +23,7 @@ export const services = [
     icon: 'FaRecycle',
     title: 'Plastic Waste Management',
     description: 'Comprehensive plastic waste collection, segregation and recycling solutions for homes and businesses.',
-    image: '/waste-bins.png',
+    image: 'https://www.shaktiplasticinds.com/wp-content/uploads/2022/12/Add-a-heading-29.png',
     color: '#22c55e',
   },
   {
@@ -31,7 +31,7 @@ export const services = [
     icon: 'FaMobileAlt',
     title: 'E-Waste Recycling',
     description: 'Safe disposal of electronic waste including phones, laptops, and appliances with certified recycling.',
-    image: '/double-shaft-shredder.jpg',
+    image: 'https://testingpython.skvewaste.com/media/E-Waste%20Recycling_11zon_zS8f1Rx.webp',
     color: '#3b82f6',
   },
   {
@@ -47,7 +47,7 @@ export const services = [
     icon: 'FaTruck',
     title: 'Doorstep Pickup',
     description: 'Schedule convenient doorstep waste collection at your preferred date and time.',
-    image: '/waste-bins.png',
+    image: 'https://cdn.catf.us/wp-content/uploads/2025/10/01080255/Methane_ExchangeBlog_1-1400x1055.jpg',
     color: '#8b5cf6',
   },
   {
@@ -55,7 +55,7 @@ export const services = [
     icon: 'FaBoxes',
     title: 'Scrap Collection',
     description: 'Best prices for metal, paper, glass and other scrap with instant payment.',
-    image: '/trommel-screening.jpg',
+    image: 'https://cleanriver.com/wp-content/uploads/2023/09/jessica-palomo-l7LmUdkrANQ-unsplash-scaled.jpg',
     color: '#ef4444',
   },
   {
@@ -63,7 +63,7 @@ export const services = [
     icon: 'FaLeaf',
     title: 'Organic Waste Solutions',
     description: 'Convert organic kitchen and garden waste into valuable compost through our bio-composting process.',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop',
+    image: 'https://news.uga.edu/wp-content/uploads/2022/04/organic_waster.jpg',
     color: '#14b8a6',
   },
 ];
@@ -225,17 +225,17 @@ export const blogs = [
   },
 ];
 export const galleryImages = [
-  { id: 1,  src: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&h=600&fit=crop', alt: 'Industrial Double Shaft Shredder', category: 'Recycling' },
-  { id: 2,  src: 'https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?w=800&h=600&fit=crop', alt: 'Horizontal Bandsaw Machine', category: 'Recycling' },
-  { id: 3,  src: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&h=600&fit=crop', alt: 'Trommel Screening Machine', category: 'Facility' },
-  { id: 4,  src: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?w=800&h=600&fit=crop', alt: 'Cable Wire Stripping Machine', category: 'Recycling' },
-  { id: 5,  src: 'https://images.unsplash.com/photo-1589793907316-f94015546124?w=800&h=600&fit=crop', alt: 'Cyclone Dust Collector', category: 'Facility' },
-  { id: 6,  src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop', alt: 'Electrical Control Panel', category: 'Facility' },
-  { id: 7,  src: 'https://images.unsplash.com/photo-1581093588401-f57326c546af?w=800&h=600&fit=crop', alt: 'Exhaust & Work Station System', category: 'Facility' },
-  { id: 8,  src: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop', alt: 'Vertical Exhaust Stack System', category: 'Facility' },
-  { id: 9,  src: 'https://images.unsplash.com/photo-1584267326895-d849a7d13f36?w=800&h=600&fit=crop', alt: 'Exhaust Air Scrubber System', category: 'Facility' },
-  { id: 10, src: 'https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop', alt: 'Green India Recycling Plant Unit', category: 'Facility' },
-  { id: 11, src: 'https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=800&h=600&fit=crop', alt: 'Smart Waste Sorting Bins', category: 'Recycling' },
+  { id: 1,  src: 'https://i.pinimg.com/1200x/f4/32/32/f43232b24966d22f64f68c3d2a8c8b34.jpg', alt: 'Industrial Double Shaft Shredder', category: 'Recycling' },
+  { id: 2,  src: 'https://5.imimg.com/data5/SELLER/Default/2023/3/RC/OA/YI/15821040/mini-horizontal-bandsaw-machine-ohb24.jpg', alt: 'Horizontal Bandsaw Machine', category: 'Recycling' },
+  { id: 3,  src: 'https://i.pinimg.com/736x/28/23/19/282319d1545d0635707cdc69f3ca8863.jpg', alt: 'Trommel Screening Machine', category: 'Facility' },
+  { id: 4,  src: 'https://i.pinimg.com/736x/e4/32/7f/e4327fe19c2c3abf54ed7c2a6d55fe15.jpg', alt: 'Cable Wire Stripping Machine', category: 'Recycling' },
+  { id: 5,  src: 'https://i.pinimg.com/736x/d2/d5/6c/d2d56c67e51000893573ae3aa9859898.jpg', alt: 'Cyclone Dust Collector', category: 'Facility' },
+  { id: 6,  src: 'https://i.pinimg.com/736x/dd/35/6c/dd356ccb78ea4847f5c7ae5c40799e89.jpg', alt: 'Electrical Control Panel', category: 'Facility' },
+  { id: 7,  src: 'https://p-cdn-sfpi.azureedge.net/global/en/-/media/NEU/Delta-NEU-BE/Readmore/Solutions/solution-ventilation-poste-de-travail-table-aspirante.jpg?h=552&iar=0&w=700&modified=20201001152711', alt: 'Exhaust & Work Station System', category: 'Facility' },
+  { id: 8,  src: 'https://webcontent.greenheck.com/atg-cms-v2-prod/images/default-source/blog/understanding-exhaust-system-stack-design-and-plume-rise-hero.png?sfvrsn=b510b05b_1', alt: 'Vertical Exhaust Stack System', category: 'Facility' },
+  { id: 9,  src: 'https://i.pinimg.com/1200x/70/60/87/7060873280c0229c754fde4884bd942f.jpg', alt: 'Exhaust Air Scrubber System', category: 'Facility' },
+  { id: 10, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlapQbEtScVsnlYgr6wDM0sgvfTBMvh8IFZQ&s', alt: 'Green India Recycling Plant Unit', category: 'Facility' },
+  { id: 11, src: 'https://www.bine.world/assets/images/recycling_solutions/bine.webp', alt: 'Smart Waste Sorting Bins', category: 'Recycling' },
   { id: 12, src: '/sonu-kumar.jpg', alt: 'Director & Founder Sonu Kumar', category: 'Team' },
 ];
 
