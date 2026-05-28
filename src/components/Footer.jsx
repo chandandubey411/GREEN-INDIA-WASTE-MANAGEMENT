@@ -107,7 +107,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-2 mb-5">
-              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain" />
             </div>
 
             {/* Tagline */}
