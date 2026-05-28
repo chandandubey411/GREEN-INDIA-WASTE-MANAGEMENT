@@ -13,12 +13,163 @@ const genAI = new GoogleGenerativeAI("YOUR_API_KEY_HERE");
 const initialMessages = [
   {
     role: 'ai',
-    text: "Hello! 👋 I'm the Green India AI Assistant. I can help you with waste pickup, recycling guides, and our services. How can I assist you today?",
+    text: "Hello! 👋 I'm the Green India AI Assistant. I can help you with waste pickup, pricing, recycling guides, and information about our services. How can I assist you today?",
   }
 ];
 
-const AIChatbot = () => {
-  const [isOpen, setIsOpen] = useState(false);
+// ── ENHANCED LOCAL KNOWLEDGE BASE FOR DOCKING WEBSITE FACTS ──
+const localKB = [
+  {
+    keys: ['about', 'who are you', 'company', 'green india', 'what is this', 'background', 'detail', 'info', 'profile', 'work'],
+    answer: `🌿 **Green India Waste Management** is India's leading AI-powered recycling and resource recovery platform. 
+
+* **Founded:** 2015
+* **Our Mission:** Achieving zero waste to landfill through responsible resource recovery, robust compliance, and clean tech innovation.
+* **Scale:** Active in **120+ cities** across India, serving over **12,000+ happy clients**.
+* **Certifications:** Authorized by the Ministry of Environment, ISO 14001:2015 certified, and strictly CPCB-compliant.
+
+We help residential neighborhoods, corporate offices, and heavy industries recycle plastic, e-waste, metals, and organics responsibly. 🌍`
+  },
+  {
+    keys: ['leader', 'founder', 'director', 'ceo', 'sonu', 'kumar', 'who runs', 'owner', 'boss', 'management', 'head'],
+    answer: `👤 Green India is led by **Sonu Kumar**, our visionary **Founder & Director (CEO)**.
+
+Under Sonu's leadership, we have grown to be one of India's most trusted green tech enterprises. He pioneered the integration of AI-powered segregation and smart logistics to tackle India's waste challenges.
+
+**Sonu Kumar's Vision Statement:**
+*"Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."* 🌿`
+  },
+  {
+    keys: ['service', 'what do you do', 'what you do', 'facilities', 'features', 'help', 'offering'],
+    answer: `🛠️ **Green India Waste Management** offers end-to-end eco-friendly services:
+
+1. **Plastic Waste Management:** Certified collection and processing for all grades of plastics.
+2. **E-Waste Recycling:** Safe disposal of old laptops, phones, and appliances with full data destruction certificates.
+3. **Industrial Waste Solutions:** CPCB-compliant management, hazardous waste treatment, and factory scrap disposal.
+4. **Doorstep Pickup:** Convenient dry waste collection scheduled at your convenience.
+5. **Scrap Collection:** Best market rates for copper, iron, paper, glass, and cardboard with instant digital payment.
+6. **Organic Waste Solutions:** Advanced bio-composting setups that turn food and garden waste into premium organic compost in 21-30 days.
+
+Which of these services can I describe in detail for you? ♻️`
+  },
+  {
+    keys: ['plastic', 'bottle', 'polyethylene', 'bag', 'cup'],
+    answer: `🥤 **Plastic Waste Management Services:**
+
+We provide comprehensive plastic waste collection, segregation, and processing solutions:
+* We collect and recycle all plastic grades (PET, HDPE, LDPE, PP, etc.).
+* Materials are sent to our state-of-the-art facilities to be washed, sorted, and shredded into high-quality recycled granules.
+* These granules are supplied back to manufacturers, helping conserve petroleum resources and build a circular economy! ♻️`
+  },
+  {
+    keys: ['e-waste', 'electronic', 'phone', 'laptop', 'computer', 'gadget', 'appliance', 'mobile', 'keyboard', 'screen', 'tv'],
+    answer: `💻 **Certified E-Waste Recycling:**
+
+Improperly discarded electronics release lead, mercury, and toxic flame retardants into the ground.
+* **Items Covered:** Laptops, desktop computers, mobile phones, servers, keyboards, wires, TVs, and appliances.
+* **Data Security:** We ensure completely secure physical destruction or military-grade wiping of storage drives.
+* **Compliance Certification:** We supply an official **Certificate of E-Waste Recycling** which is crucial for corporate compliance and ESG audits! 📱`
+  },
+  {
+    keys: ['industrial', 'factory', 'hazardous', 'compliance', 'cpcb', 'corporate', 'commercial', 'manufacturing', 'contract', 'amc'],
+    answer: `🏭 **Industrial & Corporate Waste Solutions:**
+
+We partner with factories, warehouses, and IT parks to ensure 100% legal compliance and green practices:
+* **CPCB Compliance:** We provide full documentation, tracking, and environmental compliance certificates.
+* **Resource Recovery:** Maximize value recovery from industrial non-hazardous scrap and safe treatment of hazardous streams.
+* **CSR & ESG Goals:** Helping your business achieve Net-Zero waste-to-landfill and solid CSR reporting.
+* We offer custom Annual Maintenance Contracts (AMCs) for regular pick-ups! 🌿`
+  },
+  {
+    keys: ['pickup', 'book', 'schedule', 'doorstep', 'collect', 'appoint', 'rider', 'request', 'free'],
+    answer: `🚛 **Scheduling a Doorstep Pickup is Quick and Easy!**
+
+Here is how you can book:
+1. **WhatsApp Support:** Click our green **WhatsApp Chat** widget in the bottom-right corner or text us at **+91 9650380888** to schedule immediately.
+2. **Website Form:** Fill out the simple contact form in the **Contact** page of this website.
+3. **The Process:** A certified green rider will visit your home or office on the scheduled date, weigh the scrap using transparent digital scales, pay you instantly (Cash/UPI), and issue a receipt! 💵`
+  },
+  {
+    keys: ['scrap', 'metal', 'glass', 'paper', 'cardboard', 'sell', 'buy', 'newspaper', 'iron', 'copper', 'aluminum', 'brass'],
+    answer: `📰 **Scrap Collection & Instant Payouts:**
+
+We pay premium market rates for valuable recyclables:
+* **Metals:** Copper, iron, aluminum, brass, stainless steel.
+* **Paper:** Old newspapers, schoolbooks, boxes, cardboard packaging.
+* **Glass & Others:** Clean glass bottles, PET bottles, and bulk clean dry waste.
+* **Instant Payment:** Our riders carry verified digital scales and pay you instantly on the spot via Cash, GPay, PhonePe, or Bank Transfer! 💳`
+  },
+  {
+    keys: ['organic', 'compost', 'kitchen', 'food', 'garden', 'wet waste', 'biodegradable', 'waste solution'],
+    answer: `🍂 **Organic Waste & Composting Solutions:**
+
+We help schools, corporate cafeterias, and residential societies tackle food and organic wet waste:
+* **Bio-Composters:** We supply and set up advanced bio-composting systems.
+* **Zero Waste Bins:** Seamlessly separate wet kitchen scrap from dry recyclables.
+* **Compost Production:** Convert organic waste into rich, nutrient-dense organic compost within 21-30 days, perfect for gardens! 🌸`
+  },
+  {
+    keys: ['city', 'cities', 'location', 'where', 'coverage', 'delhi', 'mumbai', 'bangalore', 'noida', 'gurgaon', 'pune', 'hyderabad', 'chennai', 'kolkata', 'kochi', 'place', 'state'],
+    answer: `📍 **Service Locations & Cities Covered:**
+
+We operate in over **120+ cities across India**! Our major service hubs include:
+* **Delhi NCR:** New Delhi, Noida, Gurgaon, Ghaziabad, Faridabad.
+* **Maharashtra:** Mumbai, Pune, Thane.
+* **Karnataka:** Bangalore.
+* **Telangana:** Hyderabad.
+* **Tamil Nadu:** Chennai.
+* **West Bengal:** Kolkata.
+* **Gujarat:** Ahmedabad, Surat.
+* **Other Major Cities:** Jaipur, Lucknow, Kochi, Chandigarh, and Indore.
+
+Same-day and next-day collections are standard in all hub cities. Text us on WhatsApp at **+91 9650380888** with your pincode to check instant coverage! 🗺️`
+  },
+  {
+    keys: ['price', 'cost', 'fee', 'charge', 'rate', 'payment', 'how much', 'money', 'pay', 'expensive'],
+    answer: `💰 **Pricing, Fees, and Earnings:**
+
+* **Dry Waste & General Pickup:** Completely **FREE**! There are no hidden call-out fees.
+* **Scrap & E-Waste:** We **PAY YOU**! You earn competitive cash/UPI payouts based on weight and market scrap value.
+* **Organic Composting Systems:** Billed at affordable equipment setup rates.
+* **Industrial and Commercial Contracts:** Customized quotation packages are drafted after a free site audit. 📈`
+  },
+  {
+    keys: ['impact', 'stat', 'number', 'result', 'saving', 'tree', 'co2', 'landfill', 'environment', 'greenhouse'],
+    answer: `📈 **Our Environmental Impact & Achievements:**
+
+Together with our amazing clients, we have made a lasting green footprint:
+* **50,000+ Tons** of dry waste recycled and kept out of landfills.
+* **120,000+ Trees saved** by recycling paper and cardboard.
+* **30,000+ Tons of CO₂ emissions** reduced by replacing virgin materials.
+* **30,000+ Tons of plastic** recycled into secondary resources.
+
+Thank you for being a part of this green journey! 🌳`
+  },
+  {
+    keys: ['contact', 'phone', 'mobile', 'email', 'support', 'address', 'office', 'headquarters', 'mail', 'write', 'location', 'map'],
+    answer: `📞 **Contact Green India Support:**
+
+We are here for you 24/7!
+* **WhatsApp & Call:** +91 9650380888
+* **Email:** hello@greenindiawm.com
+* **Corporate Headquarters:** Connaught Place, New Delhi - 110001
+* **Customer Support:** Active round-the-clock in English, Hindi, and regional languages. ✉`
+  },
+  {
+    keys: ['process', 'step', 'how it works', 'flow', 'work', 'method', 'procedure', 'segregation', 'sorting'],
+    answer: `🔄 **Our 5-Step AI-Smart Recycling Process:**
+
+1. **Scheduled Pickup:** Book a collection on our website or text our WhatsApp bot.
+2. **AI Segregation:** Waste is delivered to our Recovery Facility where smart optical sorting separates waste automatically.
+3. **Advanced Processing:** Waste is washed, shredded, or composted in state-of-the-art facilities.
+4. **Manufacturer Supply:** Shredded plastics, cleaned metals, and cardboard pulps are sold back to manufacturers.
+5. **Circular Economy:** Reusable items return to the supply chain, ensuring **98% landfill diversion**! ♻️`
+  }
+];
+
+const AIChatbot = ({ activeChat, setActiveChat }) => {
+  const isOpen = activeChat === 'ai';
+  const setIsOpen = (open) => setActiveChat(open ? 'ai' : null);
   const [messages, setMessages] = useState(initialMessages);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -45,44 +196,65 @@ const AIChatbot = () => {
       const prompt = `
         You are the Green India Waste Management AI Assistant.
         Your tone should be helpful, professional, and eco-friendly.
-        Only answer questions related to:
-        - Waste management & recycling
-        - Our pickup services & locations (120+ cities in India)
-        - E-waste, plastic, organic, industrial waste
-        - Sustainability & zero-waste living
-        - Company info
-        
-        If the user asks something completely unrelated, politely decline and steer them back to waste management.
-        Keep answers relatively concise (max 3-4 short paragraphs). Use emojis occasionally.
+
+        Here are the certified facts about our company from the website. ONLY use these facts to answer the user:
+        - Company Name: Green India Waste Management (Founded: 2015)
+        - Founder & Director / CEO: Sonu Kumar
+        - Sonu Kumar's vision: "Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."
+        - Our Contact: WhatsApp & Call at +91 9650380888, Email at hello@greenindiawm.com, Headquarters in Connaught Place, New Delhi.
+        - Core Services: Plastic Waste Management (recycling grades into granules), E-Waste Recycling (certified data wipe & destruction), Industrial Waste Solutions (CPCB-compliant treatment), Doorstep Pickup (convenient scheduled collections), Scrap Collection (instant UPI/cash payouts for metals/paper/glass), Organic Waste Solutions (bio-composting wet waste to compost).
+        - Service Coverage: 120+ cities in India including Delhi NCR, Mumbai, Bangalore, Pune, Chennai, Hyderabad, Kolkata, Ahmedabad, Surat, Jaipur, Lucknow, Kochi, Chandigarh.
+        - Pricing: General pickups are FREE. Scrap & E-waste earn instant cash payouts based on verified weight. AMCs are customized.
+        - Achievements: 50,000+ Tons waste recycled, 120,000+ Trees saved, 30K+ Tons CO2 saved, 12,000+ happy clients.
+        - Certifications: ISO 14001:2015 certified, Ministry of Environment authorized, 100% CPCB compliance.
+
+        If the user asks something completely unrelated to our company or waste management, politely decline and steer them back.
+        Keep answers relatively concise (max 2-3 paragraphs). Use emojis occasionally.
 
         User Question: ${userMessage}
       `;
 
-      // Fallback for demo if API key isn't set
+      // Fallback for demo if API key isn't set (incorporates smart matching engine)
       if (genAI.apiKey === "YOUR_API_KEY_HERE") {
           setTimeout(() => {
-              const lowerMsg = userMessage.toLowerCase();
-              let responseText = "I'm currently in demo mode without an API key! However, I can still tell you about Green India: We offer Plastic Waste Pickup, E-Waste Recycling, Industrial Waste management, and more. What would you like to know?";
+              const lowerMsg = userMessage.toLowerCase().trim();
               
-              if (lowerMsg.includes("about") && (lowerMsg.includes("website") || lowerMsg.includes("green india"))) {
-                  responseText = "Green India Waste Management is India's most trusted AI-powered waste management platform. We've been operating since 2015, helping households and businesses recycle plastic, e-waste, and organic materials across 120+ cities!";
-              } else if (lowerMsg.includes("service") || lowerMsg.includes("what do you do")) {
-                  responseText = "We provide comprehensive services including: 1) Plastic Waste Management, 2) E-Waste Recycling, 3) Industrial Waste disposal, 4) Doorstep Pickup, 5) Scrap Collection, and 6) Organic Waste Solutions.";
-              } else if (lowerMsg.includes("pickup") || lowerMsg.includes("book")) {
-                  responseText = "You can easily book a pickup! Just scroll down to the 'Contact' section or use the 'Book Pickup' button in the navigation bar. We offer same-day and next-day pickup in over 50 major cities.";
-              } else if (lowerMsg.includes("contact") || lowerMsg.includes("phone") || lowerMsg.includes("email")) {
-                  responseText = "You can reach us at hello@greenindiawm.com or call us at +91 98765 43210. Our head office is located in Connaught Place, New Delhi.";
-              } else if (lowerMsg.includes("price") || lowerMsg.includes("cost") || lowerMsg.includes("fee")) {
-                  responseText = "Our pickup fees vary based on the waste type and location. However, we often pay YOU for valuable scrap and e-waste! Please fill out the contact form for a free custom quote.";
-              } else if (lowerMsg.includes("plastic") || lowerMsg.includes("e-waste") || lowerMsg.includes("organic")) {
-                  responseText = "Yes! We specialize in that. We have state-of-the-art sorting facilities that ensure 98% of collected waste is diverted from landfills and properly recycled or composted.";
-              } else if (lowerMsg.includes("hi") || lowerMsg.includes("hello") || lowerMsg.includes("hey")) {
-                  responseText = "Hello there! Welcome to Green India. How can I help you make India cleaner today?";
+              // Standard conversational greetings
+              if (lowerMsg === 'hi' || lowerMsg === 'hello' || lowerMsg === 'hey' || lowerMsg === 'help') {
+                  const reply = "Hello! 👋 Welcome to **Green India Waste Management**. I am your AI Eco-Assistant. \n\nI can help you with: \n* 📅 Booking a doorstep pickup\n* 👤 Info about our Founder, Sonu Kumar\n* 🛠️ Our services (Plastic, E-waste, Scrap)\n* 📍 Cities we cover (120+ cities)\n* 💰 Rates & pricing\n\nWhat can I help you with today? ♻️";
+                  setMessages(prev => [...prev, { role: 'ai', text: reply }]);
+                  setIsTyping(false);
+                  return;
+              }
+
+              // Simple ranking matching algorithm
+              let bestMatch = null;
+              let highestScore = 0;
+
+              for (const item of localKB) {
+                  let score = 0;
+                  for (const key of item.keys) {
+                      if (lowerMsg.includes(key)) {
+                          // Grant higher score for exact word matches or longer keys
+                          score += key.split(' ').length;
+                      }
+                  }
+                  if (score > highestScore) {
+                      highestScore = score;
+                      bestMatch = item;
+                  }
+              }
+
+              let responseText = "";
+              if (bestMatch && highestScore > 0) {
+                  responseText = bestMatch.answer;
+              } else {
+                  responseText = "I'm not completely sure about that. 🌍 However, I can definitely help you with our **Services**, **Pricing**, **Cities Covered (120+)**, **Doorstep Pickups**, or our **Founder Sonu Kumar**! \n\nPlease choose one of these topics or ask me a related question, and I'll gladly guide you. 🌿";
               }
 
               setMessages(prev => [...prev, { role: 'ai', text: responseText }]);
               setIsTyping(false);
-          }, 1000);
+          }, 800);
           return;
       }
 
@@ -112,9 +284,9 @@ const AIChatbot = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
-        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 w-16 h-16 rounded-full bg-gradient-to-r from-primary-500 to-emerald-600 shadow-xl shadow-primary-500/40 flex items-center justify-center z-40 ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-[4.25rem] sm:bottom-[5.25rem] right-4 sm:right-5 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-gradient-to-r from-primary-500 to-emerald-600 shadow-xl shadow-primary-500/40 flex items-center justify-center z-[199] ${isOpen || activeChat === 'whatsapp' ? 'hidden' : ''}`}
       >
-        <FaRobot className="text-white text-2xl" />
+        <FaRobot className="text-white text-lg sm:text-2xl" />
         {/* Pulse effect */}
         <span className="absolute w-full h-full rounded-full border-2 border-primary-400 animate-ping opacity-75" />
       </motion.button>
@@ -127,7 +299,7 @@ const AIChatbot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-6 sm:bottom-6 md:right-8 md:bottom-8 sm:w-[400px] h-[500px] max-h-[80vh] bg-white border border-green-200/80 rounded-3xl shadow-green-2xl overflow-hidden z-50 flex flex-col"
+            className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-5 sm:bottom-5 sm:w-[400px] h-[500px] max-h-[80vh] bg-white border border-green-200/80 rounded-3xl shadow-green-2xl overflow-hidden z-50 flex flex-col"
           >
             {/* Chat Header */}
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 border-b border-green-700/20 flex items-center justify-between">

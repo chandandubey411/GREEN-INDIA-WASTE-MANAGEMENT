@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AIChatbot from './components/AIChatbot';
+import WhatsAppChat from './components/WhatsAppChat';
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
@@ -36,6 +37,8 @@ const AnimatedRoutes = () => {
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  const [activeChat, setActiveChat] = useState(null); // 'ai', 'whatsapp', or null
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -105,7 +108,8 @@ function App() {
                 <AnimatedRoutes />
               </main>
               <Footer />
-              <AIChatbot />
+              <AIChatbot activeChat={activeChat} setActiveChat={setActiveChat} />
+              <WhatsAppChat activeChat={activeChat} setActiveChat={setActiveChat} />
             </motion.div>
           )}
         </AnimatePresence>

@@ -484,68 +484,212 @@ const RecyclingPage = () => {
         </div>
       </section>
 
-      {/* Section 4 — 8-Step Workflow */}
-      <section className="py-20 bg-green-50/20 border-t border-b border-green-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp} className="text-center mb-14">
-            <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Our Process</span>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mt-2 font-display">
-              Our <span className="text-primary-600">Work Flow</span>
+      {/* Section 4 — 8-Step Workflow — 3D Edition */}
+      <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0d1a0f 40%, #071a2e 100%)' }}>
+
+        {/* Grid texture overlay */}
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+
+        {/* Ambient glow blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+        <div className="absolute top-1/2 left-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)', filter: 'blur(30px)' }} />
+
+        {/* Floating dots */}
+        {[...Array(12)].map((_, i) => (
+          <div key={i} className="absolute w-1 h-1 rounded-full opacity-30 pointer-events-none"
+            style={{ background: ['#22c55e','#3b82f6','#f59e0b','#8b5cf6'][i % 4], left: `${8 + (i * 8)}%`, top: `${15 + (i % 3) * 30}%`, animation: `floatCard ${3 + (i % 3)}s ease-in-out ${i * 0.4}s infinite` }} />
+        ))}
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          {/* Header */}
+          <motion.div {...fadeUp} className="text-center mb-16">
+            <span className="inline-flex items-center gap-2 text-green-400 text-xs font-bold uppercase tracking-[0.2em] bg-green-400/10 border border-green-400/20 px-4 py-2 rounded-full mb-4">
+              <FaRecycle className="text-green-400" /> Our Process
+            </span>
+            <h2 className="text-4xl md:text-6xl font-black text-white mt-3 font-display">
+              Our <span style={{ background: 'linear-gradient(135deg, #22c55e, #4ade80)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Work Flow</span>
             </h2>
-            <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-base">
               A transparent 8-step journey ensuring maximum recovery and zero harm to the environment.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {/* Row 1 — Steps 1–4 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-4">
             {workflowSteps.slice(0, 4).map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50, rotateX: 15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="relative bg-white border border-primary-200/60 shadow-green-sm rounded-2xl p-5 text-center hover:border-primary-400 hover:shadow-green-md transition-all"
+                transition={{ delay: i * 0.13, duration: 0.6, ease: 'easeOut' }}
+                whileHover={{ y: -10, scale: 1.03, rotateY: 3 }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  perspective: '800px',
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
+                  borderTop: `3px solid ${step.color}`,
+                  boxShadow: `0 20px 60px rgba(0,0,0,0.5), 0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06)`,
+                }}
+                className="relative rounded-2xl p-6 text-center backdrop-blur-sm border border-white/[0.08] cursor-default overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-xl" style={{ backgroundColor: step.color + '22', color: step.color }}>{step.icon}</div>
-                <div className="text-2xl font-extrabold font-display mb-1" style={{ color: step.color + '66' }}>{step.step}</div>
-                <h3 className="text-gray-800 font-bold text-sm mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-xs leading-relaxed">{step.desc}</p>
-                {i < 3 && <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-primary-400 text-2xl z-10 font-bold">→</div>}
+                {/* Card inner glow */}
+                <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: `radial-gradient(circle at 50% 0%, ${step.color}15 0%, transparent 70%)` }} />
+
+                {/* 3D Step Number badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black"
+                    style={{
+                      background: `linear-gradient(135deg, ${step.color}, ${step.color}99)`,
+                      boxShadow: `0 4px 12px ${step.color}50, 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3)`,
+                      color: '#fff',
+                    }}>
+                    {step.step}
+                  </div>
+                </div>
+
+                {/* Icon with 3D box */}
+                <div className="relative mx-auto mb-5 w-16 h-16">
+                  <div className="absolute inset-0 rounded-2xl translate-y-1.5 translate-x-1.5"
+                    style={{ background: step.color + '30', filter: 'blur(4px)' }} />
+                  <div className="relative w-16 h-16 rounded-2xl flex items-center justify-center text-2xl"
+                    style={{
+                      background: `linear-gradient(145deg, ${step.color}28, ${step.color}10)`,
+                      border: `1px solid ${step.color}40`,
+                      boxShadow: `0 8px 24px ${step.color}25, inset 0 1px 0 rgba(255,255,255,0.15)`,
+                      color: step.color,
+                    }}>
+                    {step.icon}
+                  </div>
+                </div>
+
+                <h3 className="text-white font-bold text-sm mb-2 leading-snug">{step.title}</h3>
+                <p className="text-gray-400 text-xs leading-relaxed">{step.desc}</p>
+
+                {/* Bottom color bar */}
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl"
+                  style={{ background: `linear-gradient(90deg, transparent, ${step.color}80, transparent)` }} />
+
+                {/* Arrow connector */}
+                {i < 3 && (
+                  <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-7 h-7 rounded-full items-center justify-center z-20 text-xs font-bold"
+                    style={{
+                      background: `linear-gradient(135deg, ${step.color}, ${step.color}80)`,
+                      boxShadow: `0 4px 12px ${step.color}50`,
+                      color: '#fff',
+                    }}>
+                    →
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
-          <div className="flex justify-end pr-[calc(25%-1rem)] mb-6">
-            <div className="text-primary-400 text-2xl font-bold">↓</div>
+
+          {/* Down arrow connector */}
+          <div className="flex justify-end pr-[calc(25%-1.25rem)] mb-4">
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold"
+              style={{
+                background: 'linear-gradient(135deg, #22c55e, #059669)',
+                boxShadow: '0 6px 20px rgba(34,197,94,0.4)',
+                color: '#fff',
+              }}>
+              ↓
+            </motion.div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          {/* Row 2 — Steps 5–8 (reversed) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {workflowSteps.slice(4).reverse().map((step, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50, rotateX: 15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="relative bg-white border border-primary-200/60 shadow-green-sm rounded-2xl p-5 text-center hover:border-primary-400 hover:shadow-green-md transition-all"
+                transition={{ delay: i * 0.13, duration: 0.6, ease: 'easeOut' }}
+                whileHover={{ y: -10, scale: 1.03, rotateY: -3 }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  perspective: '800px',
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)',
+                  borderTop: `3px solid ${step.color}`,
+                  boxShadow: `0 20px 60px rgba(0,0,0,0.5), 0 8px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 1px rgba(255,255,255,0.06)`,
+                }}
+                className="relative rounded-2xl p-6 text-center backdrop-blur-sm border border-white/[0.08] cursor-default overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl mx-auto mb-3 flex items-center justify-center text-xl" style={{ backgroundColor: step.color + '22', color: step.color }}>{step.icon}</div>
-                <div className="text-2xl font-extrabold font-display mb-1" style={{ color: step.color + '66' }}>{step.step}</div>
-                <h3 className="text-gray-800 font-bold text-sm mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-xs leading-relaxed">{step.desc}</p>
-                {i < 3 && <div className="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 text-primary-400 text-2xl z-10 font-bold">←</div>}
+                <div className="absolute inset-0 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ background: `radial-gradient(circle at 50% 0%, ${step.color}15 0%, transparent 70%)` }} />
+
+                {/* 3D Step badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black"
+                    style={{
+                      background: `linear-gradient(135deg, ${step.color}, ${step.color}99)`,
+                      boxShadow: `0 4px 12px ${step.color}50, 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3)`,
+                      color: '#fff',
+                    }}>
+                    {step.step}
+                  </div>
+                </div>
+
+                {/* Icon */}
+                <div className="relative mx-auto mb-5 w-16 h-16">
+                  <div className="absolute inset-0 rounded-2xl translate-y-1.5 translate-x-1.5"
+                    style={{ background: step.color + '30', filter: 'blur(4px)' }} />
+                  <div className="relative w-16 h-16 rounded-2xl flex items-center justify-center text-2xl"
+                    style={{
+                      background: `linear-gradient(145deg, ${step.color}28, ${step.color}10)`,
+                      border: `1px solid ${step.color}40`,
+                      boxShadow: `0 8px 24px ${step.color}25, inset 0 1px 0 rgba(255,255,255,0.15)`,
+                      color: step.color,
+                    }}>
+                    {step.icon}
+                  </div>
+                </div>
+
+                <h3 className="text-white font-bold text-sm mb-2 leading-snug">{step.title}</h3>
+                <p className="text-gray-400 text-xs leading-relaxed">{step.desc}</p>
+
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl"
+                  style={{ background: `linear-gradient(90deg, transparent, ${step.color}80, transparent)` }} />
+
+                {i < 3 && (
+                  <div className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-7 h-7 rounded-full items-center justify-center z-20 text-xs font-bold"
+                    style={{
+                      background: `linear-gradient(135deg, ${step.color}, ${step.color}80)`,
+                      boxShadow: `0 4px 12px ${step.color}50`,
+                      color: '#fff',
+                    }}>
+                    ←
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
-          <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-4 mt-10">
+
+          {/* Bottom pillar badges */}
+          <motion.div {...fadeUp} className="flex flex-wrap justify-center gap-3 mt-14">
             {['Environment Protection', 'Resource Conservation', 'Sustainable Future', 'Building a Cleaner & Greener India'].map((pillar, i) => (
-              <div key={i} className="flex items-start gap-2.5 bg-primary-50 border border-primary-200 rounded-xl md:rounded-full px-4 py-2.5 md:px-5 md:py-2 max-w-full">
-                <FaCheckCircle className="text-primary-600 text-sm mt-1 md:mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm font-medium leading-snug">{pillar}</span>
+              <div key={i} className="flex items-center gap-2 rounded-full px-5 py-2.5 border transition-all duration-300"
+                style={{
+                  background: 'rgba(34,197,94,0.08)',
+                  borderColor: 'rgba(34,197,94,0.25)',
+                  boxShadow: '0 4px 16px rgba(34,197,94,0.1)',
+                }}>
+                <FaCheckCircle className="text-green-400 text-xs flex-shrink-0" />
+                <span className="text-gray-300 text-sm font-medium">{pillar}</span>
               </div>
             ))}
           </motion.div>
         </div>
       </section>
+
 
       {/* Section 5 — 9 Benefits of E-Waste Recycling */}
       <section className="py-20 bg-white">

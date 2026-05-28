@@ -27,12 +27,12 @@ const Navbar = () => {
             : 'bg-white py-4 border-b border-green-100'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
+        <div className="max-w-screen-xl mx-auto px-4 md:px-6 flex items-center justify-between">
 
           {/* Logo */}
           <Link to="/" onClick={() => setMobileOpen(false)}>
             <motion.div whileHover={{ scale: 1.04 }} className="flex items-center gap-2">
-              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain -my-2" />
+              <img src="/logo.png" alt="Green India Logo" className="h-16 md:h-20 object-contain -my-2" />
             </motion.div>
           </Link>
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.href}
-                  className={`relative px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
+                  className={`relative px-4 py-2 text-[15px] font-semibold rounded-full transition-all duration-300 ${
                     isActive
                       ? 'text-white'
                       : 'text-gray-700 hover:text-green-700'
@@ -65,14 +65,14 @@ const Navbar = () => {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <a href="tel:+919650380888" className="hidden md:flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-600 transition-colors">
+            <a href="tel:+919650380888" className="hidden md:flex items-center gap-2 text-[15px] font-semibold text-green-700 hover:text-green-600 transition-colors">
               <FaPhone className="text-xs" /> +91 9650380888
             </a>
             <Link to="/contact">
               <motion.button
                 whileHover={{ scale: 1.06 }}
                 whileTap={{ scale: 0.95 }}
-                className="hidden md:flex btn-primary text-sm px-5 py-2.5 btn-glow"
+                className="hidden md:flex btn-primary text-[15px] px-5 py-2.5 btn-glow"
               >
                 Recycle With Us
               </motion.button>

@@ -100,14 +100,14 @@ const Footer = () => {
       <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
 
       {/* ── Main grid ── */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 pt-14 pb-6">
+      <div className="max-w-screen-xl mx-auto px-4 md:px-6 relative z-10 pt-14 pb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
           {/* ── Brand column ── */}
           <div className="lg:col-span-1">
             {/* Logo */}
             <div className="flex items-center gap-2 mb-5">
-              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain bg-white rounded-xl p-1 shadow" />
+              <img src="/logo.png" alt="Green India Logo" className="h-14 md:h-16 object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
             </div>
 
             {/* Tagline */}

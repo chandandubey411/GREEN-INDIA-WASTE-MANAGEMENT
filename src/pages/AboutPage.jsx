@@ -233,32 +233,44 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
             className="flex justify-center"
           >
-            <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start gap-6 md:gap-8 max-w-2xl w-full">
-              {/* Photo */}
-              <div className="flex-shrink-0">
+            <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10 max-w-3xl w-full">
+              
+              {/* Photo — bigger with decorative ring */}
+              <div className="flex-shrink-0 relative">
+                {/* Decorative glow ring */}
+                <div className="absolute -inset-1.5 rounded-3xl"
+                  style={{ background: 'linear-gradient(135deg, #16a34a, #4ade80, #059669)', padding: '2px', borderRadius: '1.5rem' }}>
+                  <div className="w-full h-full rounded-3xl bg-white" />
+                </div>
                 <img
                   src="/sonu-kumar.jpg"
-                  alt="Sonu Kumar"
-                  className="w-32 h-32 md:w-36 md:h-36 rounded-2xl object-cover border border-slate-100 shadow-sm"
+                  alt="Sonu Kumar — Director & CEO"
+                  className="relative w-48 h-60 sm:w-52 sm:h-64 md:w-56 md:h-72 rounded-3xl object-cover object-top shadow-xl border-2 border-white"
+                  style={{ boxShadow: '0 20px 50px rgba(22,163,74,0.2), 0 8px 20px rgba(0,0,0,0.1)' }}
                 />
+                {/* Badge on image */}
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap"
+                  style={{ boxShadow: '0 4px 14px rgba(22,163,74,0.4)' }}>
+                  Director & CEO
+                </div>
               </div>
 
               {/* Info */}
-              <div className="flex-1 text-center sm:text-left">
+              <div className="flex-1 text-center md:text-left pt-4">
                 <div className="mb-4">
-                  <h3 className="text-gray-900 font-extrabold text-2xl font-display">Sonu Kumar</h3>
-                  <p className="text-green-600 text-sm font-semibold tracking-wider uppercase mt-1">Director &amp; CEO</p>
+                  <h3 className="text-gray-900 font-extrabold text-3xl md:text-4xl font-display">Sonu Kumar</h3>
+                  <p className="text-green-600 text-sm font-semibold tracking-wider uppercase mt-2">Founder &amp; Director — Green India Waste Management</p>
                 </div>
                 
-                <p className="text-gray-600 text-sm leading-relaxed italic">
+                <p className="text-gray-600 text-sm leading-relaxed italic border-l-4 border-green-200 pl-4 mt-4">
                   "Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."
                 </p>
 
-                <div className="mt-6 pt-4 border-t border-slate-50 flex flex-wrap justify-center sm:justify-start gap-2">
+                <div className="mt-6 pt-5 border-t border-slate-100 flex flex-wrap justify-center md:justify-start gap-2">
                   {['Founder', 'Green Tech', 'Circular Economy', 'Compliance'].map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs bg-slate-50 border border-slate-100 text-slate-600 font-medium px-3 py-1.5 rounded-full"
+                      className="text-xs bg-green-50 border border-green-100 text-green-700 font-semibold px-3 py-1.5 rounded-full"
                     >
                       {tag}
                     </span>
@@ -267,6 +279,7 @@ const AboutPage = () => {
               </div>
             </div>
           </motion.div>
+
         </div>
       </section>
 

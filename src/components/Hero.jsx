@@ -251,18 +251,22 @@ const Hero = () => {
         <div className="hero-orb hero-orb-1 absolute w-[500px] h-[500px] -top-32 -right-24 opacity-30 pointer-events-none" />
         <div className="hero-orb hero-orb-2 absolute w-[350px] h-[350px] bottom-0 left-0 opacity-20 pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 py-12 lg:py-16">
+        <div className="w-full px-6 lg:px-10 xl:px-16 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10 py-10 lg:py-14">
 
             {/* ── LEFT CONTENT ── */}
-            <div className="flex-1 max-w-xl">
+            <div className="flex-[1.2] relative">
+
+              {/* Floating accent bar */}
+              <div className="absolute -left-5 top-8 bottom-8 w-1 rounded-full hidden lg:block"
+                style={{ background: 'linear-gradient(to bottom, #16a34a, #4ade80, transparent)' }} />
 
               {/* Tag pill */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 bg-green-50/80 border border-green-200/80 rounded-full px-4 py-1.5 mb-6"
+                className="inline-flex items-center gap-2 bg-green-50/80 border border-green-200/80 rounded-full px-4 py-1.5 mb-5"
               >
                 <FaLeaf className="text-green-600 text-xs" />
                 <span className="text-green-700 text-xs font-bold tracking-wide">Smart Recycling. Better Tomorrow.</span>
@@ -285,7 +289,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-gray-500 text-base md:text-lg leading-relaxed mb-8 max-w-md font-medium"
+                className="text-gray-500 text-base md:text-lg leading-relaxed mb-7 max-w-lg font-medium"
               >
                 Serving 120+ cities with AI-powered collection, recycling &amp; responsible disposal.
               </motion.p>
@@ -295,7 +299,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 mb-10"
+                className="flex flex-col sm:flex-row gap-4 mb-8"
               >
                 <motion.button
                   whileHover={{ scale: 1.04, boxShadow: '0 20px 40px rgba(22,163,74,0.3)' }}
@@ -328,13 +332,45 @@ const Hero = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="flex items-center gap-4 flex-wrap"
+                className="flex items-center gap-4 flex-wrap mb-8"
               >
                 {['ISO 14001 Certified', 'AI-Powered Tracking', '98% Landfill Diversion'].map((item, i) => (
                   <div key={i} className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
                     <FaCheckCircle className="text-green-500 text-[10px]" />
                     {item}
                   </div>
+                ))}
+              </motion.div>
+
+              {/* ── Feature Cards Row ── */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3"
+              >
+                {[
+                  { icon: FaTruck,     color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0', title: 'Doorstep Pickup',    sub: 'Same-day available' },
+                  { icon: FaShieldAlt, color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd', title: 'Data Secure',        sub: 'GDPR & ISO compliant' },
+                  { icon: FaLeaf,      color: '#059669', bg: '#ecfdf5', border: '#a7f3d0', title: 'Carbon Neutral',     sub: 'Zero-emission ops' },
+                ].map((card, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.03, y: -3 }}
+                    className="flex items-center gap-3 rounded-2xl px-4 py-3.5 border transition-all duration-300 cursor-default"
+                    style={{ background: card.bg, borderColor: card.border, boxShadow: '0 2px 12px rgba(0,0,0,0.05)' }}
+                  >
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                      style={{ background: card.color + '20', border: `1px solid ${card.border}` }}
+                    >
+                      <card.icon style={{ color: card.color }} className="text-sm" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-800 text-xs leading-tight">{card.title}</p>
+                      <p className="text-gray-400 text-[10px] leading-tight mt-0.5">{card.sub}</p>
+                    </div>
+                  </motion.div>
                 ))}
               </motion.div>
             </div>
@@ -344,17 +380,17 @@ const Hero = () => {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex-1 relative flex items-center justify-center w-full lg:max-w-xl"
+              className="flex-[0.95] relative flex items-center justify-center w-full"
             >
               {/* Right Visual Image Container */}
               <div className="relative w-full rounded-[32px] overflow-hidden shadow-2xl border border-slate-100 bg-white">
                 <img
                   src="/waste-bins.png"
                   alt="Smart Waste Bins"
-                  className="w-full h-80 md:h-[400px] lg:h-[430px] object-cover hover:scale-102 transition-transform duration-700 ease-out"
+                  className="w-full h-80 md:h-[400px] lg:h-[460px] object-cover hover:scale-102 transition-transform duration-700 ease-out"
                 />
                 
-                {/* Top right "Committed to a Greener Tomorrow" overlay badge */}
+                {/* Top right badge */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -367,6 +403,24 @@ const Hero = () => {
                   <p className="text-gray-400 text-[8px] leading-tight font-extrabold uppercase tracking-wide">Committed to a</p>
                   <p className="text-green-600 font-black text-[10px] leading-tight mt-0.5 font-display uppercase tracking-wide">Greener<br />Tomorrow</p>
                 </motion.div>
+
+                {/* Bottom left floating stat card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.5 }}
+                  className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-green-100"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-xl bg-green-500 flex items-center justify-center flex-shrink-0">
+                      <FaRecycle className="text-white text-sm" />
+                    </div>
+                    <div>
+                      <p className="text-gray-900 font-black text-lg leading-none">50K+</p>
+                      <p className="text-gray-500 text-[10px] font-semibold mt-0.5">Tons Recycled ✅</p>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -376,33 +430,35 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="w-full mt-6 md:mt-10 bg-gradient-to-r from-green-700/90 via-green-600/95 to-emerald-600/90 backdrop-blur-md border border-white/20 rounded-3xl p-3 md:p-5 shadow-2xl relative mb-12"
+            className="w-full mt-4 md:mt-6 bg-gradient-to-r from-green-700/90 via-green-600/95 to-emerald-600/90 backdrop-blur-md border border-white/20 rounded-3xl p-2.5 sm:p-3 md:p-5 shadow-2xl relative mb-12"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-3 md:gap-0">
               {statsBar.map((s, i) => {
                 const Icon = s.icon;
                 return (
                   <div
                     key={i}
-                    className={`flex items-center gap-3.5 py-3.5 px-6 ${i < statsBar.length - 1 ? 'md:border-r border-white/10' : ''}`}
+                    className={`flex items-center gap-2 sm:gap-3.5 py-2.5 sm:py-3.5 px-2 sm:px-4 md:px-6 ${i < statsBar.length - 1 ? 'md:border-r border-white/10' : ''}`}
                   >
-                    <div className="w-11 h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
-                      <Icon className="text-white text-lg" />
+                    <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
+                      <Icon className="text-white text-sm sm:text-lg" />
                     </div>
-                    <div>
-                      <div className="text-white font-black text-2xl leading-none font-display tracking-tight">{s.value}</div>
-                      <div className="text-green-100 text-[10px] md:text-xs font-bold mt-1 tracking-wider uppercase">{s.label}</div>
+                    <div className="min-w-0">
+                      <div className="text-white font-black text-base sm:text-2xl leading-none font-display tracking-tight">{s.value}</div>
+                      <div className="text-green-100 text-[9px] sm:text-[10px] md:text-xs font-bold mt-0.5 sm:mt-1 tracking-wider uppercase leading-tight">{s.label}</div>
                     </div>
                   </div>
                 );
               })}
             </div>
           </motion.div>
+
         </div>
+
 
         {/* ══ TRUSTED BY SECTION ══ */}
         <div className="w-full bg-white border-t border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-6 py-6">
             <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
 
               {/* Label */}
