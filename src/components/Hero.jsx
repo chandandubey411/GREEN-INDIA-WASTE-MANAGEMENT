@@ -432,13 +432,13 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="w-full mt-4 md:mt-6 bg-gradient-to-r from-green-700/90 via-green-600/95 to-emerald-600/90 backdrop-blur-md border border-white/20 rounded-3xl p-2.5 sm:p-3 md:p-5 shadow-2xl relative mb-12"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-3 md:gap-0">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-0">
               {statsBar.map((s, i) => {
                 const Icon = s.icon;
                 return (
                   <div
                     key={i}
-                    className={`flex items-center gap-2 sm:gap-3.5 py-2.5 sm:py-3.5 px-2 sm:px-4 md:px-6 ${i < statsBar.length - 1 ? 'md:border-r border-white/10' : ''}`}
+                    className={`flex items-center gap-1.5 sm:gap-3.5 py-2.5 sm:py-3.5 px-1.5 sm:px-4 md:px-6 ${i < statsBar.length - 1 ? 'md:border-r border-white/10' : ''}`}
                   >
                     <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 shadow-inner">
                       <Icon className="text-white text-sm sm:text-lg" />

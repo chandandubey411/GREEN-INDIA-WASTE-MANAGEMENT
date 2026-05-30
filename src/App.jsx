@@ -60,7 +60,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col bg-white">
+      <div className="min-h-screen flex flex-col bg-white overflow-x-hidden">
         <AnimatePresence>
           {loading ? (
             <motion.div

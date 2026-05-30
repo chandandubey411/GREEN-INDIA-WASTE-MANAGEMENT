@@ -50,11 +50,11 @@ const statCards = [
 
 /* ── Bottom features ─────────────────────────────────── */
 const features = [
-  { icon: FaTruck,     label: 'Same-Day\nPickup Available' },
-  { icon: FaRecycle,   label: '98% Landfill\nDiversion' },
+  { icon: FaTruck, label: 'Same-Day\nPickup Available' },
+  { icon: FaRecycle, label: '98% Landfill\nDiversion' },
   { icon: FaShieldAlt, label: 'Data Secure &\nCompliant' },
-  { icon: FaMedal,     label: 'ISO 14001\nCertified' },
-  { icon: FaLeaf,      label: 'Carbon Neutral\nOperations' },
+  { icon: FaMedal, label: 'ISO 14001\nCertified' },
+  { icon: FaLeaf, label: 'Carbon Neutral\nOperations' },
 ];
 
 /* ── Orbiting icon positions ─────────────────────────── */
@@ -232,9 +232,9 @@ const GreenCircleStats = () => {
         <div className="hidden lg:block relative" style={{ minHeight: 480 }}>
           {/* Floating stat cards */}
           {[
-            { ...statCards[0], x: '3%',  y: '6%'  },
-            { ...statCards[1], x: undefined, right: '3%', y: '6%'  },
-            { ...statCards[2], x: '3%',  y: undefined, bottom: '10%' },
+            { ...statCards[0], x: '3%', y: '6%' },
+            { ...statCards[1], x: undefined, right: '3%', y: '6%' },
+            { ...statCards[2], x: '3%', y: undefined, bottom: '10%' },
             { ...statCards[3], x: undefined, right: '3%', y: undefined, bottom: '10%' },
           ].map((card, i) => {
             const Icon = card.icon;
@@ -410,7 +410,7 @@ const GreenCircleStats = () => {
           className="mt-10 md:mt-14 rounded-2xl border border-white/10 overflow-hidden"
           style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(12px)' }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
             {features.map((feat, i) => {
               const Icon = feat.icon;
               return (
