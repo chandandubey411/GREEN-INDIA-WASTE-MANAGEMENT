@@ -70,15 +70,23 @@ function App() {
               transition={{ duration: 0.6 }}
               className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/30 to-white"
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
-                className="w-20 h-20 relative flex items-center justify-center mb-6"
-              >
-                <div className="absolute inset-0 border-4 border-green-100 rounded-full" />
-                <div className="absolute inset-0 border-4 border-green-500 rounded-full border-t-transparent" />
-                <span className="text-3xl">🌿</span>
-              </motion.div>
+              <div className="w-24 h-24 relative flex items-center justify-center mb-6">
+                {/* Rotating border spinner */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                  className="absolute inset-0"
+                >
+                  <div className="w-full h-full border-4 border-green-100 rounded-full" />
+                  <div className="absolute inset-0 border-4 border-green-500 rounded-full border-t-transparent" />
+                </motion.div>
+                {/* Stationary center Logo */}
+                <img
+                  src="/logo.png"
+                  alt="Green India Logo"
+                  className="w-16 h-16 object-contain relative z-10 p-1 bg-white rounded-full shadow-sm"
+                />
+              </div>
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -39,7 +39,7 @@ const AboutPage = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="bg-white">
-      
+
       {/* Section 1 — Hero Banner */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-green-50 via-emerald-50/50 to-white overflow-hidden border-b border-green-100">
         <div className="absolute inset-0 opacity-20">
@@ -66,9 +66,9 @@ const AboutPage = () => {
           >
             {[
               { label: 'ISO 9001:2015 Certified', value: '✓ ISO', icon: <FaCertificate /> },
-              { label: 'Cities Covered',           value: '120+',   icon: <FaGlobe /> },
-              { label: 'Active Clients',           value: '12K+',   icon: <FaUsers /> },
-              { label: 'Waste Recycled',           value: '50K+',   icon: <FaLeaf /> },
+              { label: 'Cities Covered', value: '120+', icon: <FaGlobe /> },
+              { label: 'Active Clients', value: '12K+', icon: <FaUsers /> },
+              { label: 'Waste Recycled', value: '50K+', icon: <FaLeaf /> },
             ].map((s, i) => (
               <motion.div
                 key={i}
@@ -234,7 +234,7 @@ const AboutPage = () => {
             className="flex justify-center"
           >
             <div className="bg-white border border-slate-100 rounded-3xl p-6 md:p-10 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10 max-w-3xl w-full">
-              
+
               {/* Photo — bigger with decorative ring */}
               <div className="flex-shrink-0 relative">
                 {/* Decorative glow ring */}
@@ -261,7 +261,7 @@ const AboutPage = () => {
                   <h3 className="text-gray-900 font-extrabold text-3xl md:text-4xl font-display">Sonu Kumar</h3>
                   <p className="text-green-600 text-sm font-semibold tracking-wider uppercase mt-2">Founder &amp; Director — Green India Waste Management</p>
                 </div>
-                
+
                 <p className="text-gray-600 text-sm leading-relaxed italic border-l-4 border-green-200 pl-4 mt-4">
                   "Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."
                 </p>
@@ -287,7 +287,7 @@ const AboutPage = () => {
       <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            
+
             {/* Left Side: Compliance & National Authority */}
             <div className="lg:col-span-5 space-y-8">
               <div>
@@ -355,6 +355,14 @@ const AboutPage = () => {
                     type: 'GST License',
                     regNo: '06BFWPK5740M3ZO',
                     desc: 'Official Goods and Services Tax registration under Government of India.'
+                  },
+                  {
+                    title: 'Import Export Certificate (IEC)',
+                    issuer: 'Directorate General of Foreign Trade (DGFT)',
+                    image: '/iec-certificate.png',
+                    type: 'IEC License',
+                    regNo: 'BFWPK5740M',
+                    desc: 'Official Importer-Exporter Code certificate issued by the Ministry of Commerce & Industry, Government of India.'
                   },
                   {
                     title: 'HSPCB Consent to Establish',
