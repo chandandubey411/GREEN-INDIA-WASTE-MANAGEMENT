@@ -413,7 +413,7 @@ const AboutPage = () => {
                   Click to View or Download Documents
                 </h4>
                 <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest bg-slate-50 border border-slate-100 px-3 py-1 rounded-full w-fit">
-                  8 Official Documents
+                  7 Official Documents
                 </span>
               </div>
 
@@ -475,15 +475,6 @@ const AboutPage = () => {
                     regNo: 'Download PDF',
                     desc: 'Download our official company profile and recycling capabilities presentation document (PDF).',
                     downloadUrl: '/ppt.pdf'
-                  },
-                  {
-                    title: 'Sample Recycling Certificate',
-                    issuer: 'Green India Waste Management',
-                    image: null,
-                    type: 'Sample Document',
-                    regNo: 'Sample Receipt',
-                    desc: 'Download a sample of our certified E-Waste Disposal and Safe Recycling compliance certificate.',
-                    downloadUrl: '/sample-certificate.pdf'
                   }
                 ].map((cert, idx) => (
                   <div
@@ -500,7 +491,7 @@ const AboutPage = () => {
                     }}
                     className={`group bg-white border border-slate-150 rounded-2xl p-5 shadow-sm hover:shadow-xl hover:shadow-green-150/15 hover:border-green-300 transition-all duration-350 flex flex-col justify-between relative overflow-hidden border-b-4 hover:border-b-green-600 ${
                       (cert.image || cert.downloadUrl) ? 'cursor-pointer' : ''
-                    }`}
+                    } ${idx === 6 ? 'sm:col-span-2' : ''}`}
                     style={{ minHeight: '220px' }}
                   >
                     {/* Hover light glow overlay */}
