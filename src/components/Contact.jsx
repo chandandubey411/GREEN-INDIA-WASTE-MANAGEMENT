@@ -10,7 +10,7 @@ const contactInfo = [
   {
     icon: FaMapMarkerAlt,
     title: 'Head Office',
-    value: '42, Green Towers, Connaught Place, New Delhi – 110001',
+    value: 'Springboard Business Hub, Sector-18, Gurgaon — 122001, Haryana',
     color: '#22c55e',
   },
   {
@@ -72,7 +72,7 @@ const Contact = () => {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-black font-display text-white mb-4"
           >
-            Book a <span className="text-gradient">Free Pickup</span>
+            Book a <span className="text-gradient">Free Collection</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
@@ -81,7 +81,7 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="text-white/60 text-lg max-w-xl mx-auto"
           >
-            Schedule a pickup, ask a question, or get a free quote — we'll respond within 2 hours.
+            Schedule a collection, ask a question, or get a free quote — we'll respond within 2 hours.
           </motion.p>
         </div>
 
@@ -146,7 +146,7 @@ const Contact = () => {
               <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50">
                 <div className="text-center">
                   <FaMapMarkerAlt className="text-primary-400 text-3xl mx-auto mb-2 animate-bounce" />
-                  <div className="text-white font-semibold text-sm">New Delhi, India</div>
+                  <div className="text-white font-semibold text-sm">Gurgaon, Haryana, India</div>
                   <div className="text-white/50 text-xs">120+ service locations</div>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-white text-2xl font-bold font-display mb-3">Request Submitted!</h3>
                   <p className="text-white/60 mb-6">
-                    Our team will contact you within 2 hours to confirm your pickup.
+                    Our team will contact you within 2 hours to confirm your collection.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -184,7 +184,7 @@ const Contact = () => {
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h3 className="text-white text-xl font-bold font-display mb-6">Schedule Pickup / Get Quote</h3>
+                  <h3 className="text-white text-xl font-bold font-display mb-6">Schedule Collection / Get Quote</h3>
 
                   <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                     {[
@@ -211,7 +211,7 @@ const Contact = () => {
                       className="bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white/80 text-sm focus:outline-none focus:border-primary-500 transition-colors appearance-none cursor-pointer"
                     >
                       <option value="" className="bg-slate-800">Select Service</option>
-                      {['Plastic Waste Pickup', 'E-Waste Recycling', 'Industrial Waste', 'Scrap Collection', 'Organic Waste', 'Custom Solution'].map(s => (
+                      {['Plastic Waste Collection', 'E-Waste Recycling', 'Industrial Waste', 'Scrap Collection', 'Organic Waste', 'Custom Solution'].map(s => (
                         <option key={s} value={s} className="bg-slate-800">{s}</option>
                       ))}
                     </select>

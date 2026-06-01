@@ -59,7 +59,7 @@ const PickupModal = ({ onClose }) => {
               </div>
               <span className="text-white/80 text-xs font-semibold uppercase tracking-widest">Green India</span>
             </div>
-            <h3 className="text-2xl font-black font-display">Book Free Pickup</h3>
+            <h3 className="text-2xl font-black font-display">Book Free Collection</h3>
             <p className="text-white/75 text-sm mt-1">We'll respond within 2 hours • Same-day available</p>
           </div>
         </div>
@@ -69,8 +69,8 @@ const PickupModal = ({ onClose }) => {
               <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
                 <FaCheckCircle className="text-green-500 text-4xl" />
               </div>
-              <h4 className="text-gray-900 text-xl font-black font-display mb-2">Pickup Booked! 🎉</h4>
-              <p className="text-gray-500 text-sm mb-6">Our team will call you within 2 hours to confirm your pickup slot.</p>
+              <h4 className="text-gray-900 text-xl font-black font-display mb-2">Collection Booked! 🎉</h4>
+              <p className="text-gray-500 text-sm mb-6">Our team will call you within 2 hours to confirm your collection slot.</p>
               <button onClick={onClose} className="btn-hero-primary px-8 py-3 text-sm">Done</button>
             </motion.div>
           ) : (
@@ -123,7 +123,7 @@ const PickupModal = ({ onClose }) => {
                 {loading ? (
                   <><div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" /> Processing...</>
                 ) : (
-                  <><FaPaperPlane className="text-xs" /> Confirm Free Pickup</>
+                  <><FaPaperPlane className="text-xs" /> Confirm Free Collection</>
                 )}
               </motion.button>
               <div className="flex items-center justify-center gap-6 pt-1">
@@ -310,7 +310,7 @@ const Hero = () => {
                   style={{ background: 'linear-gradient(135deg, #16a34a, #059669)', boxShadow: '0 8px 30px rgba(22,163,74,0.25)' }}
                 >
                   <FaTruck className="text-sm animate-pulse" />
-                  Request Free Pickup →
+                  Request Free Collection →
                 </motion.button>
 
                 <motion.button
@@ -350,9 +350,9 @@ const Hero = () => {
                 className="grid grid-cols-2 sm:grid-cols-3 gap-3"
               >
                 {[
-                  { icon: FaTruck,     color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0', title: 'Doorstep Pickup',    sub: 'Same-day available' },
+                  { icon: FaLeaf,      color: '#16a34a', bg: '#f0fdf4', border: '#bbf7d0', title: 'Scrap Collection',   sub: 'Instant cash payouts' },
                   { icon: FaShieldAlt, color: '#0369a1', bg: '#f0f9ff', border: '#bae6fd', title: 'Data Secure',        sub: 'GDPR & ISO compliant' },
-                  { icon: FaLeaf,      color: '#059669', bg: '#ecfdf5', border: '#a7f3d0', title: 'Carbon Neutral',     sub: 'Zero-emission ops' },
+                  { icon: FaRecycle,   color: '#059669', bg: '#ecfdf5', border: '#a7f3d0', title: 'Carbon Neutral',     sub: 'Zero-emission ops' },
                 ].map((card, i) => (
                   <motion.div
                     key={i}

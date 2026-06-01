@@ -20,7 +20,7 @@ const footerLinks = {
     { name: 'Plastic Recycling',    href: '/services' },
     { name: 'Dry Waste Collection', href: '/services' },
     { name: 'Organic Waste',        href: '/services' },
-    { name: 'Bulk Waste Pickup',    href: '/services' },
+    { name: 'Bulk Waste Collection', href: '/services' },
     { name: 'Corporate Solutions',  href: '/services' },
   ],
   legal: [
@@ -41,7 +41,7 @@ const socials = [
 ];
 
 const trustBadges = [
-  { icon: FaTruck,     title: 'Same-Day\nPickup Available',   sub: 'Hassle-free doorstep\ncollection' },
+  { icon: FaRecycle,   title: 'Smart\nWaste Collection',    sub: 'AI-powered collection\nand sorting' },
   { icon: FaRecycle,   title: '98% Landfill\nDiversion',      sub: 'We keep waste out\nof landfills' },
   { icon: FaShieldAlt, title: 'Data Secure &\nCompliant',     sub: 'Your data is safe\nwith us' },
   { icon: FaMedal,     title: 'ISO 14001\nCertified',         sub: 'Internationally recognized\nstandards' },
@@ -117,7 +117,7 @@ const Footer = () => {
 
             {/* Features list */}
             <div className="space-y-2 mb-6">
-              {['Smart Waste Collection', 'Doorstep Pickup Across 120+ Cities', 'Eco-Friendly • Reliable • Responsible'].map((item, i) => (
+              {['Smart Waste Collection', 'Eco-Friendly Recycling Across 120+ Cities', 'Eco-Friendly • Reliable • Responsible'].map((item, i) => (
                 <div key={i} className="flex items-start gap-2">
                   <FaLeaf className="text-green-500 text-[10px] mt-1 flex-shrink-0" />
                   <span className="text-green-200/60 text-xs leading-relaxed">{item}</span>

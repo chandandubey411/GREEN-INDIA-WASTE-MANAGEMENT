@@ -12,14 +12,13 @@ const fadeUp = {
 
 const offices = [
   { city: 'Head Office — Gurgaon', address: 'Springboard Business Hub, Sector-18, Gurgaon — 122001, Haryana', phone: '+91 9650380888', email: 'info@greenindiawm.com' },
-  { city: 'Recycling Plant — Sonipat', address: 'Plot No. 160, Sector-53, Ph-II, HSIIDC Kundli, Sonipat, Haryana — 131028', phone: '+91 9650380888', email: 'info@greenindiawm.com' },
-  { city: 'Regional Office — Delhi', address: '12th Floor, Green Tower, Connaught Place, New Delhi — 110001', phone: '+91 9650380888', email: 'info@greenindiawm.com' },
+  { city: 'Recycling Plant — Sonipat', address: 'Plot No. 169, Sector-53, Ph-II, HSIIDC Kundli, Sonipat, Haryana — 131028', phone: '+91 9650380888', email: 'info@greenindiawm.com' },
 ];
 
 const faqs = [
-  { q: 'How do I schedule a pickup?', a: 'Fill out the form on this page or call our toll-free number 1800-123-4567. We will confirm your slot within 2 hours.' },
+  { q: 'How do I schedule a collection?', a: 'Fill out the form on this page or call our toll-free number 1800-123-4567. We will confirm your slot within 2 hours.' },
   { q: 'What waste do you not accept?', a: 'We do not accept radioactive waste, biological/medical waste, or explosives. All other waste types are handled with proper protocols.' },
-  { q: 'How soon can you come?', a: 'We offer same-day pickup in Delhi, Mumbai, and Bangalore for requests placed before 12 PM. Next-day pickup is available in all 120+ cities.' },
+  { q: 'How soon can you come?', a: 'We offer same-day collection in Delhi, Mumbai, and Bangalore for requests placed before 12 PM. Next-day collection is available in all 120+ cities.' },
   { q: 'Do I get paid for recyclable scrap?', a: 'Yes! Metal, paper, and high-grade plastic scrap fetches instant cash payment. Check our Scrap Price List for current rates.' },
   { q: 'Will I get a certificate for my waste?', a: 'Absolutely. All commercial, business, and industrial clients receive a Waste Disposal Certificate within 24 hours via email.' },
 ];
@@ -95,8 +94,8 @@ const ContactPage = () => {
             {/* Form */}
             <div className="lg:col-span-3">
               <motion.div {...fadeUp}>
-                <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Book a Pickup</span>
-                <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-8 font-display">Schedule Your <span className="text-primary-600">Waste Pickup</span></h2>
+                <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Book a Collection</span>
+                <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-8 font-display">Schedule Your <span className="text-primary-600">Waste Collection</span></h2>
               </motion.div>
 
               {submitted ? (
@@ -107,13 +106,13 @@ const ContactPage = () => {
                 >
                   <FaCheckCircle className="text-primary-600 text-6xl mx-auto mb-4" />
                   <h3 className="text-gray-900 font-bold text-2xl mb-2">Booking Confirmed!</h3>
-                  <p className="text-gray-600">Thank you, {formData.name}! Our team will contact you within 2 hours to confirm your pickup details.</p>
+                  <p className="text-gray-600">Thank you, {formData.name}! Our team will contact you within 2 hours to confirm your collection details.</p>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     onClick={() => setSubmitted(false)}
                     className="mt-6 px-8 py-3 bg-primary-500 text-white rounded-full font-semibold shadow-green-sm"
                   >
-                    Book Another Pickup
+                    Book Another Collection
                   </motion.button>
                 </motion.div>
               ) : (
@@ -190,7 +189,7 @@ const ContactPage = () => {
                     disabled={loading}
                     className="w-full py-4 bg-primary-500 hover:bg-primary-600 text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2 text-lg shadow-green-sm"
                   >
-                    {loading ? <><FaSpinner className="animate-spin" /> Processing...</> : <><FaTruck /> Confirm Pickup Booking</>}
+                    {loading ? <><FaSpinner className="animate-spin" /> Processing...</> : <><FaTruck /> Confirm Collection Booking</>}
                   </motion.button>
                 </motion.form>
               )}
@@ -201,7 +200,7 @@ const ContactPage = () => {
               <motion.div {...fadeUp} className="bg-white border border-primary-200 shadow-green-sm rounded-2xl p-6">
                 <h3 className="text-gray-900 font-bold text-lg mb-4 flex items-center gap-2"><FaTruck className="text-primary-600" /> Why Book With Us?</h3>
                 <ul className="space-y-3">
-                  {['Free first pickup for new users', 'Same-day service in 3 metros', 'Digital waste certificate included', 'Cash payment for scrap items', '24/7 customer support'].map((item, i) => (
+                  {['Free first collection for new users', 'Same-day service in 3 metros', 'Digital waste certificate included', 'Cash payment for scrap items', '24/7 customer support'].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-750 text-sm">
                       <FaCheckCircle className="text-primary-600 flex-shrink-0" />
                       {item}
@@ -218,7 +217,7 @@ const ContactPage = () => {
               >
                 <FaWhatsapp className="text-4xl mb-3" />
                 <h3 className="font-bold text-xl mb-2">Chat on WhatsApp</h3>
-                <p className="text-primary-100 text-sm mb-4">Get instant response from our team. Available 24/7 for quick queries and urgent pickups.</p>
+                <p className="text-primary-100 text-sm mb-4">Get instant response from our team. Available 24/7 for quick queries and urgent collections.</p>
                 <a href="https://wa.me/919650380888" target="_blank" rel="noopener noreferrer">
                   <motion.button whileHover={{ scale: 1.04 }} className="w-full bg-white text-primary-600 font-bold py-2.5 rounded-xl shadow-green-sm">
                     Open WhatsApp Chat
@@ -237,7 +236,7 @@ const ContactPage = () => {
             <span className="text-primary-600 text-sm font-semibold uppercase tracking-widest">Find Us</span>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 font-display">Our <span className="text-primary-600">Offices</span></h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {offices.map((office, i) => (
               <motion.div
                 key={i}

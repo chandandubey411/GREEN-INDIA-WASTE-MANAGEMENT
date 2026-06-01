@@ -18,7 +18,7 @@ const serviceHighlights = [
   { icon: <FaRecycle />, title: 'Plastic Recycling', color: '#22c55e', desc: 'End-to-end plastic waste solutions for homes and industries.' },
   { icon: <FaMobileAlt />, title: 'E-Waste Disposal', color: '#3b82f6', desc: 'Certified, safe recycling of all electronic devices.' },
   { icon: <FaIndustry />, title: 'Industrial Waste', color: '#f59e0b', desc: 'Compliance-ready industrial waste management plans.' },
-  { icon: <FaTruck />, title: 'Doorstep Pickup', color: '#8b5cf6', desc: 'Scheduled doorstep collections across 120+ cities.' },
+  { icon: <FaLeaf />, title: 'Scrap Collection', color: '#8b5cf6', desc: 'Best market rates for metal, paper, glass and other scrap.' },
 ];
 
 const Home = () => {
@@ -50,7 +50,7 @@ const Home = () => {
               Our Core <span className="text-green-600">Services</span>
             </h2>
             <p className="text-gray-500 mt-4 max-w-2xl mx-auto text-lg">
-              From household pickups to large-scale industrial management — we handle every category of waste with precision and care.
+              From household collections to large-scale industrial management — we handle every category of waste with precision and care.
             </p>
           </motion.div>
 

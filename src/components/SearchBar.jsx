@@ -98,12 +98,12 @@ const SearchBar = () => {
 
           {/* Quick Tags */}
           <div className="flex flex-wrap gap-2 mt-4">
-            {['Plastic Pickup', 'E-Waste', 'Scrap Collection', 'Organic Waste'].map(tag => (
+            {['Plastic Collection', 'E-Waste', 'Scrap Collection', 'Organic Waste'].map(tag => (
               <motion.button
                 key={tag}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setWasteType(tag.replace(' Pickup', ''))}
+                onClick={() => setWasteType(tag.replace(' Collection', ''))}
                 className="text-xs px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 hover:border-primary-500/50 hover:text-primary-400 transition-all"
               >
                 {tag}

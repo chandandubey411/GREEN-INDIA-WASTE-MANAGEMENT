@@ -155,7 +155,6 @@ const Services = () => {
               const isMachine = img.alt.toLowerCase().includes('shredder') || 
                                 img.alt.toLowerCase().includes('bandsaw') || 
                                 img.alt.toLowerCase().includes('trommel') || 
-                                img.alt.toLowerCase().includes('strip') || 
                                 img.alt.toLowerCase().includes('collector') || 
                                 img.alt.toLowerCase().includes('panel') || 
                                 img.alt.toLowerCase().includes('station') || 

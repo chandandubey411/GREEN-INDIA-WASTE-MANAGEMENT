@@ -50,7 +50,7 @@ const statCards = [
 
 /* ── Bottom features ─────────────────────────────────── */
 const features = [
-  { icon: FaTruck, label: 'Same-Day\nPickup Available' },
+  { icon: FaRecycle, label: 'Smart Waste\nCollection' },
   { icon: FaRecycle, label: '98% Landfill\nDiversion' },
   { icon: FaShieldAlt, label: 'Data Secure &\nCompliant' },
   { icon: FaMedal, label: 'ISO 14001\nCertified' },
@@ -166,10 +166,10 @@ const GreenCircleStats = () => {
             transition={{ delay: 0.2 }}
             className="text-green-200/50 text-base md:text-lg max-w-lg mx-auto"
           >
-            End-to-end waste management — from your doorstep
+            End-to-end waste management — collection, recycling
             <br className="hidden md:block" />
-            to a{' '}
-            <span className="text-green-400 font-semibold">cleaner planet.</span>
+            and{' '}
+            <span className="text-green-400 font-semibold">responsible disposal.</span>
           </motion.p>
         </div>
 

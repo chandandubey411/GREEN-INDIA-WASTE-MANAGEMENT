@@ -43,14 +43,6 @@ export const services = [
     color: '#f59e0b',
   },
   {
-    id: 4,
-    icon: 'FaTruck',
-    title: 'Doorstep Pickup',
-    description: 'Schedule convenient doorstep waste collection at your preferred date and time.',
-    image: 'https://cdn.catf.us/wp-content/uploads/2025/10/01080255/Methane_ExchangeBlog_1-1400x1055.jpg',
-    color: '#8b5cf6',
-  },
-  {
     id: 5,
     icon: 'FaBoxes',
     title: 'Scrap Collection',
@@ -83,8 +75,8 @@ export const whyChooseUs = [
   },
   {
     icon: 'FaBolt',
-    title: 'Fast Pickup',
-    description: 'Same-day and next-day pickup available in 120+ cities across India.',
+    title: 'Fast Collection',
+    description: 'Same-day and next-day collection available in 120+ cities across India.',
     color: '#f59e0b',
   },
   {
@@ -111,7 +103,7 @@ export const recyclingSteps = [
   {
     step: '01',
     title: 'Waste Collection',
-    description: 'Scheduled doorstep pickup or drop at our collection centers across 120+ cities.',
+    description: 'Scheduled collection or drop at our collection centers across 120+ cities.',
     icon: 'FaTruck',
     color: '#22c55e',
   },
@@ -157,7 +149,7 @@ export const testimonials = [
     id: 1,
     name: 'Priya Sharma',
     role: 'Homeowner, Delhi',
-    review: 'Green India transformed how our society handles waste. The doorstep pickup is super convenient and the team is very professional!',
+    review: 'Green India transformed how our society handles waste. The collection service is super convenient and the team is very professional!',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
   },
@@ -225,18 +217,29 @@ export const blogs = [
   },
 ];
 export const galleryImages = [
-  { id: 1,  src: 'https://i.pinimg.com/1200x/f4/32/32/f43232b24966d22f64f68c3d2a8c8b34.jpg', alt: 'Industrial Double Shaft Shredder', category: 'Recycling' },
-  { id: 2,  src: 'https://5.imimg.com/data5/SELLER/Default/2023/3/RC/OA/YI/15821040/mini-horizontal-bandsaw-machine-ohb24.jpg', alt: 'Horizontal Bandsaw Machine', category: 'Recycling' },
-  { id: 3,  src: 'https://i.pinimg.com/736x/28/23/19/282319d1545d0635707cdc69f3ca8863.jpg', alt: 'Trommel Screening Machine', category: 'Facility' },
-  { id: 4,  src: 'https://i.pinimg.com/736x/e4/32/7f/e4327fe19c2c3abf54ed7c2a6d55fe15.jpg', alt: 'Cable Wire Stripping Machine', category: 'Recycling' },
-  { id: 5,  src: 'https://i.pinimg.com/736x/d2/d5/6c/d2d56c67e51000893573ae3aa9859898.jpg', alt: 'Cyclone Dust Collector', category: 'Facility' },
-  { id: 6,  src: 'https://i.pinimg.com/736x/dd/35/6c/dd356ccb78ea4847f5c7ae5c40799e89.jpg', alt: 'Electrical Control Panel', category: 'Facility' },
-  { id: 7,  src: 'https://p-cdn-sfpi.azureedge.net/global/en/-/media/NEU/Delta-NEU-BE/Readmore/Solutions/solution-ventilation-poste-de-travail-table-aspirante.jpg?h=552&iar=0&w=700&modified=20201001152711', alt: 'Exhaust & Work Station System', category: 'Facility' },
-  { id: 8,  src: 'https://webcontent.greenheck.com/atg-cms-v2-prod/images/default-source/blog/understanding-exhaust-system-stack-design-and-plume-rise-hero.png?sfvrsn=b510b05b_1', alt: 'Vertical Exhaust Stack System', category: 'Facility' },
-  { id: 9,  src: 'https://i.pinimg.com/1200x/70/60/87/7060873280c0229c754fde4884bd942f.jpg', alt: 'Exhaust Air Scrubber System', category: 'Facility' },
-  { id: 10, src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlapQbEtScVsnlYgr6wDM0sgvfTBMvh8IFZQ&s', alt: 'Green India Recycling Plant Unit', category: 'Facility' },
-  { id: 11, src: 'https://www.bine.world/assets/images/recycling_solutions/bine.webp', alt: 'Smart Waste Sorting Bins', category: 'Recycling' },
-  { id: 12, src: '/sonu-kumar.jpg', alt: 'Director & Founder Sonu Kumar', category: 'Team' },
+  // ── Building & Facilities ───────────────────────────────────
+  { id: 6,  src: '/office-building.jpg',            alt: 'Green India Head Office — Gurgaon',              category: 'Building'  },
+  { id: 17, src: '/plant-gate.jpg',                 alt: 'Green India Recycling Plant Gate — Sonipat',     category: 'Building'  },
+  { id: 18, src: '/recycling-unit-header.jpg',      alt: 'Green India Recycling Plant Unit',               category: 'Building'  },
+
+  // ── Machines & Equipment ────────────────────────────────────
+  { id: 3,  src: '/conveyor-belt.jpg',              alt: 'Waste Management Conveyor Belt',                 category: 'Machines'  },
+  { id: 4,  src: '/incinerator-machine.jpg',        alt: 'Incinerator Machine — Recycling of Materials',   category: 'Machines'  },
+  { id: 5,  src: '/baghouse-dust-collector.jpg',    alt: 'Baghouse Dust Collector System',                 category: 'Machines'  },
+  { id: 19, src: '/dust-collection-unit.jpg',       alt: 'Dust Collection Unit',                           category: 'Machines'  },
+  { id: 20, src: '/gas-scrubber-unit.jpg',          alt: 'Gas Scrubber Unit',                              category: 'Machines'  },
+  { id: 21, src: '/shredder-machine.jpg',           alt: 'Shredder Machine',                               category: 'Machines'  },
+  { id: 8,  src: '/double-shaft-shredder.jpg',      alt: 'Double Shaft Shredder Machine',                  category: 'Machines'  },
+  { id: 9,  src: '/horizontal-bandsaw.jpg',         alt: 'Horizontal Band Saw Machine',                    category: 'Machines'  },
+  { id: 10, src: '/trommel-screening.jpg',          alt: 'Trommel Screening Unit',                         category: 'Machines'  },
+  { id: 12, src: '/dust-collector.jpg',             alt: 'Industrial Dust Collector System',               category: 'Machines'  },
+  { id: 13, src: '/electrical-control-panel.jpg',   alt: 'Electrical Control Panel',                       category: 'Machines'  },
+  { id: 14, src: '/exhaust-scrubber.jpg',           alt: 'Exhaust Scrubber Unit',                          category: 'Machines'  },
+  { id: 15, src: '/exhaust-workstation.jpg',        alt: 'Exhaust Workstation Equipment',                  category: 'Machines'  },
+  { id: 16, src: '/vertical-exhaust.jpg',           alt: 'Vertical Exhaust System',                        category: 'Machines'  },
+
+  // ── Team ────────────────────────────────────────────────────
+  { id: 7,  src: '/sonu-kumar.jpg',                 alt: 'Director & Founder Sonu Kumar',                  category: 'Team'      },
 ];
 
 

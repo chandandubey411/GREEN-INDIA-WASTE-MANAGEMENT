@@ -164,7 +164,7 @@ const Impact = () => {
               transition={{ delay: 0.2 }}
               className="text-gray-500 text-base max-w-md mx-auto leading-relaxed"
             >
-              Every pickup matters. See how our collective effort is shaping
+              Every collection matters. See how our collective effort is shaping
               a cleaner India.
             </motion.p>
           </div>

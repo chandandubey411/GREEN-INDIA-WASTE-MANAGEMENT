@@ -37,7 +37,7 @@ const counters = [
 const highlights = [
   'Government Certified & ISO 14001:2015',
   'AI-powered waste classification system',
-  'Same-day pickup in 50+ major cities',
+  'Same-day collection in 50+ major cities',
   'Zero-landfill commitment by 2027',
 ];
 

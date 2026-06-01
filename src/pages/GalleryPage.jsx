@@ -139,15 +139,8 @@ const GalleryPage = () => {
               >
                 <AnimatePresence>
                   {filtered.map((img, idx) => {
-                    const isMachine = img.alt.toLowerCase().includes('shredder') || 
-                                      img.alt.toLowerCase().includes('bandsaw') || 
-                                      img.alt.toLowerCase().includes('trommel') || 
-                                      img.alt.toLowerCase().includes('strip') || 
-                                      img.alt.toLowerCase().includes('collector') || 
-                                      img.alt.toLowerCase().includes('panel') || 
-                                      img.alt.toLowerCase().includes('station') || 
-                                      img.alt.toLowerCase().includes('exhaust') || 
-                                      img.alt.toLowerCase().includes('scrubber');
+                    // Use category-based detection for proper image scaling
+                    const isMachine = img.category === 'Machines' || img.category === 'Building';
                     return (
                       <motion.div
                         key={img.id}

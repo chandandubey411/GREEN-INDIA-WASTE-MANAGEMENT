@@ -56,20 +56,20 @@ const eprCycleSteps = [
 
 // Existing process steps
 const processSteps = [
-  { step: '01', title: 'Book Online', desc: 'Schedule a pickup in under 2 minutes via our form or simple call.', color: '#16a34a' },
-  { step: '02', title: 'We Arrive', desc: 'Our trained, professional team arrives at your doorstep at the scheduled time.', color: '#2563eb' },
+  { step: '01', title: 'Book Online', desc: 'Schedule a collection in under 2 minutes via our form or simple call.', color: '#16a34a' },
+  { step: '02', title: 'We Arrive', desc: 'Our trained, professional team arrives at your location at the scheduled time.', color: '#2563eb' },
   { step: '03', title: 'Collect & Sort', desc: 'Waste is safely collected and sorted by category on the spot.', color: '#7c3aed' },
   { step: '04', title: 'Certify & Recycle', desc: 'Receive a digital destruction certificate and your waste is processed.', color: '#d97706' },
 ];
 
 const plans = [
   {
-    name: 'Household Scrap', price: 'Free', per: ' / pickup', color: '#16a34a',
-    features: ['Instant cash for scrap', 'Plastic, Paper & Metal', 'Doorstep pickup', 'Eco-friendly disposal report'],
+    name: 'Household Scrap', price: 'Free', per: ' / collection', color: '#16a34a',
+    features: ['Instant cash for scrap', 'Plastic, Paper & Metal', 'Eco-friendly disposal report', 'Certified recycling receipt'],
   },
   {
     name: 'Corporate Compliance', price: 'Custom', per: ' pricing', color: '#2563eb', popular: true,
-    features: ['Scheduled pickups', 'E-waste, ITAD & Shredding', 'Safe Data destruction', 'Certified disposal certificate', 'Audited compliance reports'],
+    features: ['Scheduled collections', 'E-waste, ITAD & Shredding', 'Safe Data destruction', 'Certified disposal certificate', 'Audited compliance reports'],
   },
   {
     name: 'Industrial / EPR', price: 'Custom', per: ' quote', color: '#7c3aed',
@@ -114,7 +114,7 @@ const ServicesPage = () => {
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <Link to="/contact">
                 <motion.button whileHover={{ scale: 1.05 }} className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full transition-colors shadow-md shadow-green-100/50">
-                  Book a Pickup
+                  Book a Collection
                 </motion.button>
               </Link>
               <a href="tel:+919650380888">

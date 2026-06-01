@@ -13,7 +13,7 @@ const genAI = new GoogleGenerativeAI("YOUR_API_KEY_HERE");
 const initialMessages = [
   {
     role: 'ai',
-    text: "Hello! 👋 I'm the Green India AI Assistant. I can help you with waste pickup, pricing, recycling guides, and information about our services. How can I assist you today?",
+    text: "Hello! 👋 I'm the Green India AI Assistant. I can help you with waste collection, pricing, recycling guides, and information about our services. How can I assist you today?",
   }
 ];
 
@@ -23,7 +23,8 @@ const localKB = [
     keys: ['about', 'who are you', 'company', 'green india', 'what is this', 'background', 'detail', 'info', 'profile', 'work'],
     answer: `🌿 **Green India Waste Management** is India's leading AI-powered recycling and resource recovery platform. 
 
-* **Founded:** 2015
+* **Founded:** 2023
+* **Experience:** With **18+ years of hands-on experience** in the waste management and recycling industry.
 * **Our Mission:** Achieving zero waste to landfill through responsible resource recovery, robust compliance, and clean tech innovation.
 * **Scale:** Active in **120+ cities** across India, serving over **12,000+ happy clients**.
 * **Certifications:** Authorized by the Ministry of Environment, ISO 14001:2015 certified, and strictly CPCB-compliant.
@@ -32,12 +33,11 @@ We help residential neighborhoods, corporate offices, and heavy industries recyc
   },
   {
     keys: ['leader', 'founder', 'director', 'ceo', 'sonu', 'kumar', 'who runs', 'owner', 'boss', 'management', 'head'],
-    answer: `👤 Green India is led by **Sonu Kumar**, our visionary **Founder & Director (CEO)**.
+    answer: `👤 Green India is led by **Mr. Sonu Kumar**, our visionary **Director**.
 
-Under Sonu's leadership, we have grown to be one of India's most trusted green tech enterprises. He pioneered the integration of AI-powered segregation and smart logistics to tackle India's waste challenges.
+Mr. Sonu Kumar possesses extensive industry knowledge and years of valuable experience in the field of waste management and material recycling. With deep expertise in identifying, segregating, and recycling E-waste materials through environmentally responsible methods, he has played a significant role in promoting sustainable waste management practices.
 
-**Sonu Kumar's Vision Statement:**
-*"Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."* 🌿`
+His strong leadership, operational excellence, and commitment to eco-friendly solutions continue to drive the company toward growth and innovation. Under his guidance, Green India Waste Management is committed to delivering safe, efficient, and sustainable recycling solutions for a cleaner and greener future. 🌿`
   },
   {
     keys: ['service', 'what do you do', 'what you do', 'facilities', 'features', 'help', 'offering'],
@@ -46,9 +46,8 @@ Under Sonu's leadership, we have grown to be one of India's most trusted green t
 1. **Plastic Waste Management:** Certified collection and processing for all grades of plastics.
 2. **E-Waste Recycling:** Safe disposal of old laptops, phones, and appliances with full data destruction certificates.
 3. **Industrial Waste Solutions:** CPCB-compliant management, hazardous waste treatment, and factory scrap disposal.
-4. **Doorstep Pickup:** Convenient dry waste collection scheduled at your convenience.
-5. **Scrap Collection:** Best market rates for copper, iron, paper, glass, and cardboard with instant digital payment.
-6. **Organic Waste Solutions:** Advanced bio-composting setups that turn food and garden waste into premium organic compost in 21-30 days.
+4. **Scrap Collection:** Best market rates for copper, iron, paper, glass, and cardboard with instant digital payment.
+5. **Organic Waste Solutions:** Advanced bio-composting setups that turn food and garden waste into premium organic compost in 21-30 days.
 
 Which of these services can I describe in detail for you? ♻️`
   },
@@ -81,13 +80,13 @@ We partner with factories, warehouses, and IT parks to ensure 100% legal complia
 * We offer custom Annual Maintenance Contracts (AMCs) for regular pick-ups! 🌿`
   },
   {
-    keys: ['pickup', 'book', 'schedule', 'doorstep', 'collect', 'appoint', 'rider', 'request', 'free'],
-    answer: `🚛 **Scheduling a Doorstep Pickup is Quick and Easy!**
+    keys: ['pickup', 'book', 'schedule', 'collect', 'appoint', 'rider', 'request', 'free', 'collection'],
+    answer: `🚛 **Booking a Waste Collection is Quick and Easy!**
 
 Here is how you can book:
 1. **WhatsApp Support:** Click our green **WhatsApp Chat** widget in the bottom-right corner or text us at **+91 9650380888** to schedule immediately.
 2. **Website Form:** Fill out the simple contact form in the **Contact** page of this website.
-3. **The Process:** A certified green rider will visit your home or office on the scheduled date, weigh the scrap using transparent digital scales, pay you instantly (Cash/UPI), and issue a receipt! 💵`
+3. **The Process:** A certified green team will visit at the scheduled date, weigh the scrap using transparent digital scales, pay you instantly (Cash/UPI), and issue a receipt! 💵`
   },
   {
     keys: ['scrap', 'metal', 'glass', 'paper', 'cardboard', 'sell', 'buy', 'newspaper', 'iron', 'copper', 'aluminum', 'brass'],
@@ -128,7 +127,7 @@ Same-day and next-day collections are standard in all hub cities. Text us on Wha
     keys: ['price', 'cost', 'fee', 'charge', 'rate', 'payment', 'how much', 'money', 'pay', 'expensive'],
     answer: `💰 **Pricing, Fees, and Earnings:**
 
-* **Dry Waste & General Pickup:** Completely **FREE**! There are no hidden call-out fees.
+* **Dry Waste & General Collection:** Completely **FREE**! There are no hidden call-out fees.
 * **Scrap & E-Waste:** We **PAY YOU**! You earn competitive cash/UPI payouts based on weight and market scrap value.
 * **Organic Composting Systems:** Billed at affordable equipment setup rates.
 * **Industrial and Commercial Contracts:** Customized quotation packages are drafted after a free site audit. 📈`
@@ -152,18 +151,51 @@ Thank you for being a part of this green journey! 🌳`
 We are here for you 24/7!
 * **WhatsApp & Call:** +91 9650380888
 * **Email:** hello@greenindiawm.com
-* **Corporate Headquarters:** Connaught Place, New Delhi - 110001
+* **Head Office:** Springboard Business Hub, Sector-18, Gurgaon — 122001, Haryana
+* **Recycling Plant:** Plot No. 169, HSIIDC Kundli, Sonipat, Haryana — 131028
 * **Customer Support:** Active round-the-clock in English, Hindi, and regional languages. ✉`
   },
   {
     keys: ['process', 'step', 'how it works', 'flow', 'work', 'method', 'procedure', 'segregation', 'sorting'],
     answer: `🔄 **Our 5-Step AI-Smart Recycling Process:**
 
-1. **Scheduled Pickup:** Book a collection on our website or text our WhatsApp bot.
+1. **Scheduled Collection:** Book a collection on our website or text our WhatsApp bot.
 2. **AI Segregation:** Waste is delivered to our Recovery Facility where smart optical sorting separates waste automatically.
 3. **Advanced Processing:** Waste is washed, shredded, or composted in state-of-the-art facilities.
 4. **Manufacturer Supply:** Shredded plastics, cleaned metals, and cardboard pulps are sold back to manufacturers.
 5. **Circular Economy:** Reusable items return to the supply chain, ensuring **98% landfill diversion**! ♻️`
+  },
+  {
+    keys: ['advantage', 'benefit', 'benefits', 'why recycle', 'importance', 'pros', 'good thing', 'positive'],
+    answer: `✅ **Advantages of Recycling — Why It Matters:**
+
+1. **Conserves Natural Resources:** Recycling reduces the need to extract virgin raw materials like timber, water, and minerals.
+2. **Saves Energy:** Manufacturing from recycled materials uses significantly less energy (e.g., recycling aluminium saves 95% energy vs. virgin production).
+3. **Reduces Environmental Pollution:** Keeps hazardous waste, chemicals, and toxins out of landfills, soil, and water bodies.
+4. **Reduces Greenhouse Gas Emissions:** Less landfill waste = fewer methane emissions and lower carbon footprint.
+5. **Creates Green Jobs:** The recycling industry generates employment in collection, sorting, processing, and logistics.
+6. **Supports Circular Economy:** Materials re-enter the supply chain, reducing dependence on imports and virgin resources.
+7. **Recovers Valuable Materials:** Precious metals like gold, silver, and copper are recovered from e-waste for reuse.
+8. **Saves Landfill Space:** Diverts waste from overflowing landfills, extending their operational life.
+9. **Promotes Sustainability:** Builds a cleaner, healthier planet for future generations. 🌍
+
+At Green India, we are proud to champion all these benefits across **120+ cities in India**! ♻️`
+  },
+  {
+    keys: ['challenge', 'challenges', 'problem', 'issue', 'difficulty', 'obstacles', 'drawback', 'cons', 'barrier', 'limitation'],
+    answer: `⚠️ **Challenges in Recycling & E-Waste Management:**
+
+1. **Lack of Awareness:** Many consumers don't know what is recyclable or how to dispose of e-waste safely.
+2. **Inadequate Collection Infrastructure:** Insufficient collection points and reverse logistics systems reduce collection rates.
+3. **Informal Sector Dominance:** Large portions of e-waste are handled by unregulated workers using unsafe methods.
+4. **Weak Policy Enforcement:** Inconsistent regulations and poor enforcement hinder effective e-waste management.
+5. **High Compliance Costs:** Proper treatment facilities and certifications require significant capital investment.
+6. **Data Security Concerns:** Securely wiping storage devices before disposal is a major challenge for businesses.
+7. **Limited Recycling Technology:** Lack of advanced sorting and processing facilities leads to low material recovery rates.
+8. **Short Product Lifecycles:** Rapid tech upgrades generate more e-waste faster than recycling systems can handle.
+9. **Consumer Behavior:** Convenience and lack of incentives make people less likely to segregate or recycle responsibly.
+
+🌿 **How Green India Addresses These:** Through AI-powered sorting, 120+ city coverage, government-certified data destruction, and community awareness — we tackle every one of these challenges head-on!`
   }
 ];
 
@@ -198,13 +230,13 @@ const AIChatbot = ({ activeChat, setActiveChat }) => {
         Your tone should be helpful, professional, and eco-friendly.
 
         Here are the certified facts about our company from the website. ONLY use these facts to answer the user:
-        - Company Name: Green India Waste Management (Founded: 2015)
-        - Founder & Director / CEO: Sonu Kumar
-        - Sonu Kumar's vision: "Driving Green India Waste Management's vision towards a sustainable, zero-waste future through responsible resource recovery, robust CPCB compliance, and green tech innovation."
-        - Our Contact: WhatsApp & Call at +91 9650380888, Email at hello@greenindiawm.com, Headquarters in Connaught Place, New Delhi.
-        - Core Services: Plastic Waste Management (recycling grades into granules), E-Waste Recycling (certified data wipe & destruction), Industrial Waste Solutions (CPCB-compliant treatment), Doorstep Pickup (convenient scheduled collections), Scrap Collection (instant UPI/cash payouts for metals/paper/glass), Organic Waste Solutions (bio-composting wet waste to compost).
+        - Company Name: Green India Waste Management (Founded: 2023, with 18+ years of industry experience)
+        - Director: Mr. Sonu Kumar
+        - About Mr. Sonu Kumar: Mr. Sonu Kumar possesses extensive industry knowledge and years of valuable experience in the field of waste management and material recycling. With deep expertise in identifying, segregating, and recycling E-waste materials through environmentally responsible methods, he has played a significant role in promoting sustainable waste management practices. His strong leadership, operational excellence, and commitment to eco-friendly solutions continue to drive the company toward growth and innovation. Under his guidance, Green India Waste Management is committed to delivering safe, efficient, and sustainable recycling solutions for a cleaner and greener future.
+        - Our Contact: WhatsApp & Call at +91 9650380888, Email at hello@greenindiawm.com, Headquarters in Gurgaon, Haryana.
+        - Core Services: Plastic Waste Management (recycling grades into granules), E-Waste Recycling (certified data wipe & destruction), Industrial Waste Solutions (CPCB-compliant treatment), Scrap Collection (instant UPI/cash payouts for metals/paper/glass), Organic Waste Solutions (bio-composting wet waste to compost).
         - Service Coverage: 120+ cities in India including Delhi NCR, Mumbai, Bangalore, Pune, Chennai, Hyderabad, Kolkata, Ahmedabad, Surat, Jaipur, Lucknow, Kochi, Chandigarh.
-        - Pricing: General pickups are FREE. Scrap & E-waste earn instant cash payouts based on verified weight. AMCs are customized.
+        - Pricing: General collections are FREE. Scrap & E-waste earn instant cash payouts based on verified weight. AMCs are customized.
         - Achievements: 50,000+ Tons waste recycled, 120,000+ Trees saved, 30K+ Tons CO2 saved, 12,000+ happy clients.
         - Certifications: ISO 14001:2015 certified, Ministry of Environment authorized, 100% CPCB compliance.
 
@@ -221,7 +253,7 @@ const AIChatbot = ({ activeChat, setActiveChat }) => {
               
               // Standard conversational greetings
               if (lowerMsg === 'hi' || lowerMsg === 'hello' || lowerMsg === 'hey' || lowerMsg === 'help') {
-                  const reply = "Hello! 👋 Welcome to **Green India Waste Management**. I am your AI Eco-Assistant. \n\nI can help you with: \n* 📅 Booking a doorstep pickup\n* 👤 Info about our Founder, Sonu Kumar\n* 🛠️ Our services (Plastic, E-waste, Scrap)\n* 📍 Cities we cover (120+ cities)\n* 💰 Rates & pricing\n\nWhat can I help you with today? ♻️";
+                  const reply = "Hello! 👋 Welcome to **Green India Waste Management**. I am your AI Eco-Assistant. \n\nI can help you with: \n* 👤 Info about our Founder, Sonu Kumar\n* 🛠️ Our services (Plastic, E-waste, Scrap)\n* 📍 Cities we cover (120+ cities)\n* 💰 Rates & pricing\n* ✅ Advantages & challenges of recycling\n\nWhat can I help you with today? ♻️";
                   setMessages(prev => [...prev, { role: 'ai', text: reply }]);
                   setIsTyping(false);
                   return;
@@ -249,7 +281,7 @@ const AIChatbot = ({ activeChat, setActiveChat }) => {
               if (bestMatch && highestScore > 0) {
                   responseText = bestMatch.answer;
               } else {
-                  responseText = "I'm not completely sure about that. 🌍 However, I can definitely help you with our **Services**, **Pricing**, **Cities Covered (120+)**, **Doorstep Pickups**, or our **Founder Sonu Kumar**! \n\nPlease choose one of these topics or ask me a related question, and I'll gladly guide you. 🌿";
+                  responseText = "I'm not completely sure about that. 🌍 However, I can definitely help you with our **Services**, **Pricing**, **Cities Covered (120+)**, **Advantages & Challenges of Recycling**, or our **Founder Sonu Kumar**! \n\nPlease choose one of these topics or ask me a related question, and I'll gladly guide you. 🌿";
               }
 
               setMessages(prev => [...prev, { role: 'ai', text: responseText }]);
@@ -361,7 +393,7 @@ const AIChatbot = ({ activeChat, setActiveChat }) => {
             {/* Quick Prompts (Only show if few messages) */}
             {messages.length < 3 && !isTyping && (
               <div className="px-4 py-2.5 flex gap-2 overflow-x-auto no-scrollbar border-t border-green-100 bg-white/95">
-                {['Book Pickup', 'E-Waste Info', 'Pricing'].map(prompt => (
+                {['Book Collection', 'E-Waste Info', 'Pricing'].map(prompt => (
                   <button
                     key={prompt}
                     onClick={() => {

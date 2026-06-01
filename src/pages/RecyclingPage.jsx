@@ -33,72 +33,86 @@ const recyclingPillars = [
   { icon: <FaGlobe />, label: 'Sustainable Future' },
 ];
 
-// From image: Advanced Recycling Plant Machines
+// From image: Advanced Recycling Plant Machines & Buildings
 const machines = [
+  /* ── BUILDINGS ─────────────────────────────────────────── */
   {
-    name: 'Industrial Double Shaft Shredder',
-    icon: <FaTools />,
-    color: '#ef4444',
-    image: '/double-shaft-shredder.jpg',
-    desc: 'Breaks down tough electronic and plastic waste into uniform segments for optimized downstream material separation.'
-  },
-  {
-    name: 'Horizontal Bandsaw Machine',
-    icon: <FaCut />,
-    color: '#8b5cf6',
-    image: '/horizontal-bandsaw.jpg',
-    desc: 'Provides highly precise cuts of bulky scrap metal, frames, and e-waste structures for compact processing.'
-  },
-  {
-    name: 'Trommel Screening Machine',
-    icon: <FaFilter />,
-    color: '#3b82f6',
-    image: '/trommel-screening.jpg',
-    desc: 'High-capacity rotating drum screen sorting different sized shredded materials for granular resource sorting.'
-  },
-  {
-    name: 'Cable Wire Stripping Machine',
-    icon: <FaSync />,
-    color: '#22c55e',
-    image: '/wire-stripper.jpg',
-    desc: 'High-speed automated insulation stripper recovering raw copper and aluminium cores from heavy-duty industrial cables.'
-  },
-  {
-    name: 'Cyclone Dust Collector',
-    icon: <FaWind />,
-    color: '#06b6d4',
-    image: '/dust-collector.jpg',
-    desc: 'Centralized extraction system pulling air pollutants, fine dust, and residues for clean, compliant workspace air.'
-  },
-  {
-    name: 'Electrical Control Panel',
-    icon: <FaBroadcastTower />,
-    color: '#f59e0b',
-    image: '/electrical-control-panel.jpg',
-    desc: 'Centralized smart panel with detailed meters and diagnostic switches managing power grids across recycling units.'
-  },
-  {
-    name: 'Exhaust & Work Station System',
+    name: 'Green India Head Office',
     icon: <FaBuilding />,
-    color: '#3b82f6',
-    image: '/exhaust-workstation.jpg',
-    desc: 'Individual workspaces equipped with overhead extraction hoods for safe, clean manual separation operations.'
+    color: '#16a34a',
+    image: '/office-building.jpg',
+    desc: 'Our registered head office at Springboard Business Hub, Sec-18, Gurgaon — the command centre for operations across 120+ cities.',
+    label: 'BUILDING',
   },
   {
-    name: 'Vertical Exhaust Stack System',
+    name: 'Recycling Plant Gate',
     icon: <FaIndustry />,
-    color: '#ef4444',
-    image: '/vertical-exhaust.jpg',
-    desc: 'Tall vertical stack system with safe ladder access discharging cleaned gases cleanly into the upper atmosphere.'
+    color: '#15803d',
+    image: '/plant-gate.jpg',
+    desc: 'Main entrance of Green India Waste Management plant at Plot No-169, Sec-53, PH-III, HSIIDC Kundli, Sonipat, Haryana-131028.',
+    label: 'PLANT',
   },
   {
-    name: 'Exhaust Air Scrubber System',
-    icon: <FaWater />,
+    name: 'Recycling Plant Unit',
+    icon: <FaIndustry />,
+    color: '#06b6d4',
+    image: '/recycling-unit-header.jpg',
+    desc: 'Our full-scale red category dismantling plant in HSIIDC Kundli, Sonipat — equipped for complete e-waste processing and resource recovery.',
+    label: 'PLANT',
+  },
+
+  /* ── MACHINES ───────────────────────────────────────────── */
+
+  {
+    name: 'Conveyor Belt System',
+    icon: <FaTools />,
+    color: '#3b82f6',
+    image: '/conveyor-belt.jpg',
+    desc: 'Heavy-duty inclined conveyor belt transporting sorted e-waste materials between processing stations with maximum efficiency.',
+    label: 'MACHINE',
+  },
+  {
+    name: 'Incinerator Machine',
+    icon: <FaFire />,
+    color: '#f59e0b',
+    image: '/incinerator-machine.jpg',
+    desc: 'Industrial-grade incinerator for safe high-temperature treatment of non-recyclable materials, reducing hazardous waste volume and toxicity.',
+    label: 'MACHINE',
+  },
+  {
+    name: 'Baghouse Dust Collector',
+    icon: <FaWind />,
+    color: '#8b5cf6',
+    image: '/baghouse-dust-collector.jpg',
+    desc: 'Heavy-duty bag filter system capturing fine particulate matter and industrial dust, ensuring clean air emissions and HSPCB compliance.',
+    label: 'MACHINE',
+  },
+  {
+    name: 'Dust Collection Unit',
+    icon: <FaFilter />,
+    color: '#f97316',
+    image: '/dust-collection-unit.jpg',
+    desc: 'Compact bag-type dust collection unit with yellow steel frame, white cylindrical filters and conical hopper — ideal for fine airborne particulates.',
+    label: 'MACHINE',
+  },
+  {
+    name: 'Gas Scrubber Unit',
+    icon: <FaBroadcastTower />,
     color: '#14b8a6',
-    image: '/exhaust-scrubber.jpg',
-    desc: 'Wet scrubber system removing micro-particles and chemical vapors from the process exhaust before emission.'
-  }
+    image: '/gas-scrubber-unit.jpg',
+    desc: 'Dual-vessel gas scrubber unit with beige pressure tanks and yellow plumbing — removes harmful gases from incinerator exhaust for clean-air compliance.',
+    label: 'MACHINE',
+  },
+  {
+    name: 'Shredder Machine',
+    icon: <FaCog />,
+    color: '#6366f1',
+    image: '/shredder-machine.jpg',
+    desc: 'Heavy-duty single-shaft industrial shredder by Pathak Industries — designed for high-torque shredding of e-waste, cables, and bulky recyclable materials.',
+    label: 'MACHINE',
+  },
 ];
+
 
 // From image: Why Recycling Matters
 const whyRecyclingMatters = [
@@ -155,7 +169,7 @@ const materials = [
 
 // 8-step workflow
 const workflowSteps = [
-  { step: '1', title: 'Collection of E-Waste', desc: 'Scheduled doorstep pickup or drop at our 120+ collection centers.', icon: <FaTruck />, color: '#ef4444' },
+  { step: '1', title: 'Collection of E-Waste', desc: 'Scheduled collection or drop at our 120+ collection centers across India.', icon: <FaTruck />, color: '#ef4444' },
   { step: '2', title: 'Sorting of E-Waste', desc: 'Items sorted into: phones, laptops, PCBs, cables, batteries and more.', icon: <FaSortAmountDown />, color: '#f59e0b' },
   { step: '3', title: 'Processing of E-Waste', desc: 'Each category undergoes initial processing for downstream recovery.', icon: <FaIndustry />, color: '#22c55e' },
   { step: '4', title: 'Repairing of E-Waste', desc: 'Functional devices are inspected and repaired for refurbishment.', icon: <FaTools />, color: '#06b6d4' },
@@ -376,8 +390,15 @@ const RecyclingPage = () => {
                       View Full Image
                     </span>
                   </div>
-                  <div className="absolute top-3 left-3 bg-green-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-md">
-                    {machine.icon}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5">
+                    <div className="bg-green-600 text-white w-8 h-8 rounded-lg flex items-center justify-center text-sm shadow-md">
+                      {machine.icon}
+                    </div>
+                    {machine.label && (
+                      <span className="text-white text-[9px] font-extrabold uppercase tracking-widest bg-black/50 backdrop-blur px-2 py-1 rounded-md">
+                        {machine.label}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -825,7 +846,7 @@ const RecyclingPage = () => {
             <p className="text-primary-100 text-lg mb-8">Join 12,000+ clients who trust Green India for certified, transparent e-waste recycling.</p>
             <Link to="/contact">
               <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }} className="px-10 py-4 bg-white text-primary-600 font-bold rounded-full text-lg shadow-xl">
-                Schedule Your First Pickup Free
+                Schedule Your First Collection Free
               </motion.button>
             </Link>
           </motion.div>

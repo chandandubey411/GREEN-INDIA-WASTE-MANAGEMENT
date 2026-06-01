@@ -6,7 +6,7 @@ import { FaTimes, FaWhatsapp, FaPaperPlane } from 'react-icons/fa';
 const PHONE = '919650380888'; // WhatsApp number (with country code, no +)
 
 const quickMessages = [
-  '🚛 I want to schedule a free pickup',
+  '🚛 I want to schedule a free collection',
   '♻️ What types of waste do you collect?',
   '📍 Is my city covered?',
   '💰 What is the pricing?',
