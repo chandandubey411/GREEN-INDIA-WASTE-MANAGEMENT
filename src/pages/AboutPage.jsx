@@ -460,12 +460,12 @@ const AboutPage = () => {
                     desc: 'Ministry of Micro, Small and Medium Enterprises manufacturing enterprise license.'
                   },
                   {
-                    title: 'ISO 9001 & 14001:2015',
-                    issuer: 'QMS & EMS Certification',
-                    image: null,
-                    type: 'ISO Quality & Green standard',
-                    regNo: 'International Standards',
-                    desc: 'Certified Quality Management System and Environmental Protection standards.'
+                    title: 'ISO 9001:2015',
+                    issuer: 'ICV Assessments Pvt. Ltd.',
+                    image: '/iso-certificate.png',
+                    type: 'ISO Quality standard',
+                    regNo: 'IN/98525582/1415',
+                    desc: 'Certified Quality Management System for waste collection, treatment, disposal, materials recovery, hazardous waste collection, remediation, and recycling.'
                   },
                   {
                     title: 'Company Presentation (PPT)',
