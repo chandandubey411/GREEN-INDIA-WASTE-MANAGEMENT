@@ -219,8 +219,8 @@ export const blogs = [
 export const galleryImages = [
   // ── Building & Facilities ───────────────────────────────────
   { id: 1,  src: '/office-building.jpg',         alt: 'Green India Head Office — Gurgaon',            category: 'Building' },
-  { id: 6,  src: '/dlf-office-building.jpg',     alt: 'DLF IT Park Office Building — Gurgaon',        category: 'Building' },
-  { id: 7,  src: '/plant-gate.jpg',              alt: 'Green India Recycling Plant Gate — Sonipat',    category: 'Building' },
+  { id: 6,  src: '/dlf-office-building-new.png',     alt: 'DLF IT Park Office Building — Gurgaon',        category: 'Building' },
+  { id: 7,  src: '/plant-gate-new.jpg',              alt: 'Green India Recycling Plant Gate — Sonipat',    category: 'Building' },
 
   // ── Machines & Equipment ────────────────────────────────────
   { id: 2,  src: '/conveyor-belt.jpg',           alt: 'Waste Management Conveyor Belt',               category: 'Machines' },

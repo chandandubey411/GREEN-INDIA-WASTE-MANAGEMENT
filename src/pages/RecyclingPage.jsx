@@ -48,7 +48,7 @@ const machines = [
     name: 'Recycling Plant Gate',
     icon: <FaIndustry />,
     color: '#15803d',
-    image: '/plant-gate.jpg',
+    image: '/plant-gate-new.jpg',
     desc: 'Main entrance of Green India Waste Management plant at Plot No-169, Sec-53, PH-III, HSIIDC Kundli, Sonipat, Haryana-131028.',
     label: 'PLANT',
   },
