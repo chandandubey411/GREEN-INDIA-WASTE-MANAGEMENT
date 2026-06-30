@@ -27,14 +27,52 @@ const ContactPage = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', city: '', wasteType: '', message: '', date: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [openFaq, setOpenFaq] = useState(null);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1800);
+    setError('');
+
+    try {
+      const payload = {
+        access_key: '488d25a3-3ff3-4651-9be5-d68067b762bf',
+        subject: `New Collection Booking from ${formData.name} — ${formData.city}`,
+        from_name: formData.name || 'Green India Website',
+        // replyto: set to the submitter's address so Gmail threads it as a
+        // person-to-person message and delivers to Primary (not Updates).
+        replyto: formData.email || '',
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email || 'Not provided',
+        city: formData.city,
+        waste_type: formData.wasteType,
+        preferred_date: formData.date,
+        message: formData.message || 'No additional details.',
+        botcheck: false,
+      };
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -109,7 +147,7 @@ const ContactPage = () => {
                   <p className="text-gray-600">Thank you, {formData.name}! Our team will contact you within 2 hours to confirm your collection details.</p>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => { setSubmitted(false); setFormData({ name: '', phone: '', email: '', city: '', wasteType: '', message: '', date: '' }); }}
                     className="mt-6 px-8 py-3 bg-primary-500 text-white rounded-full font-semibold shadow-green-sm"
                   >
                     Book Another Collection
@@ -122,6 +160,22 @@ const ContactPage = () => {
                   onSubmit={handleSubmit}
                   className="space-y-4"
                 >
+                  {/* Web3Forms requires the access_key to be present in the payload.
+                      We send it via the JS payload, but keeping it here as a hidden
+                      field serves as a visible reminder / fallback. */}
+                  <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_KEY || ''} />
+
+                  {/* Error banner */}
+                  {error && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3"
+                    >
+                      <span className="font-bold mt-0.5">⚠</span>
+                      <span>{error}</span>
+                    </motion.div>
+                  )}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative">
                       <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
